@@ -35,8 +35,6 @@
 
 ### Acquisition Technical Due Diligence Foundation — Phase 1
 
-سلسلة العناية الواجبة الأساسية:
-
 **Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
 
 - [سجل القدرات للاستحواذ | Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — خط الأساس التاريخي F001-F243.
@@ -75,7 +73,16 @@
 - **F244 — التحسين الوراثي مع تحليل الأثر البيئي / Genetic Breeding with Environmental Impact Analysis — Planned.**
 - **F245 — تقييم الأثر البيئي الإيجابي لتربية الإبل / Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
 
-يحمّل runtime ملف `app/source-features-244-245.js` بعد F243، ويُلزم `scripts/validate.py` و`tests/test_core.mjs` و`tests/test_phase4.mjs` بوجود تسلسل فريد ومتصل **F001-F245**. لا يُسمح لإصدار الاستحواذ أن يدّعي تغطية كاملة إذا انخفض العدد عن 245.
+يحمّل runtime ملف `app/source-features-244-245.js` بعد F243، ويُلزم `scripts/validate.py` و`tests/test_core.mjs` و`tests/test_phase4.mjs` بوجود تسلسل فريد ومتصل **F001-F245**.
+
+### Release Readiness & Security Gates
+
+- [جاهزية إصدار الاستحواذ | Acquisition Release Readiness](docs/RELEASE_READINESS.md) — G01-G15.
+- [مراجعة الاعتماديات والتراخيص | Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md).
+- `scripts/security_check.py` — فحص أنماط الأسرار عالية الثقة والملفات الحساسة والاعتماديات الخارجية في runtime.
+- `scripts/release_check.py` — يمنع رجوع الوثائق العامة إلى 243 كأنه النطاق الحالي، ويتحقق من بوابات الإصدار الأساسية.
+
+الرابط الحي وtag الإصدار النهائي ما زالا **Pending** ولا يتم تحويلهما إلى Ready إلا بعد تحقق مستقل.
 
 ### حالات النضج
 
@@ -101,6 +108,8 @@ node tests/test_core.mjs
 node tests/test_phase3.mjs
 node tests/test_phase4.mjs
 python tests/test_evidence_contract.py
+python scripts/security_check.py
+python scripts/release_check.py
 ```
 
 GitHub Actions يشغّل هذه الاختبارات كعقد مستمر لجاهزية العناية الواجبة.
@@ -114,6 +123,8 @@ GitHub Actions يشغّل هذه الاختبارات كعقد مستمر لجا
 - [سجل الخوارزميات والمحركات | Algorithm & Engine Registry](docs/ALGORITHM_ENGINE_REGISTRY.md)
 - [عائلات الأنظمة | System Families](docs/SYSTEM_FAMILIES.md)
 - [مطابقة 245 قدرة | Phase 4 Reconciliation](docs/PHASE4_245_RECONCILIATION.md)
+- [جاهزية إصدار الاستحواذ | Release Readiness](docs/RELEASE_READINESS.md)
+- [مراجعة الاعتماديات والتراخيص | Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md)
 
 ### حدود الإفصاح
 
@@ -121,9 +132,7 @@ GitHub Actions يشغّل هذه الاختبارات كعقد مستمر لجا
 
 ## English
 
-SMART Camel AI is an integrated digital operating environment for camel lifecycle management, herd and farm operations, health, breeding, lineage, grazing, competitions, racing, auctions, marketplaces, products, risk and operational intelligence within one auditable interface.
-
-This public repository supports executable demonstration and technical review without exposing proprietary algorithms, protected implementation details or confidential intellectual-property records.
+SMART Camel AI is an integrated public demonstrator for a broader camel-sector operating and intelligence platform.
 
 ### Current normalized result
 
@@ -136,27 +145,12 @@ This public repository supports executable demonstration and technical review wi
 
 These counts do not claim 245 production systems or 29 validated production models. Evidence Grade A does not mean production readiness.
 
-### Acquisition diligence chain
-
-**Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
-
-- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — historical Phase 1 baseline F001-F243.
-- [Phase 4 — 245 Capability Reconciliation](docs/PHASE4_245_RECONCILIATION.md) — source-backed F244-F245 addendum and current F001-F245 scope.
-- [Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10.
-- [Known Limitations](docs/KNOWN_LIMITATIONS.md) — 23 Arabic + 23 English disclosures.
-- [Security Baseline & Threat Model](docs/SECURITY.md).
-- [IP Notice](docs/IP_NOTICE.md).
-- [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md).
-- [Acquisition Evidence Catalog](docs/EVIDENCE_CATALOG.md).
-- [Phase 3 Grade A Evidence](docs/PHASE3_GRADE_A_EVIDENCE.md).
-- [Strategic Capability Evidence Matrix](docs/STRATEGIC_EVIDENCE_MATRIX.md).
+The historical Phase 1 acquisition registry remains F001-F243 for traceability. Phase 4 adds F244 and F245 and establishes F001-F245 as the current runtime/CI boundary.
 
 ### Phase 4 additions
 
 - **F244 — Genetic Breeding with Environmental Impact Analysis — Planned.**
 - **F245 — Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
-
-The public runtime loads `app/source-features-244-245.js`. Structural validation and executable core/Phase 4 tests require a unique, continuous **F001-F245** sequence and explicitly verify F244/F245.
 
 ### Validate and test
 
@@ -166,8 +160,10 @@ node tests/test_core.mjs
 node tests/test_phase3.mjs
 node tests/test_phase4.mjs
 python tests/test_evidence_contract.py
+python scripts/security_check.py
+python scripts/release_check.py
 ```
 
-### Disclosure boundary
+The acquisition release-readiness matrix is in `docs/RELEASE_READINESS.md`, and dependency/license diligence is documented in `docs/DEPENDENCY_AND_LICENSE_REVIEW.md`.
 
-All demonstration records are synthetic or illustrative unless explicitly stated otherwise. Sensor streams, AI outputs, valuations and external integrations do not represent production deployment or live government connectivity. Proprietary algorithms, model weights, training datasets, confidential scoring models, partner data and private due-diligence records are excluded from the public repository.
+A stable live demo and final acquisition release tag remain Pending until independently verified. Proprietary algorithms, model weights, training datasets, confidential scoring models, partner data and private due-diligence records remain outside the public repository.
