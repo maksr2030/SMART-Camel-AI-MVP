@@ -12,6 +12,13 @@ FILES = {
     'evidence': ROOT / 'docs' / 'EVIDENCE.md',
     'families': ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
     'phase4': ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md',
+    'demos': ROOT / 'docs' / 'DEMO_SCENARIOS.md',
+    'limitations': ROOT / 'docs' / 'KNOWN_LIMITATIONS.md',
+    'ip': ROOT / 'docs' / 'IP_NOTICE.md',
+    'catalog': ROOT / 'docs' / 'EVIDENCE_CATALOG.md',
+    'algorithms': ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md',
+    'architecture': ROOT / 'docs' / 'ARCHITECTURE.md',
+    'security': ROOT / 'docs' / 'SECURITY.md',
     'release': ROOT / 'docs' / 'RELEASE_READINESS.md',
     'dependency': ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md',
     'workflow': ROOT / '.github' / 'workflows' / 'validate.yml',
@@ -25,7 +32,11 @@ for key, path in FILES.items():
         continue
     texts[key] = path.read_text(encoding='utf-8')
 
-for key in ('readme', 'overview', 'source', 'acquisition', 'evidence', 'families', 'phase4'):
+CURRENT_SCOPE_DOCS = (
+    'readme', 'overview', 'source', 'acquisition', 'evidence', 'families', 'phase4',
+    'demos', 'limitations', 'ip', 'catalog', 'algorithms', 'architecture'
+)
+for key in CURRENT_SCOPE_DOCS:
     text = texts.get(key, '')
     if '245' not in text or 'F245' not in text:
         errors.append(f'{FILES[key].relative_to(ROOT)} must state the current 245/F245 scope')
@@ -38,6 +49,15 @@ for marker in (
 ):
     if marker not in texts.get('phase4', ''):
         errors.append(f'Phase 4 reconciliation missing: {marker}')
+
+if '29 source-documented named algorithms and engines' not in texts.get('algorithms', ''):
+    errors.append('Algorithm registry must retain the normalized 29-name declaration')
+if '20 canonical system families' not in texts.get('families', ''):
+    errors.append('System-family document must retain the 20-family declaration')
+if 'scripts/security_check.py' not in texts.get('security', ''):
+    errors.append('Security baseline must document the Phase 4 automated security check')
+if 'No public `LICENSE` file' not in texts.get('dependency', ''):
+    errors.append('Dependency/license review must preserve the public licensing boundary')
 
 release_text = texts.get('release', '')
 for gate in range(1, 16):
@@ -71,12 +91,13 @@ for command in (
     if command not in readme:
         errors.append(f'README missing release command: {command}')
 
-# Protect the current public-facing documents from accidentally reverting to a 243-only current scope.
+# Protect current-scope documents from accidentally reverting to a 243-only current scope.
+# Historical/baseline mentions are allowed when explicitly labelled historical.
 stale_current_patterns = [
     re.compile(r'current[^\n]{0,80}\b243\b', re.IGNORECASE),
     re.compile(r'الحالي[^\n]{0,80}\b243\b'),
 ]
-for key in ('overview', 'source', 'acquisition', 'evidence', 'families'):
+for key in CURRENT_SCOPE_DOCS:
     text = texts.get(key, '')
     for pattern in stale_current_patterns:
         match = pattern.search(text)
@@ -91,8 +112,10 @@ if errors:
     sys.exit(1)
 
 print('SMART Camel AI acquisition release check passed.')
-print('Public scope markers: F001-F245 consistent')
+print('Current public/DD scope markers: F001-F245 consistent')
 print('Phase 4 reconciliation markers: F244-F245 present')
+print('Algorithms/system families: 29 / 20 preserved')
+print('Security and licensing boundaries: present')
 print('Release readiness gates: G01-G15 present')
 print('Live demo and final release tag remain correctly Pending')
 print('CI release commands: complete')
