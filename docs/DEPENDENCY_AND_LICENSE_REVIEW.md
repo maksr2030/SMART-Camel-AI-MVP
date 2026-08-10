@@ -6,6 +6,16 @@
 
 هذه الوثيقة تلخص سطح الاعتماديات العامة في SMART Camel AI MVP لأغراض العناية الواجبة التقنية. هي مراجعة عامة للمستودع وليست رأياً قانونياً نهائياً في الملكية أو الترخيص.
 
+### نتيجة التحقق في Phase 4
+
+تم التحقق مباشرة من فرع Phase 4 الحالي من عدم وجود:
+
+- `package.json`.
+- `requirements.txt`.
+- `LICENSE` عام.
+
+ويحرس `scripts/release_check.py` هذه الحدود في إصدار الاستحواذ الحالي؛ إضافة أي ملف منها مستقبلاً يجب أن تقترن بمراجعة الاعتماديات/الترخيص وتحديث الوثائق قبل السماح بمرور Release Gate.
+
 ### Runtime العام
 
 الإصدار العام يعمل باستخدام:
@@ -47,8 +57,8 @@
 
 ## English
 
-The public SMART Camel AI MVP has a deliberately minimal dependency surface. Its runtime uses repository-local HTML, CSS and JavaScript only. There are no required npm packages, external CDN runtime scripts, paid SDKs, databases or SaaS services.
+The public SMART Camel AI MVP has a deliberately minimal dependency surface. Phase 4 directly verified that the current branch does not contain `package.json`, `requirements.txt`, or a public `LICENSE` file.
 
-CI uses official GitHub Actions (`actions/checkout@v4`, `actions/setup-python@v5`). Python and Node tests rely only on their standard libraries.
+The runtime uses repository-local HTML, CSS and JavaScript only. There are no required npm packages, external CDN runtime scripts, paid SDKs, databases or SaaS services. CI uses official GitHub Actions (`actions/checkout@v4`, `actions/setup-python@v5`), while Python and Node tests rely only on their standard libraries.
 
-No public `LICENSE` file currently grants blanket reuse or redistribution rights over proprietary platform IP. Public repository access must not be interpreted as an assignment, sale or implied license. Formal transaction/licensing terms require separate legal documentation and a final third-party/SBOM review for any production candidate.
+No public `LICENSE` file currently grants blanket reuse or redistribution rights over proprietary platform IP. Public repository access must not be interpreted as an assignment, sale or implied license. `scripts/release_check.py` protects the current release boundary so that introducing package manifests or a public license requires an explicit diligence update before the acquisition-release gate can pass.
