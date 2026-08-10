@@ -23,5 +23,7 @@ jobs:
         run: node tests/test_core.mjs
       - name: Run Phase 3 Grade A evidence tests
         run: node tests/test_phase3.mjs
+      - name: Run Phase 4 245-capability reconciliation tests
+        run: node tests/test_phase4.mjs
       - name: Run evidence contract tests
         run: python tests/test_evidence_contract.py
