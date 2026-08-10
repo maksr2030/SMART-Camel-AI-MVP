@@ -3,10 +3,11 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_FEATURES = 243
+EXPECTED_FEATURES = 245
 EXPECTED_DEMO_SCENARIOS = 10
 EXPECTED_LIMITATIONS_PER_LANGUAGE = 23
 EXPECTED_EVIDENCE_IDS = 20
+
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
@@ -15,7 +16,9 @@ FEATURE_FILES = [
     ROOT / 'app' / 'source-features-224-231.js',
     ROOT / 'app' / 'source-features-232-235.js',
     ROOT / 'app' / 'source-features-236-243.js',
+    ROOT / 'app' / 'source-features-244-245.js',
 ]
+
 DUE_DILIGENCE_FILES = [
     ROOT / 'docs' / 'FEATURE_REGISTRY.md',
     ROOT / 'docs' / 'DEMO_SCENARIOS.md',
@@ -26,12 +29,15 @@ DUE_DILIGENCE_FILES = [
     ROOT / 'docs' / 'EVIDENCE_CATALOG.md',
     ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md',
     ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md',
+    ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md',
 ]
+
 TEST_FILES = [
     ROOT / 'tests' / 'test_core.mjs',
     ROOT / 'tests' / 'test_phase3.mjs',
     ROOT / 'tests' / 'test_evidence_contract.py',
 ]
+
 required = [
     ROOT / 'index.html',
     ROOT / 'app' / 'styles.css',
@@ -71,6 +77,7 @@ if not errors:
     evidence_catalog = (ROOT / 'docs' / 'EVIDENCE_CATALOG.md').read_text(encoding='utf-8')
     phase3_evidence = (ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md').read_text(encoding='utf-8')
     strategic_matrix = (ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md').read_text(encoding='utf-8')
+    phase4_reconciliation = (ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md').read_text(encoding='utf-8')
     workflow = (ROOT / '.github' / 'workflows' / 'validate.yml').read_text(encoding='utf-8')
     feature_text = '\n'.join(path.read_text(encoding='utf-8') for path in FEATURE_FILES)
 
@@ -81,13 +88,20 @@ if not errors:
     if len(set(feature_ids)) != len(feature_ids):
         errors.append('Duplicate feature identifiers detected')
     if feature_ids != expected_sequence:
-        errors.append('Feature identifiers are not a continuous F001-F243 sequence')
+        errors.append('Feature identifiers are not a continuous F001-F245 sequence')
 
     acquisition_ids = re.findall(r'^\| F(\d{3}) \|', acquisition_registry, flags=re.MULTILINE)
     if len(acquisition_ids) != EXPECTED_FEATURES:
         errors.append(f'Acquisition registry must contain {EXPECTED_FEATURES} F-ID rows, found {len(acquisition_ids)}')
     if acquisition_ids != expected_sequence:
-        errors.append('Acquisition registry rows are not a continuous F001-F243 sequence')
+        errors.append('Acquisition registry rows are not a continuous F001-F245 sequence')
+
+    if 'F244' not in phase4_reconciliation or 'F245' not in phase4_reconciliation:
+        errors.append('Phase 4 reconciliation must document F244 and F245')
+    if 'Genetic Breeding with Environmental Impact Analysis' not in phase4_reconciliation:
+        errors.append('Phase 4 reconciliation missing F244 source title')
+    if 'Positive Environmental Impact Evaluation for Camel Breeding' not in phase4_reconciliation:
+        errors.append('Phase 4 reconciliation missing F245 normalized title')
 
     scenario_ids = re.findall(r'^### D(\d{2}) —', demos, flags=re.MULTILINE)
     expected_scenarios = [f'{i:02d}' for i in range(1, EXPECTED_DEMO_SCENARIOS + 1)]
@@ -114,9 +128,11 @@ if not errors:
         errors.append('Known limitations must explicitly disclose the absence of evidenced revenue')
 
     assets = [
-        'app/styles.css','app/data.js','app/source-features-091-140.js','app/source-features-141-190.js',
-        'app/source-features-191-223.js','app/source-features-224-231.js','app/source-features-232-235.js',
-        'app/source-features-236-243.js','app/core.js','app/app.js'
+        'app/styles.css', 'app/data.js', 'app/source-features-091-140.js',
+        'app/source-features-141-190.js', 'app/source-features-191-223.js',
+        'app/source-features-224-231.js', 'app/source-features-232-235.js',
+        'app/source-features-236-243.js', 'app/source-features-244-245.js',
+        'app/core.js', 'app/app.js'
     ]
     for asset in assets:
         if asset not in index:
@@ -125,17 +141,18 @@ if not errors:
         errors.append('app/core.js must load before app/app.js')
 
     runtime_markers = (
-        'core.calculateHealthRisk','core.filterFeatures','core.countStatuses','core.verifyDemoCertificate',
-        'core.validateCamelRegistry','core.evaluateGeofence','core.calculateMazayenScore',
-        'core.createAuctionState','core.placeDemoBid','core.appendAuditEvent'
+        'core.calculateHealthRisk', 'core.filterFeatures', 'core.countStatuses', 'core.verifyDemoCertificate',
+        'core.validateCamelRegistry', 'core.evaluateGeofence', 'core.calculateMazayenScore',
+        'core.createAuctionState', 'core.placeDemoBid', 'core.appendAuditEvent'
     )
     for marker in runtime_markers:
         if marker not in app:
             errors.append(f'app.js is not wired to shared core logic: {marker}')
 
     core_markers = (
-        'calculateHealthRisk','filterFeatures','countStatuses','verifyDemoCertificate','validateCamelRegistry',
-        'findCamelById','evaluateGeofence','calculateMazayenScore','createAuctionState','placeDemoBid','appendAuditEvent'
+        'calculateHealthRisk', 'filterFeatures', 'countStatuses', 'verifyDemoCertificate',
+        'validateCamelRegistry', 'findCamelById', 'evaluateGeofence', 'calculateMazayenScore',
+        'createAuctionState', 'placeDemoBid', 'appendAuditEvent'
     )
     for marker in core_markers:
         if marker not in core:
@@ -163,9 +180,10 @@ if not errors:
         errors.append('Acquisition technical overview does not declare the evidence-chain model')
 
     due_diligence_links = [
-        'docs/FEATURE_REGISTRY.md','docs/DEMO_SCENARIOS.md','docs/KNOWN_LIMITATIONS.md','docs/SECURITY.md',
-        'docs/IP_NOTICE.md','docs/ACQUISITION_TECHNICAL_OVERVIEW.md','docs/EVIDENCE_CATALOG.md',
-        'docs/PHASE3_GRADE_A_EVIDENCE.md','docs/STRATEGIC_EVIDENCE_MATRIX.md'
+        'docs/FEATURE_REGISTRY.md', 'docs/DEMO_SCENARIOS.md', 'docs/KNOWN_LIMITATIONS.md',
+        'docs/SECURITY.md', 'docs/IP_NOTICE.md', 'docs/ACQUISITION_TECHNICAL_OVERVIEW.md',
+        'docs/EVIDENCE_CATALOG.md', 'docs/PHASE3_GRADE_A_EVIDENCE.md',
+        'docs/STRATEGIC_EVIDENCE_MATRIX.md', 'docs/PHASE4_245_RECONCILIATION.md'
     ]
     for link in due_diligence_links:
         if link not in readme:
@@ -186,8 +204,9 @@ if errors:
 print('SMART Camel AI MVP validation passed.')
 print('Required files: OK')
 print(f'Registered feature records: {EXPECTED_FEATURES}')
-print('Feature identifier sequence: F001-F243')
-print('Acquisition feature registry: F001-F243 complete')
+print('Feature identifier sequence: F001-F245')
+print('Acquisition feature registry: F001-F245 complete')
+print('Phase 4 source reconciliation: F244-F245 documented')
 print('Reproducible demo scenarios: D01-D10 complete')
 print('Evidence records: EVD-001-EVD-020 complete')
 print('Strategic capability evidence: 12/12 Grade A')
