@@ -14,19 +14,19 @@
 - **DE — Documentation Evidence:** إفصاح أو توثيق محدد يمكن مراجعته.
 
 ### EVD-001 — Canonical capability continuity
-- **Claim:** السجل العام يحتوي F001-F243 دون فجوات أو تكرار.
-- **Related capability:** F001-F243.
+- **Claim:** السجل العام الحالي يحتوي F001-F245 دون فجوات أو تكرار.
+- **Related capability:** F001-F245.
 - **Evidence class:** AT + SE.
-- **Verification:** `scripts/validate.py` و`tests/test_core.mjs`.
-- **Pass condition:** 243 معرفاً متسلسلاً ومتميزاً.
+- **Verification:** `scripts/validate.py`, `tests/test_core.mjs`, `tests/test_phase4.mjs`.
+- **Pass condition:** 245 معرفاً متسلسلاً ومتميزاً، مع F244 وF245 ظاهرتين كقدرتين Planned مصدرّيتين.
 - **Boundary:** لا يثبت أن جميع القدرات منفذة إنتاجياً.
 
 ### EVD-002 — Maturity classification integrity
 - **Claim:** كل قدرة تحمل حالة من الحالات العامة الخمس المعتمدة.
-- **Related capability:** F001-F243.
+- **Related capability:** F001-F245.
 - **Evidence class:** AT + SE.
 - **Verification:** `tests/test_core.mjs`.
-- **Pass condition:** جميع السجلات تستخدم Implemented / Demonstrated / Simulated / Mock Integration / Planned، ومجموع العدادات = 243.
+- **Pass condition:** جميع السجلات تستخدم Implemented / Demonstrated / Simulated / Mock Integration / Planned، ومجموع العدادات = 245.
 - **Boundary:** حالة النضج ليست شهادة جودة أو اعتماداً خارجياً.
 
 ### EVD-003 — Camel identity and registry demonstrator
@@ -40,7 +40,7 @@
 - **Claim:** الـMVP يعرض تنبيهاً جغرافياً تجريبياً مرتبطاً بالسياج الجغرافي.
 - **Related capability:** F012.
 - **Evidence class:** RE + SE.
-- **Verification:** قسم التنبيهات + فحص بيانات التنبيه في `tests/test_core.mjs`.
+- **Verification:** قسم التنبيهات + `tests/test_phase3.mjs`.
 - **Boundary:** لا يثبت اتصال GPS أو سياجاً ميدانياً حياً.
 
 ### EVD-005 — Explainable health-risk simulation
@@ -76,7 +76,7 @@
 - **Claim:** يوجد مسار عرض لتقييم المزايين مع درجة تفسيرية ظاهرة.
 - **Related capability:** F026, F027.
 - **Evidence class:** RE.
-- **Verification:** بطاقة Mazayen في الواجهة العامة.
+- **Verification:** بطاقة Mazayen في الواجهة العامة + `tests/test_phase3.mjs`.
 - **Boundary:** الدرجة توضيحية ولا تمثل قرار تحكيم رسمي أو نموذجاً معتمداً.
 
 ### EVD-010 — Bilingual public interface
@@ -94,8 +94,8 @@
 - **Boundary:** Source-documented لا تعني production-validated.
 
 ### EVD-012 — Canonical system-family architecture
-- **Claim:** 243 قدرة منظمة ضمن 20 عائلة نظامية معيارية.
-- **Related capability:** F001-F243.
+- **Claim:** 245 قدرة منظمة ضمن 20 عائلة نظامية معيارية.
+- **Related capability:** F001-F245.
 - **Evidence class:** SE + DE.
 - **Verification:** `docs/SYSTEM_FAMILIES.md` + `scripts/validate.py`.
 - **Boundary:** العائلات تصنيف معماري وليست 20 منتجات منفصلة.
@@ -118,11 +118,11 @@
 - **Claim:** الوثائق الأساسية للعناية الواجبة مرتبطة من README ويشترطها CI.
 - **Related capability:** Cross-cutting acquisition readiness.
 - **Evidence class:** AT + SE + DE.
-- **Verification:** `scripts/validate.py`, `tests/test_evidence_contract.py`, `.github/workflows/validate.yml`.
+- **Verification:** `scripts/validate.py`, `tests/test_evidence_contract.py`, `scripts/security_check.py`, `scripts/release_check.py`, `.github/workflows/validate.yml`.
 - **Boundary:** اكتمال الحزمة العامة لا يعني اكتمال الفحص القانوني أو المالي أو الأمني الإنتاجي.
 
 ## English
 
-This catalog maps public SMART Camel AI claims to traceable acquisition evidence. Each EVD record identifies the claim, related capability IDs where applicable, verification mechanism, and the boundary of what the evidence proves.
+This catalog maps public SMART Camel AI claims to traceable acquisition evidence. The current canonical continuity claim is **F001-F245**, with F244 and F245 reconciled in Phase 4 as source-backed Planned capabilities.
 
-**Current Phase 2 baseline: EVD-001 through EVD-015.** The catalog deliberately distinguishes automated tests, runtime evidence, structural evidence and documentation evidence. No evidence record converts a Planned, Simulated or Mock Integration capability into a production claim.
+**Phase 2 baseline remains EVD-001 through EVD-015.** Phase 3 adds EVD-016-EVD-020 in its separate evidence document. No evidence record converts a Planned, Simulated or Mock Integration capability into a production claim.
