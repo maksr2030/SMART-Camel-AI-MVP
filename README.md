@@ -8,14 +8,13 @@
 
 ### النتيجة المعيارية الحالية
 
-بعد إتمام المطابقة النهائية لمحفظة المصدر التاريخية ومواد البراءة والملفات البيطرية والتشغيلية وملفات الخوارزميات الأخيرة، أصبح السجل العام يتكون من:
-
 - **243 سجل قدرة معيارية** من F001 إلى F243.
-- **29 خوارزمية ومحركاً مسمىً وموثقاً في المصدر** ضمن سجل مستقل، دون نشر الأكواد أو الأوزان الخاصة.
-- **20 عائلة نظامية معيارية** تنظّم القدرات في طبقة معمارية أعلى.
-- **نموذجَي تدريب مسميين في المصدر** موثقين بشكل منفصل عن الخوارزميات.
+- **29 خوارزمية ومحركاً مسمىً وموثقاً في المصدر** ضمن سجل مستقل.
+- **20 عائلة نظامية معيارية**.
+- **نموذجَي تدريب مسميين في المصدر** موثقين بشكل منفصل.
+- **15 Evidence IDs** من EVD-001 إلى EVD-015 في طبقة Evidence & Test Closure الحالية.
 
-هذه الأرقام لا تعني وجود 243 نظاماً إنتاجياً أو 29 نموذجاً معتمداً. هي أرقام توثيقية معيارية مبنية على مطابقة المصدر، بينما حالة النضج التشغيلية معلنة لكل قدرة.
+هذه الأرقام لا تعني وجود 243 نظاماً إنتاجياً أو 29 نموذجاً معتمداً. حالة النضج التشغيلية معلنة لكل قدرة، والأدلة العامة تفرق صراحة بين الاختبار الآلي، السلوك القابل للتشغيل، الدليل البنيوي، والتوثيق.
 
 ### ما الذي يعمل في هذا الإصدار
 
@@ -28,25 +27,31 @@
 - محاكاة مزايدة وتسجيل حدثها.
 - تحقق تجريبي من شهادة CAMEL-001.
 - سجل أحداث لجلسة العرض.
-- توثيق معماري ومصفوفة أدلة عامة.
-- منهج مستقل لمطابقة ملفات المصدر القديمة.
 - سجل عام للخوارزميات والمحركات المسمّاة دون إفشاء التنفيذ المملوك.
-- خريطة من 20 عائلة نظامية لعرض البنية بصورة قابلة للعناية الواجبة.
+- خريطة من 20 عائلة نظامية.
+- Core Logic مشترك بين الواجهة والاختبارات للبحث والفلترة وحساب المخاطر والتحقق من الشهادة.
 
 ### Acquisition Technical Due Diligence Foundation — Phase 1
 
-أضيفت حزمة تأسيسية مستقلة للعناية الواجبة التقنية حتى يستطيع المشتري الانتقال من «قائمة قدرات» إلى سلسلة أدلة قابلة للتتبع:
+سلسلة العناية الواجبة الأساسية:
 
 **Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
 
-وتتضمن:
+- [سجل القدرات للاستحواذ | Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — F001-F243.
+- [سيناريوهات العرض | Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10.
+- [القيود المعروفة | Known Limitations](docs/KNOWN_LIMITATIONS.md) — 23 قيداً عربياً + 23 إنجليزياً.
+- [الأمن ونموذج التهديدات | Security Baseline & Threat Model](docs/SECURITY.md).
+- [إشعار الملكية الفكرية | IP Notice](docs/IP_NOTICE.md).
+- [النظرة التقنية للاستحواذ | Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md).
 
-- [سجل القدرات للاستحواذ | Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — يغطي F001-F243 واحداً واحداً.
-- [سيناريوهات العرض | Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10 قابلة لإعادة التنفيذ.
-- [القيود المعروفة | Known Limitations](docs/KNOWN_LIMITATIONS.md) — ما لا يجب تقديمه كقدرة إنتاجية مثبتة.
-- [الأمن ونموذج التهديدات | Security Baseline & Threat Model](docs/SECURITY.md) — الأصول والتهديدات وضوابط الإغلاق.
-- [إشعار الملكية الفكرية | IP Notice](docs/IP_NOTICE.md) — حدود الإفصاح ومتطلبات Chain of Title وData Room.
-- [النظرة التقنية للاستحواذ | Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md) — الصورة التقنية، موجات الـproductionization وأسئلة المشتري.
+### Evidence & Test Closure — Phase 2
+
+بدأت المرحلة الثانية بتحويل الادعاءات العامة إلى أدلة قابلة للاختبار والتتبع:
+
+- [سجل أدلة الاستحواذ | Acquisition Evidence Catalog](docs/EVIDENCE_CATALOG.md) — EVD-001 إلى EVD-015.
+- `app/core.js` — منطق عام قابل للاختبار تستخدمه الواجهة نفسها.
+- `tests/test_core.mjs` — اختبارات السجل F001-F243، حالات النضج، المخاطر الصحية، التحقق من الشهادة، البحث والفلترة، والسجلات الاصطناعية.
+- `tests/test_evidence_contract.py` — اختبار سلامة Evidence IDs، حدود الملكية الفكرية، القيود المعروفة، وربط الـCore بالواجهة.
 
 ### الطبقة النهائية F236-F243
 
@@ -75,21 +80,17 @@
 python3 -m http.server 4173
 ```
 
-ثم افتح:
+ثم افتح `http://localhost:4173/`.
 
-```text
-http://localhost:4173/
-```
-
-لا يحتاج النموذج العام إلى حزم خارجية.
-
-### التحقق
+### التحقق والاختبارات
 
 ```bash
 python scripts/validate.py
+node tests/test_core.mjs
+python tests/test_evidence_contract.py
 ```
 
-يفحص المدقق الملفات الأساسية، وتسلسل F001-F243 دون فجوات أو تكرار، ووجود 243 صفاً في سجل الاستحواذ، وتسلسل D01-D10، وربط وثائق العناية الواجبة، وسجلي الخوارزميات والعائلات النظامية.
+GitHub Actions يشغّل هذه الاختبارات كعقد مستمر لجاهزية العناية الواجبة.
 
 ### التوثيق الأساسي
 
@@ -102,71 +103,41 @@ python scripts/validate.py
 
 ### حدود الإفصاح
 
-جميع بيانات العرض اصطناعية أو توضيحية ما لم يُذكر خلاف ذلك. بيانات المستشعرات، مخرجات الذكاء الاصطناعي، التقييمات والتكاملات الخارجية في هذا الإصدار لا تمثل تشغيلًا إنتاجيًا أو ربطًا حكوميًا حيًا. لا يحتوي المستودع العام على الخوارزميات المملوكة أو الأوزان أو مجموعات التدريب أو نماذج التقييم السرية أو بيانات الشركاء أو وثائق العناية الواجبة الخاصة.
+جميع بيانات العرض اصطناعية أو توضيحية ما لم يُذكر خلاف ذلك. بيانات المستشعرات، مخرجات الذكاء الاصطناعي، التقييمات والتكاملات الخارجية لا تمثل تشغيلًا إنتاجيًا أو ربطًا حكوميًا حيًا. لا يحتوي المستودع العام على الخوارزميات المملوكة أو الأوزان أو مجموعات التدريب أو نماذج التقييم السرية أو بيانات الشركاء أو وثائق العناية الواجبة الخاصة.
 
 ## English
 
 SMART Camel AI is an integrated digital operating environment for camel lifecycle management, herd and farm operations, health, breeding, lineage, grazing, competitions, racing, auctions, marketplaces, products, risk and operational intelligence within one auditable interface.
 
-This repository contains the public demonstrator of the platform. It is designed for executable demonstration and technical review without exposing proprietary algorithms, protected implementation details or confidential intellectual-property records.
+This repository contains the public demonstrator of the platform. It supports executable demonstration and technical review without exposing proprietary algorithms, protected implementation details or confidential intellectual-property records.
 
 ### Current normalized result
 
 - **243 canonical capability records**, F001 through F243.
-- **29 source-documented named algorithms and engines** in a separate registry without publishing proprietary code or weights.
-- **20 canonical system families** organizing the capabilities at a higher architectural level.
-- **Two independently named training models** documented separately from the algorithm registry.
+- **29 source-documented named algorithms and engines**.
+- **20 canonical system families**.
+- **Two independently named training models**.
+- **15 acquisition Evidence IDs**, EVD-001 through EVD-015, in the current Evidence & Test Closure layer.
 
-These numbers do not claim 243 production systems or 29 validated production models. Operational maturity remains explicit for every capability.
-
-### What works in this release
-
-- Arabic and English interface with instant language switching.
-- Operational dashboard using synthetic data.
-- Demonstration camel registry.
-- Complete F001-F243 capability registry with maturity classification.
-- Interactive explainable health-risk engine.
-- Health and geospatial risk alert center.
-- Demonstration auction bid with event logging.
-- Demonstration certificate verification for CAMEL-001.
-- In-session audit event trail.
-- Architecture, evidence and source-reconciliation documentation.
-- Public named-algorithm/engine registry without proprietary implementation disclosure.
-- Twenty-family system map for due-diligence-friendly architecture review.
+These counts do not claim 243 production systems or 29 validated production models. Maturity and evidence class remain explicit.
 
 ### Acquisition Technical Due Diligence Foundation — Phase 1
 
-The public repository now contains a first acquisition-diligence evidence layer built around:
-
 **Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
 
-- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — one row for every F001-F243 record.
+- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — F001-F243.
 - [Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10.
-- [Known Limitations](docs/KNOWN_LIMITATIONS.md) — explicit non-production claim boundaries.
-- [Security Baseline & Threat Model](docs/SECURITY.md) — assets, threats and production closure controls.
-- [IP Notice](docs/IP_NOTICE.md) — disclosure boundary, Chain of Title and confidential data-room requirements.
-- [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md) — technical position, productionization waves and buyer questions.
+- [Known Limitations](docs/KNOWN_LIMITATIONS.md) — 23 Arabic + 23 English disclosures.
+- [Security Baseline & Threat Model](docs/SECURITY.md).
+- [IP Notice](docs/IP_NOTICE.md).
+- [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md).
 
-### Final layer F236-F243
+### Evidence & Test Closure — Phase 2
 
-- F236: AI Camel Breed Recognition.
-- F237: Closed-Loop Adaptive Feeding Control.
-- F238: Facial Biometric Camel Identification.
-- F239: Thermal-Camera Health Monitoring.
-- F240: Camel Sleep Monitoring and Quality Analysis.
-- F241: Camel Heat-Stress Early Warning.
-- F242: Genetic Disease Risk Analysis.
-- F243: Pregnancy and Labor Monitoring.
-
-These records remain **Planned** in the public release because source files establish functional design identity, not current production deployment.
-
-### Maturity statuses
-
-- Implemented: directly implemented in the public demonstrator.
-- Demonstrated: visible functional workflow but not a complete production subsystem.
-- Simulated: output or engine uses synthetic data or simplified logic.
-- Mock Integration: represented integration point without a live external connection.
-- Planned: part of the platform architecture but not yet activated in the public runtime.
+- [Acquisition Evidence Catalog](docs/EVIDENCE_CATALOG.md) — EVD-001-EVD-015.
+- `app/core.js` — shared testable logic used by the runtime.
+- `tests/test_core.mjs` — executable tests for registry continuity, maturity states, risk logic, certificate verification, search/filter and synthetic evidence records.
+- `tests/test_evidence_contract.py` — evidence-contract, IP-boundary and disclosure checks.
 
 ### Run locally
 
@@ -176,13 +147,13 @@ python3 -m http.server 4173
 
 Then open `http://localhost:4173/`.
 
-### Validate
+### Validate and test
 
 ```bash
 python scripts/validate.py
+node tests/test_core.mjs
+python tests/test_evidence_contract.py
 ```
-
-The validator checks required files, continuous F001-F243 identifiers, the 243-row acquisition registry, D01-D10 demo scenarios, due-diligence document links and the algorithm/system-family registries.
 
 ### Core documentation
 

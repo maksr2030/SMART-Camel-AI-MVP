@@ -17,5 +17,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate public MVP structure and feature registry
+      - name: Validate public MVP and due-diligence structure
         run: python scripts/validate.py
+      - name: Run executable core evidence tests
+        run: node tests/test_core.mjs
+      - name: Run evidence contract tests
+        run: python tests/test_evidence_contract.py
