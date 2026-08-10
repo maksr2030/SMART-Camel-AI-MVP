@@ -4,6 +4,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_FEATURES = 243
+EXPECTED_DEMO_SCENARIOS = 10
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
@@ -12,6 +13,14 @@ FEATURE_FILES = [
     ROOT / 'app' / 'source-features-224-231.js',
     ROOT / 'app' / 'source-features-232-235.js',
     ROOT / 'app' / 'source-features-236-243.js',
+]
+DUE_DILIGENCE_FILES = [
+    ROOT / 'docs' / 'FEATURE_REGISTRY.md',
+    ROOT / 'docs' / 'DEMO_SCENARIOS.md',
+    ROOT / 'docs' / 'KNOWN_LIMITATIONS.md',
+    ROOT / 'docs' / 'SECURITY.md',
+    ROOT / 'docs' / 'IP_NOTICE.md',
+    ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md',
 ]
 required = [
     ROOT / 'index.html',
@@ -24,6 +33,7 @@ required = [
     ROOT / 'docs' / 'SOURCE_RECONCILIATION.md',
     ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md',
     ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
+    *DUE_DILIGENCE_FILES,
     ROOT / 'README.md',
 ]
 
@@ -38,6 +48,12 @@ if not errors:
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
     algorithms = (ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md').read_text(encoding='utf-8')
     systems = (ROOT / 'docs' / 'SYSTEM_FAMILIES.md').read_text(encoding='utf-8')
+    acquisition_registry = (ROOT / 'docs' / 'FEATURE_REGISTRY.md').read_text(encoding='utf-8')
+    demos = (ROOT / 'docs' / 'DEMO_SCENARIOS.md').read_text(encoding='utf-8')
+    limitations = (ROOT / 'docs' / 'KNOWN_LIMITATIONS.md').read_text(encoding='utf-8')
+    security = (ROOT / 'docs' / 'SECURITY.md').read_text(encoding='utf-8')
+    ip_notice = (ROOT / 'docs' / 'IP_NOTICE.md').read_text(encoding='utf-8')
+    acquisition_overview = (ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md').read_text(encoding='utf-8')
     feature_text = '\n'.join(path.read_text(encoding='utf-8') for path in FEATURE_FILES)
 
     feature_ids = re.findall(r"\['F(\d{3})'", feature_text)
@@ -49,6 +65,17 @@ if not errors:
     expected_sequence = [f'{i:03d}' for i in range(1, EXPECTED_FEATURES + 1)]
     if feature_ids != expected_sequence:
         errors.append('Feature identifiers are not a continuous F001-F243 sequence')
+
+    acquisition_ids = re.findall(r'^\| F(\d{3}) \|', acquisition_registry, flags=re.MULTILINE)
+    if len(acquisition_ids) != EXPECTED_FEATURES:
+        errors.append(f'Acquisition registry must contain {EXPECTED_FEATURES} F-ID rows, found {len(acquisition_ids)}')
+    if acquisition_ids != expected_sequence:
+        errors.append('Acquisition registry rows are not a continuous F001-F243 sequence')
+
+    scenario_ids = re.findall(r'^### D(\d{2}) —', demos, flags=re.MULTILINE)
+    expected_scenarios = [f'{i:02d}' for i in range(1, EXPECTED_DEMO_SCENARIOS + 1)]
+    if scenario_ids != expected_scenarios:
+        errors.append('Demo scenarios must be a continuous D01-D10 sequence')
 
     for asset in (
         'app/styles.css',
@@ -78,6 +105,26 @@ if not errors:
         errors.append('Algorithm registry does not declare the 29 source-documented named algorithms and engines')
     if '20 canonical system families' not in systems:
         errors.append('System family document does not declare the 20 canonical system families')
+    if '23.' not in limitations or 'الإيرادات' not in limitations:
+        errors.append('Known limitations document is incomplete')
+    if 'E4' not in security or 'Threat Model' not in security:
+        errors.append('Security baseline/threat model markers are missing')
+    if 'Chain of Title' not in ip_notice:
+        errors.append('IP notice does not include Chain of Title diligence requirements')
+    if 'Claim → Canonical F-ID' not in acquisition_overview:
+        errors.append('Acquisition technical overview does not declare the evidence-chain model')
+
+    due_diligence_links = [
+        'docs/FEATURE_REGISTRY.md',
+        'docs/DEMO_SCENARIOS.md',
+        'docs/KNOWN_LIMITATIONS.md',
+        'docs/SECURITY.md',
+        'docs/IP_NOTICE.md',
+        'docs/ACQUISITION_TECHNICAL_OVERVIEW.md',
+    ]
+    for link in due_diligence_links:
+        if link not in readme:
+            errors.append(f'README does not link required due-diligence document: {link}')
 
 if errors:
     print('SMART Camel AI MVP validation failed:')
@@ -89,6 +136,9 @@ print('SMART Camel AI MVP validation passed.')
 print('Required files: OK')
 print(f'Registered feature records: {EXPECTED_FEATURES}')
 print('Feature identifier sequence: F001-F243')
+print('Acquisition feature registry: F001-F243 complete')
+print('Reproducible demo scenarios: D01-D10 complete')
+print('Due-diligence foundation documents: OK')
 print('Algorithm/engine registry declaration: 29 source-documented names')
 print('System family declaration: 20 canonical families')
 print('Arabic and English presentation markers: OK')
