@@ -3,6 +3,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+EXPECTED_FEATURES = 90
 required = [
     ROOT / 'index.html',
     ROOT / 'app' / 'styles.css',
@@ -26,10 +27,14 @@ if not errors:
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
 
     feature_ids = re.findall(r"\['F(\d{3})'", data)
-    if len(feature_ids) != 60:
-        errors.append(f'Expected 60 feature records, found {len(feature_ids)}')
+    if len(feature_ids) != EXPECTED_FEATURES:
+        errors.append(f'Expected {EXPECTED_FEATURES} feature records, found {len(feature_ids)}')
     if len(set(feature_ids)) != len(feature_ids):
         errors.append('Duplicate feature identifiers detected')
+
+    expected_sequence = [f'{i:03d}' for i in range(1, EXPECTED_FEATURES + 1)]
+    if feature_ids != expected_sequence:
+        errors.append('Feature identifiers are not a continuous F001-F090 sequence')
 
     for asset in ('app/styles.css', 'app/data.js', 'app/app.js'):
         if asset not in index:
@@ -53,5 +58,6 @@ if errors:
 
 print('SMART Camel AI MVP validation passed.')
 print('Required files: OK')
-print('Registered feature records: 60')
+print(f'Registered feature records: {EXPECTED_FEATURES}')
+print('Feature identifier sequence: F001-F090')
 print('Arabic and English presentation markers: OK')
