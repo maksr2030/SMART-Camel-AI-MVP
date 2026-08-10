@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_FEATURES = 243
 EXPECTED_DEMO_SCENARIOS = 10
 EXPECTED_LIMITATIONS_PER_LANGUAGE = 23
-EXPECTED_EVIDENCE_IDS = 15
+EXPECTED_EVIDENCE_IDS = 20
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
@@ -24,9 +24,12 @@ DUE_DILIGENCE_FILES = [
     ROOT / 'docs' / 'IP_NOTICE.md',
     ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md',
     ROOT / 'docs' / 'EVIDENCE_CATALOG.md',
+    ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md',
+    ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md',
 ]
 TEST_FILES = [
     ROOT / 'tests' / 'test_core.mjs',
+    ROOT / 'tests' / 'test_phase3.mjs',
     ROOT / 'tests' / 'test_evidence_contract.py',
 ]
 required = [
@@ -66,6 +69,8 @@ if not errors:
     ip_notice = (ROOT / 'docs' / 'IP_NOTICE.md').read_text(encoding='utf-8')
     acquisition_overview = (ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md').read_text(encoding='utf-8')
     evidence_catalog = (ROOT / 'docs' / 'EVIDENCE_CATALOG.md').read_text(encoding='utf-8')
+    phase3_evidence = (ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md').read_text(encoding='utf-8')
+    strategic_matrix = (ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md').read_text(encoding='utf-8')
     workflow = (ROOT / '.github' / 'workflows' / 'validate.yml').read_text(encoding='utf-8')
     feature_text = '\n'.join(path.read_text(encoding='utf-8') for path in FEATURE_FILES)
 
@@ -89,10 +94,17 @@ if not errors:
     if scenario_ids != expected_scenarios:
         errors.append('Demo scenarios must be a continuous D01-D10 sequence')
 
-    evidence_ids = re.findall(r'^### EVD-(\d{3}) —', evidence_catalog, flags=re.MULTILINE)
+    base_evidence_ids = re.findall(r'^### EVD-(\d{3}) —', evidence_catalog, flags=re.MULTILINE)
+    phase3_evidence_ids = re.findall(r'^### EVD-(\d{3}) —', phase3_evidence, flags=re.MULTILINE)
+    evidence_ids = base_evidence_ids + phase3_evidence_ids
     expected_evidence = [f'{i:03d}' for i in range(1, EXPECTED_EVIDENCE_IDS + 1)]
     if evidence_ids != expected_evidence:
-        errors.append('Evidence catalog must be a continuous EVD-001-EVD-015 sequence')
+        errors.append('Evidence records must be a continuous EVD-001-EVD-020 sequence')
+
+    if '12 من 12 قدرة استراتيجية = Grade A Evidence' not in strategic_matrix:
+        errors.append('Strategic evidence matrix must declare 12/12 Grade A evidence')
+    if re.findall(r'\| S\d{2} \| F\d{3} \|[^\n]+\| B \|', strategic_matrix):
+        errors.append('Strategic evidence matrix still contains Grade B rows')
 
     limitation_numbers = re.findall(r'^(\d+)\. ', limitations, flags=re.MULTILINE)
     expected_limitation_numbers = [str(i) for i in range(1, EXPECTED_LIMITATIONS_PER_LANGUAGE + 1)] * 2
@@ -112,10 +124,20 @@ if not errors:
     if index.find('app/core.js') > index.find('app/app.js'):
         errors.append('app/core.js must load before app/app.js')
 
-    for marker in ('core.calculateHealthRisk','core.filterFeatures','core.countStatuses','core.verifyDemoCertificate'):
+    runtime_markers = (
+        'core.calculateHealthRisk','core.filterFeatures','core.countStatuses','core.verifyDemoCertificate',
+        'core.validateCamelRegistry','core.evaluateGeofence','core.calculateMazayenScore',
+        'core.createAuctionState','core.placeDemoBid','core.appendAuditEvent'
+    )
+    for marker in runtime_markers:
         if marker not in app:
             errors.append(f'app.js is not wired to shared core logic: {marker}')
-    for marker in ('calculateHealthRisk','filterFeatures','countStatuses','verifyDemoCertificate'):
+
+    core_markers = (
+        'calculateHealthRisk','filterFeatures','countStatuses','verifyDemoCertificate','validateCamelRegistry',
+        'findCamelById','evaluateGeofence','calculateMazayenScore','createAuctionState','placeDemoBid','appendAuditEvent'
+    )
+    for marker in core_markers:
         if marker not in core:
             errors.append(f'core.js missing required function: {marker}')
 
@@ -142,13 +164,14 @@ if not errors:
 
     due_diligence_links = [
         'docs/FEATURE_REGISTRY.md','docs/DEMO_SCENARIOS.md','docs/KNOWN_LIMITATIONS.md','docs/SECURITY.md',
-        'docs/IP_NOTICE.md','docs/ACQUISITION_TECHNICAL_OVERVIEW.md','docs/EVIDENCE_CATALOG.md'
+        'docs/IP_NOTICE.md','docs/ACQUISITION_TECHNICAL_OVERVIEW.md','docs/EVIDENCE_CATALOG.md',
+        'docs/PHASE3_GRADE_A_EVIDENCE.md','docs/STRATEGIC_EVIDENCE_MATRIX.md'
     ]
     for link in due_diligence_links:
         if link not in readme:
             errors.append(f'README does not link required due-diligence document: {link}')
 
-    for test_command in ('node tests/test_core.mjs', 'python tests/test_evidence_contract.py'):
+    for test_command in ('node tests/test_core.mjs', 'node tests/test_phase3.mjs', 'python tests/test_evidence_contract.py'):
         if test_command not in readme:
             errors.append(f'README missing test command: {test_command}')
         if test_command not in workflow:
@@ -166,9 +189,10 @@ print(f'Registered feature records: {EXPECTED_FEATURES}')
 print('Feature identifier sequence: F001-F243')
 print('Acquisition feature registry: F001-F243 complete')
 print('Reproducible demo scenarios: D01-D10 complete')
-print('Evidence catalog: EVD-001-EVD-015 complete')
+print('Evidence records: EVD-001-EVD-020 complete')
+print('Strategic capability evidence: 12/12 Grade A')
 print('Known limitations: 23 Arabic + 23 English items')
-print('Shared runtime/test core logic: OK')
+print('Shared runtime/test core logic: Phase 2 + Phase 3 OK')
 print('Due-diligence foundation documents and tests: OK')
 print('Algorithm/engine registry declaration: 29 source-documented names')
 print('System family declaration: 20 canonical families')

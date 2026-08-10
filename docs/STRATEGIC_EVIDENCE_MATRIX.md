@@ -4,43 +4,57 @@
 
 ### الهدف
 
-هذه المصفوفة تختار **12 قدرة استراتيجية** من السجل F001-F243 لمرحلة Evidence & Test Closure الأولى. الاختيار لا يعني أن بقية القدرات أقل قيمة؛ الهدف هو إعطاء فريق الاستحواذ مجموعة مركزة يمكن فحصها وتشغيلها وتتبع أدلتها بسرعة.
+هذه المصفوفة تركز على **12 قدرة استراتيجية** من السجل F001-F243 حتى يستطيع فريق الاستحواذ فحص سلسلة الأدلة بسرعة. بعد Phase 3 أصبحت القدرات الاثنتا عشرة جميعها **Grade A من ناحية Evidence**، أي أن لكل واحدة مساراً عاماً قابلاً للتشغيل واختباراً آلياً لنفس المنطق أو العقد الوظيفي.
 
-### درجات الدليل الحالية
+> Grade A لا تعني Production Ready ولا تغيّر حالة النضج المنشورة للقدرة.
+
+### درجات الدليل
 
 - **A — Automated + Runtime:** يوجد اختبار آلي وسلوك عام قابل للتشغيل.
-- **B — Runtime:** يوجد سلوك/عرض عام قابل للمراجعة لكنه يحتاج اختباراً آلياً أعمق.
-- **C — Structural/Documented:** يوجد سجل أو توثيق أو حالة نضج، لكن لا يوجد بعد مسار تنفيذي كافٍ لإثباته إنتاجياً.
+- **B — Runtime:** يوجد سلوك عام ولكن الاختبار الآلي غير مكتمل.
+- **C — Structural/Documented:** يوجد توثيق أو سجل دون مسار تنفيذي كافٍ.
 
-| # | F-ID | القدرة | النضج العام | Evidence ID | الدرجة | ما يثبت الآن | الإغلاق التالي |
+| # | F-ID | القدرة | النضج العام | Evidence ID | الدرجة | ما يثبت الآن | الإغلاق التالي قبل Production |
 |---|---|---|---|---|---|---|---|
-| S01 | F001 | الهوية الرقمية للإبل | Implemented | EVD-003 | B | معرفات إبل مستقلة وسجل عرض ثنائي اللغة | إضافة اختبارات schema/uniqueness أوسع وربط ownership/certificate |
-| S02 | F002 | السجل الموحد للإبل | Implemented | EVD-003 | B | سجل CAMEL-001 وسجلات اصطناعية متعددة | اختبار CRUD تجريبي عند إضافة backend |
-| S03 | F005 | ذكاء الصحة | Simulated | EVD-005 | A | منطق مخاطر قابل للتشغيل والاختبار | مجموعة سيناريوهات مرجعية وبيانات تحقق بيطري منفصلة |
-| S04 | F012 | السياج الجغرافي | Demonstrated | EVD-004 | B | تنبيه جغرافي تجريبي ظاهر | محاكاة مسار geofence قابل لإعادة التشغيل ثم GPS sandbox |
-| S05 | F019 | كشف الحالات الصحية بالذكاء الاصطناعي | Simulated | EVD-005 | A | نفس Core الصحي المختبر مع حدود إفصاح واضحة | فصل detection model عن risk rule وربط dataset card عند توفره |
-| S06 | F022 | محرك المخاطر الموحد | Simulated | EVD-005 | A | Low/Medium/High واختبارات حواف وحد أعلى 100 | توسيع محرك المخاطر متعدد المجالات واختبارات decision table |
-| S07 | F026 | إدارة المزايين | Demonstrated | EVD-009 | B | واجهة عرض لمسار المزايين | سيناريو إدخال معايير ونتيجة قابلة لإعادة التنفيذ |
-| S08 | F027 | تقييم الجمال بالذكاء الاصطناعي | Simulated | EVD-009 | B | درجة تفسيرية عامة مع إقرار أنها ليست تحكيماً رسمياً | فصل scoring demo قابل للاختبار دون كشف النموذج المملوك |
-| S09 | F034 | مزادات الإبل | Demonstrated | EVD-006 | B | مزايدة تجريبية + أثر في سجل الجلسة | state-machine اختبارية للتأهيل والعرض والمزايدة والنتيجة |
-| S10 | F040 | الشهادة الرقمية الموثوقة | Demonstrated | EVD-007 | A | مسار تحقق إيجابي/سلبي قابل للاختبار | توقيع/تحقق تشفيري تجريبي منفصل قبل أي ادعاء قانوني |
-| S11 | F041 | التحقق عبر QR | Demonstrated | EVD-007 | A | تحقق CAMEL-001 ومنطق رفض الرموز الأخرى | ربط QR payload تجريبي بالمعرف والشهادة |
-| S12 | F060 | سجل الأدلة والتدقيق | Implemented | EVD-008 | B | سجل أحداث داخل الجلسة للمزاد والتحقق واللغة | persistence + integrity + export واختبار تسلسل الأحداث |
+| S01 | F001 | الهوية الرقمية للإبل | Implemented | EVD-016 | A | schema للسجل + uniqueness + lookup لـCAMEL-001 + عرض runtime | backend identity store، auth، lifecycle controls |
+| S02 | F002 | السجل الموحد للإبل | Implemented | EVD-016 | A | سجل متعدد الصفوف يمر عبر validation آلي عند التشغيل | CRUD API، persistence، concurrency، backup/restore |
+| S03 | F005 | ذكاء الصحة | Simulated | EVD-005 | A | منطق مخاطر قابل للتشغيل والاختبار | بيانات تحقق بيطري، validation protocol، model governance |
+| S04 | F012 | السياج الجغرافي | Demonstrated | EVD-017 | A | Inside/Near/Outside من Core واحد مستخدم في الواجهة والاختبار | GPS sandbox ثم أجهزة ميدانية وتنبيه خارجي |
+| S05 | F019 | كشف الحالات الصحية بالذكاء الاصطناعي | Simulated | EVD-005 | A | Core صحي مختبر مع حدود إفصاح | detection model منفصل + dataset card + veterinary validation |
+| S06 | F022 | محرك المخاطر الموحد | Simulated | EVD-005 | A | Low/Medium/High واختبارات حواف وسقف 100 | multi-domain risk engine + decision tables + calibration |
+| S07 | F026 | إدارة المزايين | Demonstrated | EVD-018 | A | scoring demonstrator قابل لإعادة التنفيذ | workflow كامل للمسابقة، roles، evidence package |
+| S08 | F027 | تقييم الجمال بالذكاء الاصطناعي | Simulated | EVD-018 | A | scoring function مختبر بمدخلات وحدود واضحة | نموذج مملوك منفصل، validation مع خبراء، bias/error analysis |
+| S09 | F034 | مزادات الإبل | Demonstrated | EVD-019 | A | state transitions للمزاد + رفض bid غير صالح + runtime interaction | bidder identity، persistence، payment/settlement خارج MVP |
+| S10 | F040 | الشهادة الرقمية الموثوقة | Demonstrated | EVD-007 | A | تحقق إيجابي/سلبي قابل للاختبار | cryptographic signing، key management، revocation |
+| S11 | F041 | التحقق عبر QR | Demonstrated | EVD-007 | A | تحقق CAMEL-001 ومنطق رفض الرموز الأخرى | QR payload موقّع + anti-replay + scanner integration |
+| S12 | F060 | سجل الأدلة والتدقيق | Implemented | EVD-020 | A | event sequence + bilingual messages + references + runtime log | persistence، integrity controls، export، retention/WORM حسب الحاجة |
 
-### لماذا هذه المجموعة؟
+### نتيجة Phase 3
 
-تغطي المجموعة خمس طبقات مهمة للمستحوذ:
+**12 من 12 قدرة استراتيجية = Grade A Evidence.**
 
-1. **Identity & Registry** — F001/F002.
-2. **Health & Risk Intelligence** — F005/F019/F022.
-3. **Field Safety** — F012.
-4. **Competitions & Market Operations** — F026/F027/F034.
-5. **Trust, Verification & Audit** — F040/F041/F060.
+المجموعة تغطي:
 
-وبذلك يستطيع المراجع رؤية قيمة المنصة من الهوية إلى الذكاء إلى السوق إلى التحقق والتدقيق، دون الادعاء بأن جميع 243 قدرة وصلت إلى المستوى نفسه.
+1. Identity & Registry — F001/F002.
+2. Health & Risk Intelligence — F005/F019/F022.
+3. Field Safety — F012.
+4. Competitions & Market Operations — F026/F027/F034.
+5. Trust, Verification & Audit — F040/F041/F060.
+
+الهدف من هذه النتيجة هو تقوية العناية الواجبة التقنية، وليس الإيحاء بأن جميع الوظائف أصبحت أنظمة إنتاجية أو معتمدة.
 
 ## English
 
-This matrix selects **12 strategic capabilities** for the first Evidence & Test Closure wave. It is an acquisition-review focus set, not a ranking of the remaining capability portfolio.
+The selected strategic set now has **12/12 capabilities at Evidence Grade A — Automated + Runtime** after Phase 3.
 
-Current evidence grades are A (automated + runtime), B (runtime), and C (structural/documented). The first wave intentionally prioritizes identity/registry, health/risk, field safety, competitions/market operations, and trust/verification/audit. Each capability remains bound to its public maturity state and evidence limitations.
+Grade A means the public runtime path is backed by automated verification of the same shared logic or functional contract. It does **not** mean production readiness and does not alter published maturity states.
+
+New Phase 3 evidence mapping:
+
+- F001/F002 → EVD-016.
+- F012 → EVD-017.
+- F026/F027 → EVD-018.
+- F034 → EVD-019.
+- F060 → EVD-020.
+
+Previously Grade A capabilities retain EVD-005 and EVD-007. Production closure requirements remain explicitly separate from evidence grade.
