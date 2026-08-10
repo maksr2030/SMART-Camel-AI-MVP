@@ -12,6 +12,9 @@ APP = (ROOT / 'app' / 'app.js').read_text(encoding='utf-8')
 CORE = (ROOT / 'app' / 'core.js').read_text(encoding='utf-8')
 LIMITATIONS = (ROOT / 'docs' / 'KNOWN_LIMITATIONS.md').read_text(encoding='utf-8')
 IP_NOTICE = (ROOT / 'docs' / 'IP_NOTICE.md').read_text(encoding='utf-8')
+RELEASE = (ROOT / 'docs' / 'RELEASE_READINESS.md').read_text(encoding='utf-8')
+DEPENDENCY = (ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md').read_text(encoding='utf-8')
+SECURITY = (ROOT / 'docs' / 'SECURITY.md').read_text(encoding='utf-8')
 
 errors = []
 
@@ -23,12 +26,16 @@ if evidence_ids != expected_evidence_ids:
     errors.append(f'Evidence records must be continuous EVD-001-EVD-020, found: {evidence_ids}')
 
 for marker in [
+    'EVD-001 — Canonical capability continuity',
+    'F001-F245',
+    '245 معرفاً',
     'EVD-005 — Explainable health-risk simulation',
     'EVD-007 — Demonstration certificate verification',
     'EVD-013 — Explicit limitation disclosure',
     'EVD-014 — Public/private IP boundary',
     'EVD-015 — Due-diligence package integrity',
     'tests/test_core.mjs',
+    'tests/test_phase4.mjs',
     'tests/test_evidence_contract.py',
 ]:
     if marker not in CATALOG:
@@ -91,21 +98,39 @@ if arabic_limitations != expected_limitations:
     errors.append('Arabic limitations must remain a continuous 1-23 sequence')
 if english_limitations[:23] != expected_limitations:
     errors.append('English limitations must remain a continuous 1-23 sequence')
+if 'F001-F245' not in LIMITATIONS:
+    errors.append('Known limitations must state the current F001-F245 scope')
 
 if 'Chain of Title' not in IP_NOTICE:
     errors.append('IP notice must retain Chain of Title requirement')
+if '245 سجل قدرة معيارية F001-F245' not in IP_NOTICE and '245 canonical capabilities F001-F245' not in IP_NOTICE:
+    errors.append('IP notice must state the current 245-capability scope')
+
+if 'G15' not in RELEASE or 'Live Stable Demo | Pending' not in RELEASE:
+    errors.append('Release readiness must preserve G01-G15 and live-demo Pending state')
+if 'No public `LICENSE` file' not in DEPENDENCY:
+    errors.append('Dependency/license review must preserve the public licensing boundary')
+if 'scripts/security_check.py' not in SECURITY:
+    errors.append('Security baseline must document the Phase 4 automated security scan')
 
 for link in (
     'docs/EVIDENCE_CATALOG.md',
     'docs/PHASE3_GRADE_A_EVIDENCE.md',
     'docs/STRATEGIC_EVIDENCE_MATRIX.md',
     'docs/PHASE4_245_RECONCILIATION.md',
+    'docs/RELEASE_READINESS.md',
+    'docs/DEPENDENCY_AND_LICENSE_REVIEW.md',
 ):
     if link not in README:
         errors.append(f'README must link {link}')
 
-if 'node tests/test_phase4.mjs' not in README:
-    errors.append('README must expose the Phase 4 reconciliation test command')
+for command in (
+    'node tests/test_phase4.mjs',
+    'python scripts/security_check.py',
+    'python scripts/release_check.py',
+):
+    if command not in README:
+        errors.append(f'README must expose release command: {command}')
 
 if errors:
     print('Evidence contract tests failed:')
@@ -115,7 +140,8 @@ if errors:
 
 print('SMART Camel AI evidence contract tests passed.')
 print('Evidence IDs: EVD-001-EVD-020 continuous across Phase 2 and Phase 3')
+print('Canonical evidence boundary: F001-F245 preserved')
 print('Strategic evidence: 12/12 capabilities Grade A')
-print('Phase 4 capability reconciliation: F001-F245 boundary preserved')
+print('Phase 4 capability reconciliation: F244-F245 preserved')
 print('Known limitations: 23 Arabic + 23 English preserved')
-print('IP and README evidence boundaries verified')
+print('IP, security, dependency and release-readiness boundaries verified')
