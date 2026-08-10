@@ -5,6 +5,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_FEATURES = 243
 EXPECTED_DEMO_SCENARIOS = 10
+EXPECTED_LIMITATIONS_PER_LANGUAGE = 23
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
@@ -77,6 +78,13 @@ if not errors:
     if scenario_ids != expected_scenarios:
         errors.append('Demo scenarios must be a continuous D01-D10 sequence')
 
+    limitation_numbers = re.findall(r'^(\d+)\. ', limitations, flags=re.MULTILINE)
+    expected_limitation_numbers = [str(i) for i in range(1, EXPECTED_LIMITATIONS_PER_LANGUAGE + 1)] * 2
+    if limitation_numbers != expected_limitation_numbers:
+        errors.append('Known limitations must contain continuous 1-23 lists in Arabic and English')
+    if 'إيرادات' not in limitations or 'revenue' not in limitations.lower():
+        errors.append('Known limitations must explicitly disclose the absence of evidenced revenue')
+
     for asset in (
         'app/styles.css',
         'app/data.js',
@@ -105,8 +113,6 @@ if not errors:
         errors.append('Algorithm registry does not declare the 29 source-documented named algorithms and engines')
     if '20 canonical system families' not in systems:
         errors.append('System family document does not declare the 20 canonical system families')
-    if '23.' not in limitations or 'الإيرادات' not in limitations:
-        errors.append('Known limitations document is incomplete')
     if 'E4' not in security or 'Threat Model' not in security:
         errors.append('Security baseline/threat model markers are missing')
     if 'Chain of Title' not in ip_notice:
@@ -138,6 +144,7 @@ print(f'Registered feature records: {EXPECTED_FEATURES}')
 print('Feature identifier sequence: F001-F243')
 print('Acquisition feature registry: F001-F243 complete')
 print('Reproducible demo scenarios: D01-D10 complete')
+print('Known limitations: 23 Arabic + 23 English items')
 print('Due-diligence foundation documents: OK')
 print('Algorithm/engine registry declaration: 29 source-documented names')
 print('System family declaration: 20 canonical families')
