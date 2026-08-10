@@ -75,7 +75,7 @@
 - **F244 — التحسين الوراثي مع تحليل الأثر البيئي / Genetic Breeding with Environmental Impact Analysis — Planned.**
 - **F245 — تقييم الأثر البيئي الإيجابي لتربية الإبل / Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
 
-يحمّل runtime ملف `app/source-features-244-245.js` بعد F243، ويُلزم `scripts/validate.py` و`tests/test_core.mjs` بوجود تسلسل فريد ومتصل **F001-F245**. لا يُسمح لإصدار الاستحواذ أن يدّعي تغطية كاملة إذا انخفض العدد عن 245.
+يحمّل runtime ملف `app/source-features-244-245.js` بعد F243، ويُلزم `scripts/validate.py` و`tests/test_core.mjs` و`tests/test_phase4.mjs` بوجود تسلسل فريد ومتصل **F001-F245**. لا يُسمح لإصدار الاستحواذ أن يدّعي تغطية كاملة إذا انخفض العدد عن 245.
 
 ### حالات النضج
 
@@ -99,6 +99,7 @@ python3 -m http.server 4173
 python scripts/validate.py
 node tests/test_core.mjs
 node tests/test_phase3.mjs
+node tests/test_phase4.mjs
 python tests/test_evidence_contract.py
 ```
 
@@ -155,7 +156,7 @@ These counts do not claim 245 production systems or 29 validated production mode
 - **F244 — Genetic Breeding with Environmental Impact Analysis — Planned.**
 - **F245 — Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
 
-The public runtime loads `app/source-features-244-245.js`. Structural validation and executable core tests require a unique, continuous **F001-F245** sequence and explicitly verify F244/F245.
+The public runtime loads `app/source-features-244-245.js`. Structural validation and executable core/Phase 4 tests require a unique, continuous **F001-F245** sequence and explicitly verify F244/F245.
 
 ### Validate and test
 
@@ -163,6 +164,7 @@ The public runtime loads `app/source-features-244-245.js`. Structural validation
 python scripts/validate.py
 node tests/test_core.mjs
 node tests/test_phase3.mjs
+node tests/test_phase4.mjs
 python tests/test_evidence_contract.py
 ```
 
