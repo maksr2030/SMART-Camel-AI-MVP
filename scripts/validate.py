@@ -3,7 +3,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_FEATURES = 235
+EXPECTED_FEATURES = 243
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
@@ -11,6 +11,7 @@ FEATURE_FILES = [
     ROOT / 'app' / 'source-features-191-223.js',
     ROOT / 'app' / 'source-features-224-231.js',
     ROOT / 'app' / 'source-features-232-235.js',
+    ROOT / 'app' / 'source-features-236-243.js',
 ]
 required = [
     ROOT / 'index.html',
@@ -21,6 +22,8 @@ required = [
     ROOT / 'docs' / 'EVIDENCE.md',
     ROOT / 'docs' / 'PUBLIC_OVERVIEW.md',
     ROOT / 'docs' / 'SOURCE_RECONCILIATION.md',
+    ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md',
+    ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
     ROOT / 'README.md',
 ]
 
@@ -33,6 +36,8 @@ if not errors:
     index = (ROOT / 'index.html').read_text(encoding='utf-8')
     app = (ROOT / 'app' / 'app.js').read_text(encoding='utf-8')
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+    algorithms = (ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md').read_text(encoding='utf-8')
+    systems = (ROOT / 'docs' / 'SYSTEM_FAMILIES.md').read_text(encoding='utf-8')
     feature_text = '\n'.join(path.read_text(encoding='utf-8') for path in FEATURE_FILES)
 
     feature_ids = re.findall(r"\['F(\d{3})'", feature_text)
@@ -43,7 +48,7 @@ if not errors:
 
     expected_sequence = [f'{i:03d}' for i in range(1, EXPECTED_FEATURES + 1)]
     if feature_ids != expected_sequence:
-        errors.append('Feature identifiers are not a continuous F001-F235 sequence')
+        errors.append('Feature identifiers are not a continuous F001-F243 sequence')
 
     for asset in (
         'app/styles.css',
@@ -53,6 +58,7 @@ if not errors:
         'app/source-features-191-223.js',
         'app/source-features-224-231.js',
         'app/source-features-232-235.js',
+        'app/source-features-236-243.js',
         'app/app.js',
     ):
         if asset not in index:
@@ -68,6 +74,11 @@ if not errors:
         if not ok:
             errors.append(f'Missing {label}')
 
+    if '29 source-documented named algorithms and engines' not in algorithms:
+        errors.append('Algorithm registry does not declare the 29 source-documented named algorithms and engines')
+    if '20 canonical system families' not in systems:
+        errors.append('System family document does not declare the 20 canonical system families')
+
 if errors:
     print('SMART Camel AI MVP validation failed:')
     for error in errors:
@@ -77,5 +88,7 @@ if errors:
 print('SMART Camel AI MVP validation passed.')
 print('Required files: OK')
 print(f'Registered feature records: {EXPECTED_FEATURES}')
-print('Feature identifier sequence: F001-F235')
+print('Feature identifier sequence: F001-F243')
+print('Algorithm/engine registry declaration: 29 source-documented names')
+print('System family declaration: 20 canonical families')
 print('Arabic and English presentation markers: OK')
