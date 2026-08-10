@@ -37,41 +37,105 @@
 
     <section class="grid two">
       <article class="card">
-        <div class="section-head"><div><span class="section-kicker" data-i18n="operationalView">الحالة التشغيلية</span><h2 data-i18n="camelRegistry">سجل الإبل</h2></div><span class="status ok" data-i18n="synthetic">اصطناعي</span></div>
+        <div class="section-head">
+          <div>
+            <span class="section-kicker" data-i18n="operationalView">الحالة التشغيلية</span>
+            <h2 data-i18n="camelRegistry">سجل الإبل</h2>
+          </div>
+          <span class="status ok" data-i18n="synthetic">اصطناعي</span>
+        </div>
         <div id="camelTableWrap" class="table-wrap"></div>
       </article>
+
       <article class="card">
-        <div class="section-head"><div><span class="section-kicker" data-i18n="alerts">التنبيهات</span><h2 data-i18n="riskSignals">إشارات المخاطر</h2></div></div>
+        <div class="section-head">
+          <div>
+            <span class="section-kicker" data-i18n="alerts">التنبيهات</span>
+            <h2 data-i18n="riskSignals">إشارات المخاطر</h2>
+          </div>
+        </div>
         <div id="alertsList" class="stack"></div>
       </article>
     </section>
 
     <section id="simulator" class="card">
-      <div class="section-head"><div><span class="section-kicker" data-i18n="aiSimulation">محاكاة الذكاء</span><h2 data-i18n="healthRiskTitle">محرك مخاطر صحة الإبل</h2><p data-i18n="healthRiskText">غيّر المؤشرات التالية لإنتاج درجة مخاطر تفسيرية تجريبية.</p></div><span class="status warn" data-i18n="simulated">محاكاة</span></div>
+      <div class="section-head">
+        <div>
+          <span class="section-kicker" data-i18n="aiSimulation">محاكاة الذكاء</span>
+          <h2 data-i18n="healthRiskTitle">محرك مخاطر صحة الإبل</h2>
+          <p data-i18n="healthRiskText">غيّر المؤشرات التالية لإنتاج درجة مخاطر تفسيرية تجريبية.</p>
+        </div>
+        <span class="status warn" data-i18n="simulated">محاكاة</span>
+      </div>
       <div class="sim-grid">
         <label><span data-i18n="temperature">درجة الحرارة</span><input id="temperature" type="range" min="36" max="42" step="0.1" value="38.2"><output id="temperatureOut">38.2</output></label>
         <label><span data-i18n="activity">النشاط</span><input id="activity" type="range" min="0" max="100" value="72"><output id="activityOut">72</output></label>
         <label><span data-i18n="hydration">الترطيب</span><input id="hydration" type="range" min="0" max="100" value="78"><output id="hydrationOut">78</output></label>
       </div>
-      <div class="risk-result"><div><span data-i18n="riskScore">درجة المخاطر</span><strong id="riskScore">0</strong></div><div><span data-i18n="interpretation">التفسير</span><strong id="riskLabel">منخفض</strong></div><p id="riskExplanation"></p></div>
+      <div class="risk-result">
+        <div><span data-i18n="riskScore">درجة المخاطر</span><strong id="riskScore">18</strong></div>
+        <div><span data-i18n="interpretation">التفسير</span><strong id="riskLabel">منخفض</strong></div>
+        <p id="riskExplanation"></p>
+      </div>
     </section>
 
     <section id="features" class="card">
       <div class="section-head feature-head">
-        <div><span class="section-kicker" data-i18n="featureRegistry">سجل الميزات</span><h2 data-i18n="platformCapabilities">قدرات المنصة</h2><p data-i18n="featureRegistryText">سجل موحد يوضح المجال والحالة ونوع الإثبات لكل قدرة في الإصدار العام.</p></div>
-        <div class="filters"><input id="featureSearch" type="search" placeholder="بحث" aria-label="Search features"><select id="featureStatus" aria-label="Feature status"><option value="all" data-i18n="allStatuses">كل الحالات</option><option value="Implemented">Implemented</option><option value="Demonstrated">Demonstrated</option><option value="Simulated">Simulated</option><option value="Mock Integration">Mock Integration</option><option value="Planned">Planned</option></select></div>
+        <div>
+          <span class="section-kicker" data-i18n="featureRegistry">سجل الميزات</span>
+          <h2 data-i18n="platformCapabilities">قدرات المنصة</h2>
+          <p data-i18n="featureRegistryText">سجل موحد يوضح المجال والحالة ونوع الإثبات لكل قدرة في الإصدار العام.</p>
+        </div>
+        <div class="filters">
+          <input id="featureSearch" type="search" placeholder="بحث" aria-label="Search features">
+          <select id="featureStatus" aria-label="Feature status">
+            <option value="all" data-i18n="allStatuses">كل الحالات</option>
+            <option value="Implemented">Implemented</option>
+            <option value="Demonstrated">Demonstrated</option>
+            <option value="Simulated">Simulated</option>
+            <option value="Mock Integration">Mock Integration</option>
+            <option value="Planned">Planned</option>
+          </select>
+        </div>
       </div>
       <div id="featureStats" class="mini-stats"></div>
       <div id="featureGrid" class="feature-grid"></div>
     </section>
 
     <section class="grid three">
-      <article class="card compact"><span class="section-kicker" data-i18n="marketplace">السوق</span><h3 data-i18n="auctionEngine">محرك المزادات</h3><p data-i18n="auctionText">محاكاة مسار التأهيل والعرض والمزايدة والنتيجة مع سجل أحداث واضح.</p><button id="bidButton" class="button" type="button" data-i18n="placeDemoBid">نفّذ مزايدة تجريبية</button><p id="bidResult" class="result-line"></p></article>
-      <article class="card compact"><span class="section-kicker" data-i18n="competitions">المسابقات</span><h3 data-i18n="beautyEvaluation">تقييم المزايين</h3><p data-i18n="beautyText">نموذج تفسيري لعرض كيفية تجميع معايير الشكل والتناسق والحركة دون كشف نموذج مملوك.</p><div class="scoreline"><span data-i18n="demoScore">درجة العرض</span><strong>91.4</strong></div></article>
-      <article class="card compact"><span class="section-kicker" data-i18n="traceability">التتبع</span><h3 data-i18n="certificateVerification">التحقق من الشهادة</h3><p data-i18n="certificateText">أدخل رمز العرض CAMEL-001 للتحقق من هوية الجمل وسلامة سجل الشهادة التجريبية.</p><div class="verify-row"><input id="verifyCode" value="CAMEL-001"><button id="verifyButton" class="button secondary" type="button" data-i18n="verify">تحقق</button></div><p id="verifyResult" class="result-line"></p></article>
+      <article class="card compact">
+        <span class="section-kicker" data-i18n="marketplace">السوق</span>
+        <h3 data-i18n="auctionEngine">محرك المزادات</h3>
+        <p data-i18n="auctionText">محاكاة مسار التأهيل والعرض والمزايدة والنتيجة مع سجل أحداث واضح.</p>
+        <button id="bidButton" class="button" type="button" data-i18n="placeDemoBid">نفّذ مزايدة تجريبية</button>
+        <p id="bidResult" class="result-line"></p>
+      </article>
+
+      <article class="card compact">
+        <span class="section-kicker" data-i18n="competitions">المسابقات</span>
+        <h3 data-i18n="beautyEvaluation">تقييم المزايين</h3>
+        <p data-i18n="beautyText">نموذج تفسيري لعرض كيفية تجميع معايير الشكل والتناسق والحركة دون كشف نموذج مملوك.</p>
+        <div class="scoreline"><span data-i18n="demoScore">درجة العرض</span><strong>91.4</strong></div>
+      </article>
+
+      <article class="card compact">
+        <span class="section-kicker" data-i18n="traceability">التتبع</span>
+        <h3 data-i18n="certificateVerification">التحقق من الشهادة</h3>
+        <p data-i18n="certificateText">أدخل رمز العرض CAMEL-001 للتحقق من هوية الجمل وسلامة سجل الشهادة التجريبية.</p>
+        <div class="verify-row"><input id="verifyCode" value="CAMEL-001"><button id="verifyButton" class="button secondary" type="button" data-i18n="verify">تحقق</button></div>
+        <p id="verifyResult" class="result-line"></p>
+      </article>
     </section>
 
-    <section class="card"><div class="section-head"><div><span class="section-kicker" data-i18n="auditEvidence">الأدلة والتدقيق</span><h2 data-i18n="auditTrail">سجل الأحداث</h2></div></div><div id="auditLog" class="audit-log"></div></section>
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker" data-i18n="auditEvidence">الأدلة والتدقيق</span>
+          <h2 data-i18n="auditTrail">سجل الأحداث</h2>
+        </div>
+      </div>
+      <div id="auditLog" class="audit-log"></div>
+    </section>
   </main>
 
   <footer><p data-i18n="footer">SMART Camel AI MVP. جميع بيانات هذا العرض اصطناعية أو توضيحية.</p></footer>
