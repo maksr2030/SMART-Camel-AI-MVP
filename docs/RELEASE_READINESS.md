@@ -6,12 +6,14 @@
 
 هذه الوثيقة هي بوابة قرار لإصدار SMART Camel AI العام المخصص للفحص الأولي من مستحوذ أو فريق تقني. وهي تفصل بين **Acquisition Demonstrator Readiness** وبين **Production Readiness**.
 
+البيان التنفيذي الموحد للحزمة موجود في `ACQUISITION_RELEASE_MANIFEST.md`، وهو جزء إلزامي من Release Gate.
+
 ### الحالة الحالية
 
 | البوابة | الحالة | الدليل الحالي | ما يزال مطلوباً |
 |---|---|---|---|
-| G01 — Canonical Scope | Ready in branch | F001-F245 متصل وفريد في runtime والاختبارات | اجتياز PR CI النهائي |
-| G02 — Source Reconciliation | Ready in branch | F001-F243 baseline + F244-F245 Phase 4 addendum | Data Room pointers للمصادر السرية |
+| G01 — Canonical Scope | Ready in branch | F001-F245 متصل وفريد + `ACQUISITION_RELEASE_MANIFEST.md` | اجتياز PR CI النهائي |
+| G02 — Source Reconciliation | Ready in branch | سجل F001-F245 الحالي + Phase 4 F244-F245 reconciliation | Data Room pointers للمصادر السرية |
 | G03 — Strategic Evidence | Ready | 12/12 قدرات استراتيجية Grade A Evidence | Production validation منفصل |
 | G04 — Evidence IDs | Ready | EVD-001-EVD-020 | توسيع evidence حسب تقدم productionization |
 | G05 — Automated Tests | Ready in branch | validator + core + Phase 3 + Phase 4 + evidence contract | PR CI أخضر على head النهائي |
@@ -20,7 +22,7 @@
 | G08 — Live Stable Demo | Pending | لا يوجد دليل موثق داخل المستودع حتى الآن | رابط تشغيل حي ومستقر والتحقق الخارجي منه |
 | G09 — Fixed Acquisition Release Tag | Pending | لا يوجد tag نهائي بعد | إنشاء tag بعد CI + live demo verification |
 | G10 — Chain of Title | Pending Confidential | checklist في `IP_NOTICE.md` | ملفات الملكية والتنازلات/المساهمين داخل Data Room |
-| G11 — Production Security | Pending | Threat Model عام | IAM، backend security، SAST/DAST، pentest، key management، IR |
+| G11 — Production Security | Pending | Threat Model عام + Phase 4 automated public scan | IAM، backend security، SAST/DAST، pentest، key management، IR |
 | G12 — Production Backend/Data | Pending | Public static demonstrator فقط | API، DB، persistence، backup/DR، observability |
 | G13 — Field Validation | Pending | محاكاة/تصميم لعدد من قدرات الأجهزة | أجهزة وبيانات حقيقية وبروتوكولات تحقق ميداني |
 | G14 — Commercial Evidence | Pending | لا يوجد إيراد/عقد مثبت في المستودع العام | عقود/إيرادات/LOIs أو فصلها صراحة عن forecast |
@@ -37,7 +39,7 @@
 1. F001-F245 كاملة دون فجوات أو تكرار.
 2. جميع اختبارات CI المعلنة خضراء على PR/head النهائي.
 3. فحص الأسرار والملفات الحساسة ناجح.
-4. README والوثائق العامة متسقة على 245.
+4. README والوثائق العامة وRelease Manifest متسقة على 245.
 5. الرابط الحي مستقر ومتحقق منه خارج بيئة المطور.
 6. Known Limitations وIP boundaries ظاهرة.
 
@@ -56,7 +58,7 @@
 
 ## English
 
-This document is the decision gate for a buyer-facing SMART Camel AI acquisition demonstrator. It explicitly separates **Acquisition Demonstrator Readiness** from **Production Readiness**.
+This document is the decision gate for a buyer-facing SMART Camel AI acquisition demonstrator. `ACQUISITION_RELEASE_MANIFEST.md` is the mandatory consolidated manifest for the package.
 
 The current branch has automated/public evidence for the F001-F245 canonical scope, 12/12 strategic Grade A evidence paths, EVD-001-EVD-020, Phase 4 reconciliation, a public secret/sensitive-file scan and a dependency/license diligence note.
 
