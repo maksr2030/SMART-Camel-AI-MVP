@@ -5,7 +5,7 @@ window.SMART_CAMEL_DATA = {
     { key: 'healthAlerts', value: 12 },
     { key: 'activeAuctions', value: 6 },
     { key: 'connectedSensors', value: 914 },
-    { key: 'featureCoverage', value: '60' }
+    { key: 'featureCoverage', value: '90' }
   ],
   camels: [
     { id: 'CAMEL-001', nameAr: 'وضحاء', nameEn: 'Wadha', breedAr: 'مجاهيم', breedEn: 'Majaheem', age: 6, health: 94, activity: 81, farmAr: 'مزرعة الوادي', farmEn: 'Al Wadi Farm' },
@@ -78,7 +78,37 @@ window.SMART_CAMEL_DATA = {
     ['F057','tourism','Tourism Layer','الطبقة السياحية','Planned'],
     ['F058','heritage','Heritage and Culture','التراث والثقافة','Implemented'],
     ['F059','education','Camel Anatomy and Education','تشريح الإبل والتعليم','Implemented'],
-    ['F060','audit','Evidence and Audit Log','سجل الأدلة والتدقيق','Implemented']
+    ['F060','audit','Evidence and Audit Log','سجل الأدلة والتدقيق','Implemented'],
+    ['F061','wellbeing','Camel Psychological State Assessment','تقييم الحالة النفسية للإبل','Simulated'],
+    ['F062','interactiveGrazing','Interactive Smart Grazing Management','إدارة الرعي الذكي التفاعلية','Simulated'],
+    ['F063','audioDeterrence','Directed Audio Stimulation','التحفيز الصوتي الموجّه','Simulated'],
+    ['F064','lightWarning','Directed Light Warning System','نظام التحذير الضوئي الموجّه','Simulated'],
+    ['F065','ultrasoundEscape','Ultrasound and Infrasound Highway Escape System','نظام الإبعاد بالموجات فوق وتحت الصوتية عن الطرق','Simulated'],
+    ['F066','waveProtection','Wave and Vibration Predator Deterrence','الحماية من المفترسات بالموجات والاهتزازات','Simulated'],
+    ['F067','competitionPerformance','Artificial Intelligence Competition Performance Analysis','تحليل أداء المسابقات بالذكاء الاصطناعي','Simulated'],
+    ['F068','breedBeauty','Breed-Specific Beauty Evaluation','تقييم الجمال حسب السلالة','Simulated'],
+    ['F069','localGlobalBeauty','Local and International Beauty Standards','معايير الجمال المحلية والدولية','Demonstrated'],
+    ['F070','spectralInspection','Spectral and Ultrasound Manipulation Inspection','الفحص الطيفي وبالموجات فوق الصوتية لكشف التلاعب','Simulated'],
+    ['F071','audienceJudging','Interactive Audience Evaluation','التقييم التفاعلي للجمهور','Demonstrated'],
+    ['F072','blockchainEvidence','Blockchain Evidence Documentation','توثيق الأدلة باستخدام البلوك تشين','Planned'],
+    ['F073','auctionStreaming','Live Auction Streaming','البث المباشر للمزادات','Planned'],
+    ['F074','auction3D','Three-Dimensional Auction Viewing','العرض ثلاثي الأبعاد في المزادات','Planned'],
+    ['F075','delivery','Camel Delivery and Logistics','خدمات توصيل ونقل الإبل','Planned'],
+    ['F076','medicineMarket','Camel Medicines and Supplements Section','قسم أدوية ومكملات الإبل','Planned'],
+    ['F077','foodDirectory','Camel Foods and Restaurants Directory','دليل أطعمة ومطاعم منتجات الإبل','Planned'],
+    ['F078','reviews','Product and Restaurant Reviews and Ratings','تقييمات ومراجعات المنتجات والمطاعم','Planned'],
+    ['F079','globalFestivals','Global Festival Coordination','التنسيق العالمي للمهرجانات','Mock Integration'],
+    ['F080','multilingualReports','Multilingual Festival Reporting','تقارير المهرجانات متعددة اللغات','Demonstrated'],
+    ['F081','environmentRefresh','Automatic Daily Environmental Data Refresh','التحديث اليومي التلقائي للبيانات البيئية','Mock Integration'],
+    ['F082','jointEnvironmentReports','Joint Smart Environment Reports','التقارير المشتركة مع منصة البيئة الذكية','Mock Integration'],
+    ['F083','supplyChain','Production Supply Chain Traceability','تتبع سلسلة توريد الإنتاج','Planned'],
+    ['F084','costAnalytics','Production Cost Analytics','تحليلات تكاليف الإنتاج','Simulated'],
+    ['F085','researchRepository','Global Camel Research Data Repository','مستودع عالمي لبيانات أبحاث الإبل','Planned'],
+    ['F086','seasonalUpdates','Seasonal Environment and Nutrition Updates','التحديثات الموسمية للبيئة والتغذية','Mock Integration'],
+    ['F087','virtualExperience','Virtual-Reality Market Experience','تجربة السوق بالواقع الافتراضي','Planned'],
+    ['F088','qualityCertificates','Product Quality Certificates','شهادات جودة منتجات الإبل','Demonstrated'],
+    ['F089','globalProductMarkets','Local and International Product Market Integration','تكامل منتجات الإبل مع الأسواق المحلية والعالمية','Mock Integration'],
+    ['F090','environmentalWellbeing','Camel Environmental Wellbeing Management','إدارة الرفاه البيئي للإبل','Simulated']
   ].map(function (f) {
     return { id:f[0], domain:f[1], nameEn:f[2], nameAr:f[3], status:f[4] };
   })
