@@ -11,13 +11,15 @@
 - واجهة عربية وإنجليزية مع تبديل فوري بين اللغتين.
 - لوحة قيادة تشغيلية ببيانات اصطناعية.
 - سجل إبل تجريبي.
-- 60 قدرة مسجلة ومصنفة حسب حالة النضج.
+- 90 قدرة موثقة في السجل العام الحالي ومصنفة حسب حالة النضج، بعد مطابقة أولية مع ملفات المنصة الأصلية.
 - محرك مخاطر صحي تفاعلي تفسيري.
 - مركز تنبيهات للمخاطر الصحية والجغرافية.
 - محاكاة مزايدة وتسجيل حدثها.
 - تحقق تجريبي من شهادة CAMEL-001.
 - سجل أحداث لجلسة العرض.
 - توثيق معماري ومصفوفة أدلة عامة.
+
+ملاحظة منهجية: الرقم 90 هو عدد سجلات القدرات العامة التي جرى توحيدها حتى هذه المرحلة من مطابقة محفظة المصدر، وليس ادعاءً بأن كل تفاصيل الملكية الفكرية الداخلية منشورة في المستودع العام.
 
 ### حالات النضج
 
@@ -64,13 +66,15 @@ This repository contains the public demonstrator of the platform. It is designed
 - Arabic and English interface with instant language switching.
 - Operational dashboard using synthetic data.
 - Demonstration camel registry.
-- 60 registered capabilities classified by maturity status.
+- 90 capabilities documented in the current public registry and classified by maturity status after an initial reconciliation against the original platform source portfolio.
 - Interactive explainable health-risk engine.
 - Health and geospatial risk alert center.
 - Demonstration auction bid with event logging.
 - Demonstration certificate verification for CAMEL-001.
 - In-session audit event trail.
 - Architecture documentation and public evidence matrix.
+
+Method note: 90 is the number of public capability records normalized at this stage of source-portfolio reconciliation. It is not a claim that confidential intellectual-property implementation detail has been published in the public repository.
 
 ### Maturity statuses
 
