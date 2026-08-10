@@ -26,8 +26,16 @@ FILES = {
 
 CURRENT_RELEASE_ABSENCE = (
     ROOT / 'package.json',
+    ROOT / 'package-lock.json',
+    ROOT / 'yarn.lock',
+    ROOT / 'pnpm-lock.yaml',
     ROOT / 'requirements.txt',
+    ROOT / 'pyproject.toml',
+    ROOT / 'Pipfile',
+    ROOT / 'poetry.lock',
     ROOT / 'LICENSE',
+    ROOT / 'LICENSE.md',
+    ROOT / 'LICENSE.txt',
 )
 
 errors = []
@@ -71,8 +79,9 @@ if 'scripts/security_check.py' not in texts.get('security', ''):
     errors.append('Security baseline must document the Phase 4 automated security check')
 if 'No public `LICENSE` file' not in texts.get('dependency', ''):
     errors.append('Dependency/license review must preserve the public licensing boundary')
-if '`package.json`' not in texts.get('dependency', '') or '`requirements.txt`' not in texts.get('dependency', ''):
-    errors.append('Dependency/license review must document the current no-manifest runtime boundary')
+for marker in ('`package.json`', '`requirements.txt`', '`pyproject.toml`', '`LICENSE.md`', '`LICENSE.txt`'):
+    if marker not in texts.get('dependency', ''):
+        errors.append(f'Dependency/license review must document current absence of {marker}')
 
 release_text = texts.get('release', '')
 for gate in range(1, 16):
@@ -130,7 +139,7 @@ print('SMART Camel AI acquisition release check passed.')
 print('Current public/DD scope markers: F001-F245 consistent')
 print('Phase 4 reconciliation markers: F244-F245 present')
 print('Algorithms/system families: 29 / 20 preserved')
-print('Current no-package/no-requirements/no-public-license boundary: preserved')
+print('Verified no-manifest/no-lockfile/no-public-license boundary: preserved')
 print('Security and licensing boundaries: present')
 print('Release readiness gates: G01-G15 present')
 print('Live demo and final release tag remain correctly Pending')
