@@ -13,6 +13,8 @@
 - لا توجد بيانات ملاك أو شركاء أو سجلات بيطرية حقيقية في الإصدار العام.
 - التكاملات الخارجية ممثلة كـMock Integration ولا توجد اتصالات حكومية أو بيطرية حية.
 - الخوارزميات الخاصة والأوزان وبيانات التدريب وقواعد القرار السرية ليست ضمن المستودع العام.
+- runtime العام لا يحمل scripts أو stylesheets من CDN خارجي.
+- Phase 4 تضيف `scripts/security_check.py` لفحص أنماط أسرار عالية الثقة والملفات الحساسة والاعتماديات الخارجية في runtime.
 
 هذه الخصائص تقلل سطح الهجوم في الـMVP، لكنها لا تعفي النسخة الإنتاجية المستقبلية من ضوابط الأمن المؤسسي.
 
@@ -51,9 +53,19 @@
 | Certificate forgery | تغيير هوية أو ملكية | شهادة تجريبية | signing keys، PKI/key management، revocation model |
 | Genetic/health privacy breach | كشف بيانات حساسة | لا بيانات حقيقية | encryption، consent, retention, access logging |
 | Supply-chain compromise | إدخال كود ضار | runtime عام بلا حزم خارجية | SBOM، dependency pinning، provenance، SCA |
-| Secret leakage | اختراق خدمات خارجية | لا أسرار لازمة للعرض | secret scanning، vault, rotation, least privilege |
-| CI/CD compromise | نشر كود غير موثوق | validation workflow موجود | protected branches، required reviews/checks، signed releases |
+| Secret leakage | اختراق خدمات خارجية | **E2 public scan in Phase 4** + لا أسرار لازمة للعرض | vault, rotation, least privilege, production secret scanning |
+| CI/CD compromise | نشر كود غير موثوق | validation workflow متعدد البوابات موجود | protected branches، required reviews/checks، signed releases |
 | Availability attack | توقف الخدمة | static MVP | WAF/CDN، autoscaling، DR, monitoring, incident response |
+
+### ضوابط Phase 4 المنفذة في المستودع العام
+
+1. **Automated secret/sensitive-file scan — E2:** `scripts/security_check.py`.
+2. **External runtime dependency check — E2:** يمنع scripts/stylesheets خارجية في `index.html` ضمن الفحص الحالي.
+3. **Dependency/license disclosure — E1/E2 boundary:** `docs/DEPENDENCY_AND_LICENSE_REVIEW.md` + CI presence checks.
+4. **Release-readiness contract — E2:** `scripts/release_check.py` يحرس اتساق نطاق 245 وحالة live demo/tag كـPending حتى التحقق.
+5. **Evidence/registry validation — E2:** validator + core/Phase 3/Phase 4/evidence-contract tests.
+
+هذه الضوابط لا تساوي pentest ولا SAST/DAST شاملاً ولا شهادة أمنية.
 
 ### الحد الأدنى المطلوب قبل Production Due Diligence
 
@@ -61,7 +73,7 @@
 2. IAM architecture مع MFA وRBAC/ABAC وفصل الواجبات.
 3. تشفير TLS للنقل وencryption-at-rest للبيانات الحساسة.
 4. إدارة مفاتيح وأسرار مركزية مع rotation.
-5. SAST وSCA وsecret scanning في CI.
+5. SAST وSCA وsecret scanning في CI الإنتاجي.
 6. DAST واختبار اختراق مستقل للنسخة المرشحة للإنتاج.
 7. SBOM ومراجعة تراخيص كل المكونات.
 8. Centralized logging/SIEM وحماية سجل التدقيق.
@@ -89,28 +101,8 @@
 
 ## English
 
-### Scope
+This document describes the **current public MVP security posture** and the work required before production deployment or final technical acquisition diligence. It is not a certification or an independent penetration-test report.
 
-This document describes the **current public MVP security posture** and the control work required before production deployment or final technical acquisition diligence. It is not a certification or an independent penetration-test report.
+Phase 4 adds an **E2 automated public secret/sensitive-file scan**, checks that the static runtime does not load external scripts/stylesheets, documents the minimal dependency/license surface, and enforces a release-readiness contract. These controls strengthen acquisition diligence but do not constitute SAST/DAST coverage, an independent penetration test, production IAM, production key management or formal security certification.
 
-### Current public-MVP characteristics
-
-- Lightweight static HTML/CSS/JavaScript presentation with no production backend or database.
-- No API keys or credentials are required to run the public demonstrator.
-- No real owner, partner, veterinary or genetic records are published.
-- External integrations are Mock Integration only.
-- Proprietary algorithms, weights, training datasets and confidential decision rules are excluded.
-
-### Required production-security work
-
-Production readiness requires formal threat modelling, IAM/MFA/RBAC, encryption, centralized secret/key management, SAST/SCA/secret scanning, DAST and independent penetration testing, an SBOM and license review, protected CI/CD, centralized logging and incident response, tested backup/DR, API abuse controls, authenticated IoT devices, and AI-specific provenance/version/monitoring controls.
-
-### Evidence scale
-
-- **E0 — Not evidenced**
-- **E1 — Documented**
-- **E2 — Automated check**
-- **E3 — Demonstrated control**
-- **E4 — Independently validated**
-
-Critical controls should reach at least E2-E3 for advanced acquisition diligence, with E4 targeted for high-risk production security before live deployment.
+The evidence scale remains E0 (not evidenced), E1 (documented), E2 (automated check), E3 (demonstrated control) and E4 (independently validated). High-risk production controls should ultimately reach E3-E4 before live deployment.
