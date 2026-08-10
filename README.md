@@ -11,7 +11,7 @@
 - واجهة عربية وإنجليزية مع تبديل فوري بين اللغتين.
 - لوحة قيادة تشغيلية ببيانات اصطناعية.
 - سجل إبل تجريبي.
-- 231 سجل قدرة موحداً في السجل العام الحالي ومصنفاً حسب حالة النضج بعد مطابقة موسعة مع ملفات المنصة الأصلية ومواد براءة الاختراع المتاحة للمراجعة.
+- 235 سجل قدرة موحداً في السجل العام الحالي ومصنفاً حسب حالة النضج بعد مطابقة موسعة مع ملفات المنصة الأصلية ومواد براءة الاختراع والملفات البيطرية والتشغيلية الأخيرة.
 - محرك مخاطر صحي تفاعلي تفسيري.
 - مركز تنبيهات للمخاطر الصحية والجغرافية.
 - محاكاة مزايدة وتسجيل حدثها.
@@ -20,9 +20,13 @@
 - توثيق معماري ومصفوفة أدلة عامة.
 - وثيقة مستقلة تشرح منهج مطابقة ملفات المصدر القديمة وتحويلها إلى سجل موحد.
 
-ملاحظة منهجية: الرقم 231 هو عدد سجلات القدرات المعيارية التي جرى توحيدها حتى هذه المرحلة من مطابقة محفظة المصدر. لا يعني أن الوثائق التاريخية استخدمت تسلسلاً واحداً من 1 إلى 231، ولا يعني أن جميع القدرات منشورة كأنظمة إنتاجية. بعض السجلات تمثل محركات أو تدفقات أو قدرات فرعية مستقلة داخل عائلات أكبر.
+ملاحظة منهجية: الرقم 235 هو عدد سجلات القدرات المعيارية التي جرى توحيدها حتى هذه المرحلة من مطابقة محفظة المصدر. لا يعني أن الوثائق التاريخية استخدمت تسلسلاً واحداً من 1 إلى 235، ولا يعني أن جميع القدرات منشورة كأنظمة إنتاجية. بعض السجلات تمثل محركات أو تدفقات أو قدرات فرعية مستقلة داخل عائلات أكبر.
 
-أضيفت F224-F231 بعد مراجعة مصادر إضافية تضمنت وثيقة براءة مختصرة ووثائق تشغيل تفصيلية. تشمل هذه الطبقة تشفير ما بعد الكم، التهجين المحسن حسب حالة الاستخدام، التقييمات الصحية والجينية قبل التجارة، التقييم الآلي للمسابقات، توليد النتائج في الزمن الحقيقي، مطابقة المهرجانات، وتكامل الجهات البيطرية. هذه القدرات موسومة Planned أو Simulated أو Mock Integration بحسب الدليل العام المتاح، ولا يتم تقديمها كنشر إنتاجي حي.
+أضيفت F224-F231 بعد مراجعة مصادر إضافية تضمنت وثيقة براءة مختصرة ووثائق تشغيل تفصيلية. تشمل هذه الطبقة تشفير ما بعد الكم، التهجين المحسن حسب حالة الاستخدام، التقييمات الصحية والجينية قبل التجارة، التقييم الآلي للمسابقات، توليد النتائج في الزمن الحقيقي، مطابقة المهرجانات، وتكامل الجهات البيطرية.
+
+أضيفت F232-F235 بعد مراجعة المجموعة الأخيرة من الملفات، وبالأخص ملف منصة الطب البيطري وإدارة الكفاءة الجينية وملفات إدارة المزارع. وتشمل توثيق صحة الإبل المشاركة في المهرجانات، تتبع الموقع والسرعة أثناء السباقات، تتبع الإنتاجية عبر دورة حياة الجمل، وتوصيات الطاقة المتجددة للمزارع. لم تُكرر الاستشارات البيطرية أو التحليل الغذائي أو الكفاءة الجينية لأنها كانت موجودة بالفعل في السجل المعياري.
+
+جميع هذه القدرات موسومة بحالة النضج الفعلية في الإصدار العام، ولا يتم تقديم القدرات المصدرية أو الموثقة ببراءة على أنها نشر إنتاجي حي.
 
 ### حالات النضج
 
@@ -70,7 +74,7 @@ This repository contains the public demonstrator of the platform. It is designed
 - Arabic and English interface with instant language switching.
 - Operational dashboard using synthetic data.
 - Demonstration camel registry.
-- 231 normalized capability records in the current public registry, classified by maturity status after expanded reconciliation against original platform source material and patent-related documentation available for review.
+- 235 normalized capability records in the current public registry, classified by maturity status after expanded reconciliation against original platform source material, patent-related documentation, and the final veterinary and operating files reviewed.
 - Interactive explainable health-risk engine.
 - Health and geospatial risk alert center.
 - Demonstration auction bid with event logging.
@@ -79,9 +83,13 @@ This repository contains the public demonstrator of the platform. It is designed
 - Architecture documentation and public evidence matrix.
 - A dedicated source-reconciliation document explaining how legacy source files were converted into the normalized registry.
 
-Method note: 231 is the number of canonical capability records normalized at this stage of source-portfolio reconciliation. It does not imply that historical source material used one continuous 1-to-231 numbering scheme, and it does not mean all capabilities are production-deployed. Some records represent independent engines, workflows or sub-capabilities within larger capability families.
+Method note: 235 is the number of canonical capability records normalized at this stage of source-portfolio reconciliation. It does not imply that historical source material used one continuous 1-to-235 numbering scheme, and it does not mean all capabilities are production-deployed. Some records represent independent engines, workflows or sub-capabilities within larger capability families.
 
-F224-F231 were added after reviewing additional sources including a concise patent document and detailed operating documentation. This layer covers post-quantum encryption, use-case optimized hybrid breeding, automated pre-trade health and genetic evaluation, automated competition scoring, real-time result generation, festival suitability matching and a veterinary-authority integration adapter. These capabilities remain classified as Planned, Simulated or Mock Integration according to the available public evidence and are not represented as live production deployments.
+F224-F231 were added after reviewing additional sources including a concise patent document and detailed operating documentation. This layer covers post-quantum encryption, use-case optimized hybrid breeding, automated pre-trade health and genetic evaluation, automated competition scoring, real-time result generation, festival suitability matching and a veterinary-authority integration adapter.
+
+F232-F235 were added after reviewing the final uploaded source group, particularly the veterinary/genetic-efficiency platform and farm-management material. They cover festival-participant health documentation, real-time race GPS and speed tracking, lifecycle productivity tracking, and renewable-energy recommendations for camel farms. Remote veterinary consultation, nutritional analysis and genetic-efficiency management were not counted again because they were already represented in the canonical registry.
+
+All capabilities retain explicit public maturity classifications and source documentation is not represented as live production deployment.
 
 ### Maturity statuses
 
