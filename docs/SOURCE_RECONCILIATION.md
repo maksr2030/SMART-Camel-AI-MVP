@@ -4,53 +4,55 @@
 
 ### الغرض
 
-يوثق هذا الملف منهج تحويل وثائق منصة الإبل الذكية التاريخية ومواد براءة الاختراع والملفات البيطرية والتشغيلية إلى سجل قدرات عام موحد وقابل للتدقيق داخل MVP.
+يوثق هذا الملف منهج تحويل وثائق منصة SMART Camel AI التاريخية ومواد براءة الاختراع والملفات البيطرية والتشغيلية وملفات الخوارزميات إلى سجل قدرات عام موحد وقابل للتدقيق داخل MVP.
 
-السجل الحالي يستخدم معرفات معيارية جديدة من F001 إلى F235. هذه المعرفات ليست ادعاءً بأن الوثائق التاريخية استخدمت التسلسل نفسه، وإنما هي طبقة توحيد تمنع تضارب الأرقام بين نسخ المنصة القديمة.
+السجل الحالي يستخدم معرفات معيارية جديدة من **F001 إلى F243**. هذه المعرفات لا تدّعي أن الوثائق التاريخية استخدمت التسلسل نفسه؛ هي طبقة توحيد تمنع تضارب الأرقام بين نسخ المنصة القديمة.
 
-### ما الذي تمت مراجعته
+### أنماط المصادر التي تمت مراجعتها
 
-تضمنت محفظة المصدر عدة أجيال من وثائق HTML عربية وإنجليزية، وملفات تغطي المزارع والصحة والجينات والرعي والمزايين والمهرجانات والمزادات والأسواق والمنتجات والبيئة، إضافة إلى مواد براءة اختراع عربية وإنجليزية وملف مستقل للطب البيطري والكفاءة الجينية.
+أظهرت محفظة المصدر ستة أنماط رئيسية:
 
-أظهرت المراجعة خمسة أنماط رئيسية:
+1. وثائق تفصيلية تسمي قدرات فعلية وتشرح الوصف والهدف والفوائد وآلية العمل.
+2. ملفات بيطرية وتشغيلية توثق قدرات مستقلة في الصحة، السباقات، الإنتاجية والكفاءة الجينية.
+3. ملفات فهرسة تاريخية من 1 إلى 190 و1 إلى 200؛ بعضها يحتوي قوالب عامة مكررة، لذلك لم يُقبل الترقيم وحده كدليل.
+4. مواد براءة اختراع مطولة ومختصرة؛ قُبلت فقط الوحدات ذات الحدود التقنية المميزة بعد إزالة التكرار.
+5. ملفات إدارة مزارع واستدامة تتضمن تشغيل الموارد والطاقة والبيئة.
+6. ملفات خوارزمية أخيرة توثق قدرات وأسماء محركات ونماذج تدريب بصورة أكثر تحديداً.
 
-1. وثائق تفصيلية تسمي قدرات فعلية وتشرح الوصف والهدف والفوائد وآلية العمل، ومنها سلسلة تفصيلية وصلت تاريخياً إلى نطاق الميزة 78 مع تحسينات وأنظمة فرعية كثيرة.
-2. وثائق مستقلة توثق سلسلة بيطرية محددة من 164 إلى 169، تشمل الاستشارات عن بعد، صحة المشاركين في المهرجانات، تتبع السباقات، التحليل الغذائي، إنتاجية دورة الحياة والكفاءة الجينية.
-3. ملف فهرس من 1 إلى 200، إلا أن السجلات 1 إلى 170 فيه مولدة بقالب عام متكرر، بينما السجلات 171 إلى 200 تحمل أسماء ووظائف تفصيلية حقيقية.
-4. مواد براءة اختراع تتضمن نسخاً مطولة ذات نصوص متكررة عامة، إلى جانب وثيقة براءة مختصرة ذات هوية تقنية أوضح تذكر وحدات مستقلة مثل جمع البيانات الحيوية، التحليل المدعوم بالذكاء الاصطناعي، تحسين الجينات للتهجين، إدارة المنافسات، التجارة المتكاملة، والتشفير المتقدم بما في ذلك تشفير ما بعد الكم.
-5. ملفات إدارة مزارع تتضمن قدرات استدامة وتشغيل إضافية، ومنها توصيات استخدام الطاقة المتجددة، مع وجود وظائف أخرى كانت ممثلة مسبقاً مثل جودة التربة والمياه وإدارة الموارد.
+### قاعدة القبول
 
-### قاعدة الإثبات
-
-لا يتم احتساب رقم أو عنوان كقدرة موثقة لمجرد ظهوره في قائمة أو قالب.
-
-يقبل السجل العام القدرة عندما يتوفر واحد أو أكثر من الآتي:
+لا يتم احتساب رقم أو عنوان كقدرة موثقة لمجرد ظهوره في قائمة أو قالب. تقبل القدرة عندما يتوفر واحد أو أكثر من الآتي:
 
 - اسم وظيفي مميز مع وصف واضح.
 - هدف وفوائد وآلية عمل مستقلة.
-- نموذج واجهة أو منطق تجريبي سابق يوضح السلوك المقصود.
-- ظهور متكرر متسق في أكثر من وثيقة عربية أو إنجليزية.
-- ارتباط واضح بنظام فرعي مستقل مثل الصحة أو الجينات أو الرعي أو المزادات أو المهرجانات.
-- ذكر صريح داخل وصف تقني لبراءة اختراع يحدد وظيفة أو وحدة مستقلة يمكن فصلها هندسياً عن الوحدات الأخرى.
+- نموذج واجهة أو منطق تجريبي يوضح السلوك المقصود.
+- ظهور متكرر ومتسق في أكثر من وثيقة.
+- ارتباط واضح بنظام فرعي مستقل.
+- ذكر صريح داخل وصف تقني لبراءة أو ملف خوارزمي يحدد وظيفة قابلة للفصل هندسياً.
 
 ويرفض كدليل مستقل:
 
 - النصوص العامة المكررة آلياً.
 - القوالب الفارغة.
 - أرقام الميزات دون اسم أو وصف وظيفي.
-- الادعاء بأن وجود كود توضيحي قديم يثبت جاهزية إنتاجية.
-- الخصائص العامة مثل تحسين تجربة المستخدم أو رفع دقة النموذج إذا لم تمثل قدرة مستقلة قابلة للتشغيل.
-- إعادة تسمية قدرة موجودة مسبقاً دون إضافة حد وظيفي مستقل.
+- إعادة تسمية قدرة موجودة دون حد وظيفي جديد.
+- مجرد وجود كود توضيحي قديم كإثبات جاهزية إنتاجية.
+- خصائص عامة مثل تحسين تجربة المستخدم أو رفع الدقة إذا لم تمثل قدرة تشغيل مستقلة.
 
-### نتيجة المطابقة الحالية
+### نتيجة المطابقة النهائية
 
-بعد دمج السجل الأساسي للـMVP مع القدرات التفصيلية المستخرجة من محفظة المصدر ومواد البراءة والمجموعة الأخيرة من الملفات، يحتوي السجل العام الحالي على 235 سجل قدرة معيارية.
+بعد دمج السجل الأساسي مع جميع الدفعات التي تمت مراجعتها، يحتوي السجل العام الحالي على:
 
-هذا الرقم يمثل Capability Records وليس بالضرورة 235 منتجاً مستقلاً. بعض السجلات هي محركات أو تدفقات أو قدرات فرعية داخل عائلة أكبر، وهو الأسلوب الأنسب للعرض التقني والعناية الواجبة لأنه يمنع ضغط عدة وظائف مختلفة تحت اسم تسويقي واحد.
+- **243 Canonical Capability Records** من F001 إلى F243.
+- **29 Source-Documented Named Algorithms & Engines** في سجل مستقل.
+- **20 Canonical System Families** كطبقة تنظيم معماري أعلى.
+- **2 Independently Named Training Models** موثقة كمصادر، وليست ادعاءً بنماذج إنتاجية معتمدة.
+
+هذا التفريق مهم: القدرة ليست هي الخوارزمية، والخوارزمية ليست هي العائلة النظامية، والعائلة ليست منتجاً تجارياً مستقلاً بالضرورة.
 
 ### طبقة البراءة F224-F231
 
-أضيفت هذه الطبقة بعد مقارنة مواد البراءة مع F001-F223 وإزالة التداخلات. تم قبول ثماني قدرات فقط باعتبارها مستقلة أو أكثر تحديداً من السجل السابق:
+أضيفت ثماني قدرات بعد مقارنة مواد البراءة مع F001-F223 وإزالة التداخل:
 
 - F224: تشفير ما بعد الكم للبيانات البيطرية والتجارية.
 - F225: التهجين المحسن حسب حالة الاستخدام.
@@ -61,56 +63,88 @@
 - F230: مطابقة المهرجان الأنسب وتوصية المشاركة.
 - F231: موصل التكامل مع الجهات البيطرية.
 
-### طبقة الملفات الأخيرة F232-F235
+### الطبقة البيطرية والتشغيلية F232-F235
 
-أضيفت أربع قدرات فقط بعد مقارنة المجموعة الأخيرة مع F001-F231:
+أضيفت أربع قدرات مستقلة:
 
 - F232: توثيق الحالة الصحية للإبل المشاركة في المهرجانات.
-- F233: تتبع الموقع والسرعة أثناء السباقات في الزمن الحقيقي باستخدام بيانات GPS ومستشعرات السرعة كتصميم مصدري.
-- F234: تتبع إنتاجية الإبل عبر دورة حياتها وربطها بالعمر والجنس والحالة الصحية وخطط التحسين.
-- F235: توصيات الطاقة المتجددة لمزارع الإبل، بما فيها الإشارة المصدرية إلى الألواح الشمسية.
+- F233: تتبع الموقع والسرعة أثناء السباقات في الزمن الحقيقي.
+- F234: تتبع إنتاجية الإبل عبر دورة حياتها.
+- F235: توصيات الطاقة المتجددة لمزارع الإبل.
 
-لم يتم إعادة احتساب الاستشارات البيطرية عن بعد، التحليل الغذائي، الكفاءة الجينية، تقييم الجمال، الرعي، جودة التربة والمياه، أو وظائف إدارة المهرجانات والمزادات لأنها كانت ممثلة بالفعل في السجل المعياري.
+### الطبقة النهائية F236-F243
 
-تظل F232-F235 مصنفة Planned في الإصدار العام الحالي لأن ملفات المصدر تصف تصميمها أو منطقاً توضيحياً لها، بينما لا يحتوي MVP العام حتى الآن على تشغيل إنتاجي أو أجهزة فعلية مرتبطة بها.
+بعد مقارنة الملفات الخوارزمية والتفصيلية الأخيرة مع F001-F235، قُبلت ثماني قدرات فقط باعتبارها حدوداً وظيفية جديدة:
+
+- F236: التعرف الذكي على سلالات الإبل.
+- F237: التحكم التكيفي المغلق في تغذية الإبل.
+- F238: التعرف البيومتري على الإبل ببصمة الوجه.
+- F239: المراقبة الصحية الحرارية بالكاميرات.
+- F240: تتبع نوم الإبل وتحليل جودته.
+- F241: الإنذار المبكر بالإجهاد الحراري للإبل.
+- F242: تحليل مخاطر الأمراض الوراثية.
+- F243: مراقبة الحمل والولادة في الإبل.
+
+لم تُكرر قدرات مثل التنبؤ بالأمراض، جودة الحليب، التحليل السلوكي، الرعي، المزايين، السباقات، المهرجانات والمزادات إذا كانت ممثلة سابقاً؛ بدلاً من ذلك تم استخدام الملفات الأخيرة لتقوية **سجل الخوارزميات والمحركات** المرتبط بهذه القدرات.
+
+### فصل الخوارزميات عن القدرات
+
+تم إنشاء `ALGORITHM_ENGINE_REGISTRY.md` لتسجيل 29 اسماً موثقاً في المصدر دون رفع عدد القدرات بسبب كل اسم خوارزمية. هذا يمنع التضخيم ويعطي المراجع التقني رؤية أدق للملكية التقنية.
+
+الأسماء المصدرية لا تعني تلقائياً أن الخوارزمية:
+
+- مدربة على بيانات معتمدة.
+- تمتلك دقة مثبتة.
+- منشورة إنتاجياً.
+- حاصلة على اعتماد أو ترخيص.
+
+### فصل العائلات النظامية
+
+تم إنشاء `SYSTEM_FAMILIES.md` لتنظيم 243 قدرة في 20 عائلة نظامية معيارية. هذه الطبقة تساعد المراجع والمستحوذ على فهم المنصة كمعمارية مترابطة بدلاً من قائمة ميزات مسطحة.
 
 ### علاقة الترقيم القديم بالجديد
 
-يجب عدم تفسير F169 مثلاً على أنه الميزة التاريخية رقم 169. بادئة F هي رقم قياسي جديد داخل سجل MVP فقط.
-
-عند بناء حزمة العناية الواجبة الكاملة يمكن إضافة Legacy Crosswalk مستقل يربط كل F-ID بالوثيقة التاريخية ورقم الميزة القديم عندما يكون الرقم القديم موثوقاً.
+يجب عدم تفسير F169 مثلاً على أنه الميزة التاريخية رقم 169. بادئة F هي رقم قياسي جديد داخل سجل MVP فقط. يمكن لاحقاً بناء Legacy Crosswalk خاص بالعناية الواجبة يربط F-ID بالمصدر التاريخي عندما يكون الرقم القديم موثوقاً.
 
 ### حدود الإفصاح
 
-المستودع العام يعرض أسماء القدرات وحالة النضج والتجارب العامة فقط. لا ينشر ملفات المصدر الخاصة أو الخوارزميات المملوكة أو النماذج السرية أو وثائق الملكية الفكرية أو التقييمات التجارية الخاصة.
+المستودع العام يعرض أسماء القدرات وحالات النضج والأسماء العامة للخوارزميات والعائلات النظامية فقط. لا ينشر ملفات المصدر الخاصة أو الأكواد المملوكة أو الأوزان أو مجموعات التدريب أو وثائق الملكية الفكرية الداخلية أو التقييمات التجارية السرية.
 
 ## English
 
 ### Purpose
 
-This document records the method used to convert the historical SMART Camel AI source portfolio, patent-related material, veterinary files and operating documentation into one normalized, auditable public capability registry for the MVP.
+This document records the method used to convert the historical SMART Camel AI source portfolio, patent-related material, veterinary and operating documentation, and algorithm-focused files into one normalized, auditable public capability registry for the MVP.
 
-The current registry uses new canonical identifiers F001 through F235. These identifiers do not claim that the historical documents used the same sequence. They form a normalization layer that prevents conflicts between legacy numbering schemes.
+The current registry uses new canonical identifiers **F001 through F243**. These identifiers do not claim that the historical documents used the same sequence; they form a normalization layer that prevents conflicts between legacy numbering schemes.
 
 ### Reviewed source patterns
 
-Five important patterns were identified:
+Six major source patterns were identified:
 
-1. Detailed source documents name real capabilities and describe objectives, benefits and operating logic, including substantial legacy sequences and many independent enhancements.
-2. A distinct veterinary/genetic-efficiency file documents historical features 164 through 169, including remote consultation, festival health documentation, race tracking, nutritional analysis, lifecycle productivity and genetic efficiency.
-3. A 1-to-200 index exists, but records 1 through 170 in that file are generated generic placeholders, while records 171 through 200 contain specific named functions and descriptions.
-4. Patent-related material includes long documents dominated by repeated generic feature text, together with a concise patent document containing clearer technical identity for independent modules such as biometric collection, AI analysis, genetic optimization for hybrid production, competition management, integrated trading and advanced encryption including post-quantum encryption.
-5. Farm-management documentation contains additional operating and sustainability concepts, including renewable-energy recommendations, while other environmental and resource-management functions were already represented in the registry.
+1. Detailed documents naming real capabilities with objectives, benefits and operating logic.
+2. Veterinary and operating files documenting independent health, race, productivity and genetic-efficiency capabilities.
+3. Historical 1-to-190 and 1-to-200 indexes, some containing generic repeated templates; numbering alone was therefore rejected as evidence.
+4. Long and concise patent-related material, normalized to technically separable functions after duplication removal.
+5. Farm-management and sustainability files covering resources, environment and energy.
+6. Final algorithm-focused files documenting more specific capabilities, named engines and named training models.
 
-### Evidence rule
+### Acceptance rule
 
-A number or heading is not counted as a documented capability merely because it appears in a list or template.
+A number or heading is not counted merely because it appears in a list. A capability is accepted when it has a distinct functional identity, meaningful description, independent operating purpose, traceable source logic, or a technically separable patent/algorithmic boundary.
 
-A capability is accepted when it has a distinct functional identity, meaningful description, independent operating purpose, traceable source logic, or a technically separable source or patent boundary. Generic repetition, empty templates, unsupported numbering and simple renaming of an existing capability are not counted as new records.
+Rejected as independent evidence are generic repetition, empty templates, unsupported numbering, simple renaming, code examples treated as production proof, and broad quality claims without a separable operating function.
 
-### Current reconciliation result
+### Final reconciliation result
 
-The current public registry contains 235 canonical capability records. This is a count of capability records, not a claim that the platform contains 235 separate products or 235 production-deployed subsystems.
+The current public record contains:
+
+- **243 Canonical Capability Records**, F001-F243.
+- **29 Source-Documented Named Algorithms & Engines** in a separate registry.
+- **20 Canonical System Families** as a higher architectural organization layer.
+- **2 Independently Named Training Models** recorded as source evidence, not as validated production-model claims.
+
+This distinction matters: a capability is not the same thing as an algorithm; an algorithm is not the same thing as a system family; and a system family is not necessarily a separate commercial product.
 
 ### Patent-backed layer F224-F231
 
@@ -123,23 +157,42 @@ The current public registry contains 235 canonical capability records. This is a
 - F230: Festival Suitability Matching and Participation Recommendation.
 - F231: Veterinary Authority Integration Adapter.
 
-### Final-source layer F232-F235
-
-Four additional capabilities were accepted after comparing the final uploaded files against F001-F231:
+### Veterinary/operating layer F232-F235
 
 - F232: Festival Participant Health Documentation.
 - F233: Real-Time Race GPS and Speed Tracking.
 - F234: Lifecycle Productivity Tracking.
 - F235: Renewable Energy Recommendations for Camel Farms.
 
-Remote veterinary consultation, nutritional analysis, genetic-efficiency management, beauty evaluation, grazing, soil/water monitoring, festival management and auction functions were not counted again because they were already represented in the canonical registry.
+### Final layer F236-F243
 
-F232-F235 remain classified as Planned in the current public release. The historical files describe intended functionality or illustrative logic, but the public MVP does not claim live devices, production veterinary operation, production race telemetry or deployed renewable-energy control.
+Eight new functional boundaries were accepted after comparison against F001-F235:
 
-### Legacy numbering versus canonical numbering
+- F236: AI Camel Breed Recognition.
+- F237: Closed-Loop Adaptive Feeding Control.
+- F238: Facial Biometric Camel Identification.
+- F239: Thermal-Camera Health Monitoring.
+- F240: Camel Sleep Monitoring and Quality Analysis.
+- F241: Camel Heat-Stress Early Warning.
+- F242: Genetic Disease Risk Analysis.
+- F243: Pregnancy and Labor Monitoring.
 
-The F prefix is a new canonical MVP registry identifier only and must not be confused with historical feature numbering.
+Capabilities already represented—such as disease prediction, milk quality, behavior analysis, grazing, beauty competitions, racing, festivals and auctions—were not counted again. Instead, the final files strengthen the separate algorithm/engine registry associated with those capabilities.
+
+### Algorithms versus capabilities
+
+`ALGORITHM_ENGINE_REGISTRY.md` records 29 source-documented names without increasing the capability count for every algorithm name. This avoids inflation and gives technical reviewers a more precise view of the source portfolio.
+
+A source-documented algorithm name does not automatically mean the algorithm is trained on an approved dataset, independently validated, production-deployed, certified or licensed.
+
+### System families
+
+`SYSTEM_FAMILIES.md` organizes the 243 capabilities into 20 canonical system families so reviewers can understand the platform as a connected architecture rather than a flat feature list.
+
+### Legacy numbering versus canonical IDs
+
+An F-ID is a new MVP normalization identifier and should not be interpreted as the same historical feature number. A private Legacy Crosswalk can later map trusted historical numbers to canonical IDs during due diligence.
 
 ### Disclosure boundary
 
-The public repository exposes capability names, maturity classifications and public demonstrations only. It does not publish private source documents, proprietary algorithms, confidential models, intellectual-property evidence files or private commercial valuation material.
+The public repository exposes capability names, maturity states, public algorithm names and architectural system families only. Private source files, proprietary code, model weights, training datasets, internal IP records and confidential commercial valuations are excluded.
