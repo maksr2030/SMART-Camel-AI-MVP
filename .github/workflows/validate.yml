@@ -27,3 +27,7 @@ jobs:
         run: node tests/test_phase4.mjs
       - name: Run evidence contract tests
         run: python tests/test_evidence_contract.py
+      - name: Scan public release for secrets and sensitive files
+        run: python scripts/security_check.py
+      - name: Validate acquisition release readiness contract
+        run: python scripts/release_check.py
