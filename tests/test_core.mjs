@@ -25,8 +25,9 @@ assert.ok(core, 'SMART_CAMEL_CORE must load');
 assert.equal(data.features.length, 243, 'Capability registry must contain 243 records');
 
 const expectedIds = Array.from({ length: 243 }, (_, i) => `F${String(i + 1).padStart(3, '0')}`);
-assert.deepEqual(data.features.map(f => f.id), expectedIds, 'F001-F243 must be continuous and ordered');
-assert.equal(new Set(data.features.map(f => f.id)).size, 243, 'Capability IDs must be unique');
+const actualIds = Array.from(data.features, f => f.id);
+assert.equal(actualIds.join(','), expectedIds.join(','), 'F001-F243 must be continuous and ordered');
+assert.equal(new Set(actualIds).size, 243, 'Capability IDs must be unique');
 
 for (const feature of data.features) {
   assert.ok(feature.nameAr, `${feature.id} must have Arabic name`);
@@ -39,7 +40,9 @@ assert.equal(Object.values(counts).reduce((sum, value) => sum + value, 0), 243, 
 for (const status of core.ALLOWED_STATUSES) assert.ok(counts[status] > 0, `${status} must be represented`);
 
 const low = core.calculateHealthRisk(38.2, 72, 78);
-assert.deepEqual(low, { score: 0, band: 'low', explanationKey: 'riskLow' });
+assert.equal(low.score, 0);
+assert.equal(low.band, 'low');
+assert.equal(low.explanationKey, 'riskLow');
 
 const medium = core.calculateHealthRisk(40.5, 40, 60);
 assert.equal(medium.band, 'medium');
