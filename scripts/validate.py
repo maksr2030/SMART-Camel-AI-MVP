@@ -3,12 +3,13 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_FEATURES = 223
+EXPECTED_FEATURES = 231
 FEATURE_FILES = [
     ROOT / 'app' / 'data.js',
     ROOT / 'app' / 'source-features-091-140.js',
     ROOT / 'app' / 'source-features-141-190.js',
     ROOT / 'app' / 'source-features-191-223.js',
+    ROOT / 'app' / 'source-features-224-231.js',
 ]
 required = [
     ROOT / 'index.html',
@@ -41,7 +42,7 @@ if not errors:
 
     expected_sequence = [f'{i:03d}' for i in range(1, EXPECTED_FEATURES + 1)]
     if feature_ids != expected_sequence:
-        errors.append('Feature identifiers are not a continuous F001-F223 sequence')
+        errors.append('Feature identifiers are not a continuous F001-F231 sequence')
 
     for asset in (
         'app/styles.css',
@@ -49,6 +50,7 @@ if not errors:
         'app/source-features-091-140.js',
         'app/source-features-141-190.js',
         'app/source-features-191-223.js',
+        'app/source-features-224-231.js',
         'app/app.js',
     ):
         if asset not in index:
@@ -73,5 +75,5 @@ if errors:
 print('SMART Camel AI MVP validation passed.')
 print('Required files: OK')
 print(f'Registered feature records: {EXPECTED_FEATURES}')
-print('Feature identifier sequence: F001-F223')
+print('Feature identifier sequence: F001-F231')
 print('Arabic and English presentation markers: OK')
