@@ -18,6 +18,7 @@ FILES = {
     'catalog': ROOT / 'docs' / 'EVIDENCE_CATALOG.md',
     'algorithms': ROOT / 'docs' / 'ALGORITHM_ENGINE_REGISTRY.md',
     'architecture': ROOT / 'docs' / 'ARCHITECTURE.md',
+    'strategic': ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md',
     'security': ROOT / 'docs' / 'SECURITY.md',
     'release': ROOT / 'docs' / 'RELEASE_READINESS.md',
     'dependency': ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md',
@@ -55,7 +56,7 @@ for path in CURRENT_RELEASE_ABSENCE:
 
 CURRENT_SCOPE_DOCS = (
     'readme', 'overview', 'source', 'acquisition', 'evidence', 'families', 'phase4',
-    'demos', 'limitations', 'ip', 'catalog', 'algorithms', 'architecture'
+    'demos', 'limitations', 'ip', 'catalog', 'algorithms', 'architecture', 'strategic'
 )
 for key in CURRENT_SCOPE_DOCS:
     text = texts.get(key, '')
@@ -75,6 +76,8 @@ if '29 source-documented named algorithms and engines' not in texts.get('algorit
     errors.append('Algorithm registry must retain the normalized 29-name declaration')
 if '20 canonical system families' not in texts.get('families', ''):
     errors.append('System-family document must retain the 20-family declaration')
+if '12 من 12 قدرة استراتيجية = Grade A Evidence' not in texts.get('strategic', ''):
+    errors.append('Strategic evidence matrix must retain the 12/12 Grade A declaration')
 if 'scripts/security_check.py' not in texts.get('security', ''):
     errors.append('Security baseline must document the Phase 4 automated security check')
 if 'No public `LICENSE` file' not in texts.get('dependency', ''):
@@ -139,6 +142,7 @@ print('SMART Camel AI acquisition release check passed.')
 print('Current public/DD scope markers: F001-F245 consistent')
 print('Phase 4 reconciliation markers: F244-F245 present')
 print('Algorithms/system families: 29 / 20 preserved')
+print('Strategic evidence: 12/12 Grade A preserved')
 print('Verified no-manifest/no-lockfile/no-public-license boundary: preserved')
 print('Security and licensing boundaries: present')
 print('Release readiness gates: G01-G15 present')
