@@ -9,6 +9,7 @@ FILES = {
     'overview': ROOT / 'docs' / 'PUBLIC_OVERVIEW.md',
     'source': ROOT / 'docs' / 'SOURCE_RECONCILIATION.md',
     'acquisition': ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md',
+    'manifest': ROOT / 'docs' / 'ACQUISITION_RELEASE_MANIFEST.md',
     'evidence': ROOT / 'docs' / 'EVIDENCE.md',
     'families': ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
     'phase4': ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md',
@@ -55,7 +56,7 @@ for path in CURRENT_RELEASE_ABSENCE:
         )
 
 CURRENT_SCOPE_DOCS = (
-    'readme', 'overview', 'source', 'acquisition', 'evidence', 'families', 'phase4',
+    'readme', 'overview', 'source', 'acquisition', 'manifest', 'evidence', 'families', 'phase4',
     'demos', 'limitations', 'ip', 'catalog', 'algorithms', 'architecture', 'strategic'
 )
 for key in CURRENT_SCOPE_DOCS:
@@ -71,6 +72,17 @@ for marker in (
 ):
     if marker not in texts.get('phase4', ''):
         errors.append(f'Phase 4 reconciliation missing: {marker}')
+
+manifest = texts.get('manifest', '')
+for marker in (
+    '245 canonical capabilities',
+    '29 source-documented named algorithms/engines',
+    '20 canonical system families',
+    '12/12 selected strategic capabilities at Evidence Grade A',
+    'Acquisition Demonstrator Candidate',
+):
+    if marker not in manifest:
+        errors.append(f'Acquisition release manifest missing marker: {marker}')
 
 if '29 source-documented named algorithms and engines' not in texts.get('algorithms', ''):
     errors.append('Algorithm registry must retain the normalized 29-name declaration')
@@ -141,6 +153,7 @@ if errors:
 print('SMART Camel AI acquisition release check passed.')
 print('Current public/DD scope markers: F001-F245 consistent')
 print('Phase 4 reconciliation markers: F244-F245 present')
+print('Acquisition release manifest: counts and designation preserved')
 print('Algorithms/system families: 29 / 20 preserved')
 print('Strategic evidence: 12/12 Grade A preserved')
 print('Verified no-manifest/no-lockfile/no-public-license boundary: preserved')
