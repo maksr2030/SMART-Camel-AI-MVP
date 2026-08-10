@@ -11,15 +11,16 @@
 - واجهة عربية وإنجليزية مع تبديل فوري بين اللغتين.
 - لوحة قيادة تشغيلية ببيانات اصطناعية.
 - سجل إبل تجريبي.
-- 90 قدرة موثقة في السجل العام الحالي ومصنفة حسب حالة النضج، بعد مطابقة أولية مع ملفات المنصة الأصلية.
+- 223 سجل قدرة موحداً في السجل العام الحالي ومصنفاً حسب حالة النضج بعد مطابقة موسعة مع ملفات المنصة الأصلية.
 - محرك مخاطر صحي تفاعلي تفسيري.
 - مركز تنبيهات للمخاطر الصحية والجغرافية.
 - محاكاة مزايدة وتسجيل حدثها.
 - تحقق تجريبي من شهادة CAMEL-001.
 - سجل أحداث لجلسة العرض.
 - توثيق معماري ومصفوفة أدلة عامة.
+- وثيقة مستقلة تشرح منهج مطابقة ملفات المصدر القديمة وتحويلها إلى سجل موحد.
 
-ملاحظة منهجية: الرقم 90 هو عدد سجلات القدرات العامة التي جرى توحيدها حتى هذه المرحلة من مطابقة محفظة المصدر، وليس ادعاءً بأن كل تفاصيل الملكية الفكرية الداخلية منشورة في المستودع العام.
+ملاحظة منهجية: الرقم 223 هو عدد سجلات القدرات المعيارية التي جرى توحيدها حتى هذه المرحلة من مطابقة محفظة المصدر. لا يعني أن الوثائق التاريخية استخدمت تسلسلاً واحداً من 1 إلى 223، ولا يعني أن جميع القدرات منشورة كأنظمة إنتاجية. بعض السجلات تمثل محركات أو تدفقات أو قدرات فرعية مستقلة داخل عائلات أكبر.
 
 ### حالات النضج
 
@@ -50,6 +51,7 @@ http://localhost:4173/
 - [المعمارية | Architecture](docs/ARCHITECTURE.md)
 - [مصفوفة الأدلة | Evidence Matrix](docs/EVIDENCE.md)
 - [النظرة العامة | Public Overview](docs/PUBLIC_OVERVIEW.md)
+- [مطابقة ميزات المصادر | Source Reconciliation](docs/SOURCE_RECONCILIATION.md)
 
 ### حدود الإفصاح
 
@@ -66,15 +68,16 @@ This repository contains the public demonstrator of the platform. It is designed
 - Arabic and English interface with instant language switching.
 - Operational dashboard using synthetic data.
 - Demonstration camel registry.
-- 90 capabilities documented in the current public registry and classified by maturity status after an initial reconciliation against the original platform source portfolio.
+- 223 normalized capability records in the current public registry, classified by maturity status after expanded reconciliation against the original platform source portfolio.
 - Interactive explainable health-risk engine.
 - Health and geospatial risk alert center.
 - Demonstration auction bid with event logging.
 - Demonstration certificate verification for CAMEL-001.
 - In-session audit event trail.
 - Architecture documentation and public evidence matrix.
+- A dedicated source-reconciliation document explaining how legacy source files were converted into the normalized registry.
 
-Method note: 90 is the number of public capability records normalized at this stage of source-portfolio reconciliation. It is not a claim that confidential intellectual-property implementation detail has been published in the public repository.
+Method note: 223 is the number of canonical capability records normalized at this stage of source-portfolio reconciliation. It does not imply that historical source material used one continuous 1-to-223 numbering scheme, and it does not mean all capabilities are production-deployed. Some records represent independent engines, workflows or sub-capabilities within larger capability families.
 
 ### Maturity statuses
 
@@ -105,6 +108,7 @@ No external packages are required for the public demonstrator.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Evidence Matrix](docs/EVIDENCE.md)
 - [Public Overview](docs/PUBLIC_OVERVIEW.md)
+- [Source Reconciliation](docs/SOURCE_RECONCILIATION.md)
 
 ### Disclosure boundary
 
