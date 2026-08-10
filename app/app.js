@@ -62,7 +62,7 @@
 
   function renderAudit(){
     if(!audit.length){
-      const initial=lang==='ar'?'تم تحميل بيانات العرض وتسجيل 60 قدرة في السجل العام.':'Demonstration data loaded and 60 capabilities registered in the public feature registry.';
+      const initial=lang==='ar'?`تم تحميل بيانات العرض وتسجيل ${data.features.length} قدرة في السجل العام.`:`Demonstration data loaded and ${data.features.length} capabilities registered in the public feature registry.`;
       $('auditLog').innerHTML=`<div class="audit-item"><time>Session start</time><span>${initial}</span><small>system</small></div>`;return;
     }
     $('auditLog').innerHTML=audit.slice(0,8).map(e=>`<div class="audit-item"><time>${e.time.toLocaleTimeString(lang==='ar'?'ar-SA':'en-GB')}</time><span>${lang==='ar'?e.ar:e.en}</span><small>${e.type}</small></div>`).join('');
