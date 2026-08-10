@@ -36,6 +36,7 @@ DUE_DILIGENCE_FILES = [
 TEST_FILES = [
     ROOT / 'tests' / 'test_core.mjs',
     ROOT / 'tests' / 'test_phase3.mjs',
+    ROOT / 'tests' / 'test_phase4.mjs',
     ROOT / 'tests' / 'test_evidence_contract.py',
 ]
 
@@ -100,8 +101,7 @@ if not errors:
     addendum_ids = re.findall(r'^\| F(24[45]) \|', reconciliation, flags=re.MULTILINE)
     if addendum_ids != ['244', '245']:
         errors.append('Phase 4 reconciliation must contain F244 and F245 rows')
-    combined_registry_ids = base_registry_ids + addendum_ids
-    if combined_registry_ids != expected_sequence:
+    if base_registry_ids + addendum_ids != expected_sequence:
         errors.append('Combined acquisition registry is not continuous F001-F245')
 
     for marker in (
@@ -189,7 +189,12 @@ if not errors:
         if link not in readme:
             errors.append(f'README does not link required due-diligence document: {link}')
 
-    for command in ('node tests/test_core.mjs', 'node tests/test_phase3.mjs', 'python tests/test_evidence_contract.py'):
+    for command in (
+        'node tests/test_core.mjs',
+        'node tests/test_phase3.mjs',
+        'node tests/test_phase4.mjs',
+        'python tests/test_evidence_contract.py',
+    ):
         if command not in readme:
             errors.append(f'README missing test command: {command}')
         if command not in workflow:
@@ -211,7 +216,7 @@ print('Reproducible demo scenarios: D01-D10 complete')
 print('Evidence records: EVD-001-EVD-020 complete')
 print('Strategic capability evidence: 12/12 Grade A')
 print('Known limitations: 23 Arabic + 23 English items')
-print('Shared runtime/test core logic: Phase 2 + Phase 3 OK')
+print('Shared runtime/test core logic: Phase 2 + Phase 3 + Phase 4 OK')
 print('Algorithm/engine registry declaration: 29 source-documented names')
 print('System family declaration: 20 canonical families')
 print('Arabic and English presentation markers: OK')
