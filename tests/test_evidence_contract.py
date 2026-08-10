@@ -4,6 +4,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = (ROOT / 'docs' / 'EVIDENCE_CATALOG.md').read_text(encoding='utf-8')
 PHASE3 = (ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md').read_text(encoding='utf-8')
+PHASE4 = (ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md').read_text(encoding='utf-8')
 MATRIX = (ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md').read_text(encoding='utf-8')
 README = (ROOT / 'README.md').read_text(encoding='utf-8')
 INDEX = (ROOT / 'index.html').read_text(encoding='utf-8')
@@ -21,7 +22,7 @@ expected_evidence_ids = [f'{i:03d}' for i in range(1, 21)]
 if evidence_ids != expected_evidence_ids:
     errors.append(f'Evidence records must be continuous EVD-001-EVD-020, found: {evidence_ids}')
 
-required_catalog_markers = [
+for marker in [
     'EVD-005 — Explainable health-risk simulation',
     'EVD-007 — Demonstration certificate verification',
     'EVD-013 — Explicit limitation disclosure',
@@ -29,28 +30,38 @@ required_catalog_markers = [
     'EVD-015 — Due-diligence package integrity',
     'tests/test_core.mjs',
     'tests/test_evidence_contract.py',
-]
-for marker in required_catalog_markers:
+]:
     if marker not in CATALOG:
         errors.append(f'Evidence catalog missing marker: {marker}')
 
-required_phase3_markers = [
+for marker in [
     'EVD-016 — Camel registry schema and identity lookup',
     'EVD-017 — Deterministic geofence state evaluation',
     'EVD-018 — Testable Mazayen scoring demonstrator',
     'EVD-019 — Auction state transition contract',
     'EVD-020 — Ordered bilingual audit-event contract',
     'tests/test_phase3.mjs',
-]
-for marker in required_phase3_markers:
+]:
     if marker not in PHASE3:
         errors.append(f'Phase 3 evidence document missing marker: {marker}')
+
+for marker in [
+    'F244',
+    'F245',
+    '245 distinct source-backed capability records',
+    'Genetic Breeding with Environmental Impact Analysis',
+    'Positive Environmental Impact Evaluation for Camel Breeding',
+]:
+    if marker not in PHASE4:
+        errors.append(f'Phase 4 reconciliation missing marker: {marker}')
 
 if '12 من 12 قدرة استراتيجية = Grade A Evidence' not in MATRIX:
     errors.append('Strategic evidence matrix must declare 12/12 Grade A evidence')
 if re.findall(r'\| S\d{2} \| F\d{3} \|[^\n]+\| B \|', MATRIX):
     errors.append('Strategic evidence matrix still contains Grade B rows')
 
+if 'app/source-features-244-245.js' not in INDEX:
+    errors.append('index.html must load app/source-features-244-245.js')
 if 'app/core.js' not in INDEX or INDEX.index('app/core.js') > INDEX.index('app/app.js'):
     errors.append('index.html must load app/core.js before app/app.js')
 
@@ -84,9 +95,17 @@ if english_limitations[:23] != expected_limitations:
 if 'Chain of Title' not in IP_NOTICE:
     errors.append('IP notice must retain Chain of Title requirement')
 
-for link in ('docs/EVIDENCE_CATALOG.md', 'docs/PHASE3_GRADE_A_EVIDENCE.md', 'docs/STRATEGIC_EVIDENCE_MATRIX.md'):
+for link in (
+    'docs/EVIDENCE_CATALOG.md',
+    'docs/PHASE3_GRADE_A_EVIDENCE.md',
+    'docs/STRATEGIC_EVIDENCE_MATRIX.md',
+    'docs/PHASE4_245_RECONCILIATION.md',
+):
     if link not in README:
         errors.append(f'README must link {link}')
+
+if 'node tests/test_phase4.mjs' not in README:
+    errors.append('README must expose the Phase 4 reconciliation test command')
 
 if errors:
     print('Evidence contract tests failed:')
@@ -97,6 +116,6 @@ if errors:
 print('SMART Camel AI evidence contract tests passed.')
 print('Evidence IDs: EVD-001-EVD-020 continuous across Phase 2 and Phase 3')
 print('Strategic evidence: 12/12 capabilities Grade A')
-print('Runtime uses shared testable core logic for Phase 2 and Phase 3')
+print('Phase 4 capability reconciliation: F001-F245 boundary preserved')
 print('Known limitations: 23 Arabic + 23 English preserved')
 print('IP and README evidence boundaries verified')
