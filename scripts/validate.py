@@ -31,6 +31,8 @@ DUE_DILIGENCE_FILES = [
     ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md',
     ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md',
     ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md',
+    ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md',
+    ROOT / 'docs' / 'RELEASE_READINESS.md',
 ]
 
 TEST_FILES = [
@@ -38,6 +40,11 @@ TEST_FILES = [
     ROOT / 'tests' / 'test_phase3.mjs',
     ROOT / 'tests' / 'test_phase4.mjs',
     ROOT / 'tests' / 'test_evidence_contract.py',
+]
+
+RELEASE_SCRIPTS = [
+    ROOT / 'scripts' / 'security_check.py',
+    ROOT / 'scripts' / 'release_check.py',
 ]
 
 required = [
@@ -54,6 +61,7 @@ required = [
     ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
     *DUE_DILIGENCE_FILES,
     *TEST_FILES,
+    *RELEASE_SCRIPTS,
     ROOT / '.github' / 'workflows' / 'validate.yml',
     ROOT / 'README.md',
 ]
@@ -80,6 +88,8 @@ if not errors:
     evidence_catalog = (ROOT / 'docs' / 'EVIDENCE_CATALOG.md').read_text(encoding='utf-8')
     phase3_evidence = (ROOT / 'docs' / 'PHASE3_GRADE_A_EVIDENCE.md').read_text(encoding='utf-8')
     strategic_matrix = (ROOT / 'docs' / 'STRATEGIC_EVIDENCE_MATRIX.md').read_text(encoding='utf-8')
+    release_readiness = (ROOT / 'docs' / 'RELEASE_READINESS.md').read_text(encoding='utf-8')
+    dependency_review = (ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md').read_text(encoding='utf-8')
     workflow = (ROOT / '.github' / 'workflows' / 'validate.yml').read_text(encoding='utf-8')
     feature_text = '\n'.join(path.read_text(encoding='utf-8') for path in FEATURE_FILES)
 
@@ -173,18 +183,25 @@ if not errors:
         errors.append('Algorithm registry does not declare 29 source-documented names')
     if '20 canonical system families' not in systems:
         errors.append('System family document does not declare 20 canonical families')
+    if '245 canonical capabilities' not in systems:
+        errors.append('System family document must declare the current 245-capability scope')
     if 'E4' not in security or 'Threat Model' not in security:
         errors.append('Security baseline/threat model markers are missing')
     if 'Chain of Title' not in ip_notice:
         errors.append('IP notice does not include Chain of Title requirements')
     if 'Claim → Canonical F-ID' not in acquisition_overview:
         errors.append('Acquisition overview does not declare the evidence-chain model')
+    if 'G15' not in release_readiness or 'Live Stable Demo | Pending' not in release_readiness:
+        errors.append('Release readiness gates must preserve G01-G15 and live-demo Pending state')
+    if 'No public `LICENSE` file' not in dependency_review:
+        errors.append('Dependency/license review must preserve the public licensing boundary')
 
     for link in (
         'docs/FEATURE_REGISTRY.md', 'docs/DEMO_SCENARIOS.md', 'docs/KNOWN_LIMITATIONS.md',
         'docs/SECURITY.md', 'docs/IP_NOTICE.md', 'docs/ACQUISITION_TECHNICAL_OVERVIEW.md',
         'docs/EVIDENCE_CATALOG.md', 'docs/PHASE3_GRADE_A_EVIDENCE.md',
-        'docs/STRATEGIC_EVIDENCE_MATRIX.md', 'docs/PHASE4_245_RECONCILIATION.md'
+        'docs/STRATEGIC_EVIDENCE_MATRIX.md', 'docs/PHASE4_245_RECONCILIATION.md',
+        'docs/DEPENDENCY_AND_LICENSE_REVIEW.md', 'docs/RELEASE_READINESS.md'
     ):
         if link not in readme:
             errors.append(f'README does not link required due-diligence document: {link}')
@@ -194,11 +211,13 @@ if not errors:
         'node tests/test_phase3.mjs',
         'node tests/test_phase4.mjs',
         'python tests/test_evidence_contract.py',
+        'python scripts/security_check.py',
+        'python scripts/release_check.py',
     ):
         if command not in readme:
-            errors.append(f'README missing test command: {command}')
+            errors.append(f'README missing test/release command: {command}')
         if command not in workflow:
-            errors.append(f'GitHub Actions missing test command: {command}')
+            errors.append(f'GitHub Actions missing test/release command: {command}')
 
 if errors:
     print('SMART Camel AI MVP validation failed:')
@@ -216,7 +235,8 @@ print('Reproducible demo scenarios: D01-D10 complete')
 print('Evidence records: EVD-001-EVD-020 complete')
 print('Strategic capability evidence: 12/12 Grade A')
 print('Known limitations: 23 Arabic + 23 English items')
+print('Security and release-readiness files: present and wired')
 print('Shared runtime/test core logic: Phase 2 + Phase 3 + Phase 4 OK')
 print('Algorithm/engine registry declaration: 29 source-documented names')
-print('System family declaration: 20 canonical families')
+print('System family declaration: 20 canonical families / 245 capabilities')
 print('Arabic and English presentation markers: OK')
