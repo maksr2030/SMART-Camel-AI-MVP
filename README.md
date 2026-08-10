@@ -33,9 +33,22 @@
 - سجل عام للخوارزميات والمحركات المسمّاة دون إفشاء التنفيذ المملوك.
 - خريطة من 20 عائلة نظامية لعرض البنية بصورة قابلة للعناية الواجبة.
 
-### الطبقة النهائية F236-F243
+### Acquisition Technical Due Diligence Foundation — Phase 1
 
-أضيفت ثماني قدرات مستقلة بعد المقارنة النهائية مع F001-F235:
+أضيفت حزمة تأسيسية مستقلة للعناية الواجبة التقنية حتى يستطيع المشتري الانتقال من «قائمة قدرات» إلى سلسلة أدلة قابلة للتتبع:
+
+**Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
+
+وتتضمن:
+
+- [سجل القدرات للاستحواذ | Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — يغطي F001-F243 واحداً واحداً.
+- [سيناريوهات العرض | Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10 قابلة لإعادة التنفيذ.
+- [القيود المعروفة | Known Limitations](docs/KNOWN_LIMITATIONS.md) — ما لا يجب تقديمه كقدرة إنتاجية مثبتة.
+- [الأمن ونموذج التهديدات | Security Baseline & Threat Model](docs/SECURITY.md) — الأصول والتهديدات وضوابط الإغلاق.
+- [إشعار الملكية الفكرية | IP Notice](docs/IP_NOTICE.md) — حدود الإفصاح ومتطلبات Chain of Title وData Room.
+- [النظرة التقنية للاستحواذ | Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md) — الصورة التقنية، موجات الـproductionization وأسئلة المشتري.
+
+### الطبقة النهائية F236-F243
 
 - F236: التعرف الذكي على سلالات الإبل.
 - F237: التحكم التكيفي المغلق في تغذية الإبل.
@@ -58,8 +71,6 @@
 
 ### تشغيل محلي
 
-من جذر المستودع:
-
 ```bash
 python3 -m http.server 4173
 ```
@@ -78,9 +89,9 @@ http://localhost:4173/
 python scripts/validate.py
 ```
 
-يفحص المدقق وجود الملفات الأساسية، وتسلسل F001-F243 دون فجوات أو تكرار، وربط أصول الواجهة، ووجود سجلي الخوارزميات والعائلات النظامية.
+يفحص المدقق الملفات الأساسية، وتسلسل F001-F243 دون فجوات أو تكرار، ووجود 243 صفاً في سجل الاستحواذ، وتسلسل D01-D10، وربط وثائق العناية الواجبة، وسجلي الخوارزميات والعائلات النظامية.
 
-### التوثيق
+### التوثيق الأساسي
 
 - [المعمارية | Architecture](docs/ARCHITECTURE.md)
 - [مصفوفة الأدلة | Evidence Matrix](docs/EVIDENCE.md)
@@ -101,14 +112,12 @@ This repository contains the public demonstrator of the platform. It is designed
 
 ### Current normalized result
 
-After final reconciliation of the historical source portfolio, patent-related material, veterinary and operating documentation, and the final algorithm-focused files, the public record now contains:
-
 - **243 canonical capability records**, F001 through F243.
 - **29 source-documented named algorithms and engines** in a separate registry without publishing proprietary code or weights.
 - **20 canonical system families** organizing the capabilities at a higher architectural level.
 - **Two independently named training models** documented separately from the algorithm registry.
 
-These numbers do not claim 243 production systems or 29 validated production models. They are normalized documentation counts derived from source reconciliation, while operational maturity remains explicit for each capability.
+These numbers do not claim 243 production systems or 29 validated production models. Operational maturity remains explicit for every capability.
 
 ### What works in this release
 
@@ -121,14 +130,24 @@ These numbers do not claim 243 production systems or 29 validated production mod
 - Demonstration auction bid with event logging.
 - Demonstration certificate verification for CAMEL-001.
 - In-session audit event trail.
-- Architecture documentation and public evidence matrix.
-- Dedicated source-reconciliation methodology.
+- Architecture, evidence and source-reconciliation documentation.
 - Public named-algorithm/engine registry without proprietary implementation disclosure.
 - Twenty-family system map for due-diligence-friendly architecture review.
 
-### Final layer F236-F243
+### Acquisition Technical Due Diligence Foundation — Phase 1
 
-Eight independent capabilities were accepted after final comparison against F001-F235:
+The public repository now contains a first acquisition-diligence evidence layer built around:
+
+**Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
+
+- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — one row for every F001-F243 record.
+- [Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10.
+- [Known Limitations](docs/KNOWN_LIMITATIONS.md) — explicit non-production claim boundaries.
+- [Security Baseline & Threat Model](docs/SECURITY.md) — assets, threats and production closure controls.
+- [IP Notice](docs/IP_NOTICE.md) — disclosure boundary, Chain of Title and confidential data-room requirements.
+- [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md) — technical position, productionization waves and buyer questions.
+
+### Final layer F236-F243
 
 - F236: AI Camel Breed Recognition.
 - F237: Closed-Loop Adaptive Feeding Control.
@@ -139,7 +158,7 @@ Eight independent capabilities were accepted after final comparison against F001
 - F242: Genetic Disease Risk Analysis.
 - F243: Pregnancy and Labor Monitoring.
 
-These records remain **Planned** in the public release because the source files establish functional design identity, not current production deployment.
+These records remain **Planned** in the public release because source files establish functional design identity, not current production deployment.
 
 ### Maturity statuses
 
@@ -151,19 +170,11 @@ These records remain **Planned** in the public release because the source files 
 
 ### Run locally
 
-From the repository root:
-
 ```bash
 python3 -m http.server 4173
 ```
 
-Then open:
-
-```text
-http://localhost:4173/
-```
-
-No external packages are required for the public demonstrator.
+Then open `http://localhost:4173/`.
 
 ### Validate
 
@@ -171,9 +182,9 @@ No external packages are required for the public demonstrator.
 python scripts/validate.py
 ```
 
-The validator checks required files, continuous F001-F243 identifiers without duplicates or gaps, front-end asset references, and the algorithm/engine and system-family registries.
+The validator checks required files, continuous F001-F243 identifiers, the 243-row acquisition registry, D01-D10 demo scenarios, due-diligence document links and the algorithm/system-family registries.
 
-### Documentation
+### Core documentation
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Evidence Matrix](docs/EVIDENCE.md)
@@ -184,4 +195,4 @@ The validator checks required files, continuous F001-F243 identifiers without du
 
 ### Disclosure boundary
 
-All demonstration records are synthetic or illustrative unless explicitly stated otherwise. Sensor streams, artificial-intelligence outputs, valuations and external integrations in this release do not represent production deployment or live government connectivity. Proprietary algorithms, model weights, training datasets, confidential scoring models, partner data and private due-diligence records are excluded from the public repository.
+All demonstration records are synthetic or illustrative unless explicitly stated otherwise. Sensor streams, AI outputs, valuations and external integrations do not represent production deployment or live government connectivity. Proprietary algorithms, model weights, training datasets, confidential scoring models, partner data and private due-diligence records are excluded from the public repository.
