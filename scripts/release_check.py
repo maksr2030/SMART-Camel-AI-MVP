@@ -24,6 +24,12 @@ FILES = {
     'workflow': ROOT / '.github' / 'workflows' / 'validate.yml',
 }
 
+CURRENT_RELEASE_ABSENCE = (
+    ROOT / 'package.json',
+    ROOT / 'requirements.txt',
+    ROOT / 'LICENSE',
+)
+
 errors = []
 texts = {}
 for key, path in FILES.items():
@@ -31,6 +37,13 @@ for key, path in FILES.items():
         errors.append(f'Missing release-readiness file: {path.relative_to(ROOT)}')
         continue
     texts[key] = path.read_text(encoding='utf-8')
+
+for path in CURRENT_RELEASE_ABSENCE:
+    if path.exists():
+        errors.append(
+            f'Current acquisition-release boundary expects {path.name} to remain absent; '
+            'update dependency/license diligence before introducing it'
+        )
 
 CURRENT_SCOPE_DOCS = (
     'readme', 'overview', 'source', 'acquisition', 'evidence', 'families', 'phase4',
@@ -58,6 +71,8 @@ if 'scripts/security_check.py' not in texts.get('security', ''):
     errors.append('Security baseline must document the Phase 4 automated security check')
 if 'No public `LICENSE` file' not in texts.get('dependency', ''):
     errors.append('Dependency/license review must preserve the public licensing boundary')
+if '`package.json`' not in texts.get('dependency', '') or '`requirements.txt`' not in texts.get('dependency', ''):
+    errors.append('Dependency/license review must document the current no-manifest runtime boundary')
 
 release_text = texts.get('release', '')
 for gate in range(1, 16):
@@ -115,6 +130,7 @@ print('SMART Camel AI acquisition release check passed.')
 print('Current public/DD scope markers: F001-F245 consistent')
 print('Phase 4 reconciliation markers: F244-F245 present')
 print('Algorithms/system families: 29 / 20 preserved')
+print('Current no-package/no-requirements/no-public-license boundary: preserved')
 print('Security and licensing boundaries: present')
 print('Release readiness gates: G01-G15 present')
 print('Live demo and final release tag remain correctly Pending')
