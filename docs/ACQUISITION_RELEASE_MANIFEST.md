@@ -4,8 +4,8 @@
 
 ### هوية الحزمة
 
-- **المنتج:** SMART Camel AI MVP.
-- **نوع الحزمة:** Public Acquisition Demonstrator Candidate — قبل اعتماد الرابط الحي والـrelease tag.
+- **المنتج:** SMART Camel AI.
+- **حالة الحزمة:** Acquisition Demonstrator Release package — جاهزة لتثبيت tag النهائي.
 - **النطاق الحالي:** **245 قدرة معيارية F001-F245**.
 - **الخوارزميات والمحركات المسماة:** **29** اسماً موثقاً في المصدر.
 - **نماذج التدريب المسماة:** **2**.
@@ -18,14 +18,18 @@
 - **F244 — Genetic Breeding with Environmental Impact Analysis — Planned.**
 - **F245 — Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
 
-وجودهما في الحزمة يثبت اكتمال النطاق المعياري الحالي ولا يعني نشرهما إنتاجياً.
+وجودهما يثبت اكتمال النطاق المعياري الحالي ولا يعني نشرهما إنتاجياً.
 
-### نقطة تشغيل الـMVP
+### العرض الحي
 
-- `index.html`
-- ملفات البيانات/القدرات المحلية تحت `app/`.
-- `app/core.js` للمنطق العام المشترك بين runtime والاختبارات.
-- لا يتطلب runtime العام package manager أو قاعدة بيانات أو مفاتيح سرية.
+- URL: `https://maksr2030.github.io/SMART-Camel-AI-MVP/`
+- GitHub Pages: `built`
+- Source: `main/(root)`
+- Public: yes
+- HTTPS: enforced
+- Evidence: `docs/LIVE_DEMO_VERIFICATION.md`
+
+بذلك **G08 مغلقة**.
 
 ### سلسلة التحقق الإلزامية
 
@@ -39,50 +43,55 @@ python scripts/security_check.py
 python scripts/release_check.py
 ```
 
-لا تعتبر الحزمة مرشح إصدار استحواذ صالحاً إذا فشل أي أمر من هذه الأوامر.
+### أدلة CI
+
+- PR #6 دمج Phase 4 إلى `main`.
+- GitHub Actions Run #122 اجتاز validator وCore وPhase 3 وPhase 4 وEvidence Contract وSecret Scan وRelease Contract بنجاح.
 
 ### وثائق العناية الواجبة العامة
 
-1. `README.md` — نقطة الدخول العامة.
-2. `docs/ACQUISITION_TECHNICAL_OVERVIEW.md` — النظرة التقنية للمستحوذ.
-3. `docs/FEATURE_REGISTRY.md` — سجل Phase 1 التفصيلي F001-F243.
-4. `docs/PHASE4_245_RECONCILIATION.md` — إغلاق F244-F245 والنطاق الحالي F001-F245.
-5. `docs/SOURCE_RECONCILIATION.md` — منهج المطابقة وإزالة التكرار.
-6. `docs/DEMO_SCENARIOS.md` — D01-D10.
-7. `docs/EVIDENCE_CATALOG.md` و`docs/PHASE3_GRADE_A_EVIDENCE.md` — Evidence IDs.
-8. `docs/STRATEGIC_EVIDENCE_MATRIX.md` — 12/12 Grade A.
-9. `docs/KNOWN_LIMITATIONS.md` — 23 قيداً عربياً + 23 إنجليزياً.
-10. `docs/SECURITY.md` — Threat Model وضوابط Phase 4 العامة.
-11. `docs/DEPENDENCY_AND_LICENSE_REVIEW.md` — سطح الاعتماديات وحدود الترخيص.
-12. `docs/IP_NOTICE.md` — حدود الملكية العامة ومتطلبات Chain of Title.
-13. `docs/RELEASE_READINESS.md` — بوابات G01-G15.
+1. `README.md`
+2. `docs/ACQUISITION_TECHNICAL_OVERVIEW.md`
+3. `docs/FEATURE_REGISTRY.md`
+4. `docs/PHASE4_245_RECONCILIATION.md`
+5. `docs/SOURCE_RECONCILIATION.md`
+6. `docs/DEMO_SCENARIOS.md`
+7. `docs/EVIDENCE_CATALOG.md`
+8. `docs/PHASE3_GRADE_A_EVIDENCE.md`
+9. `docs/STRATEGIC_EVIDENCE_MATRIX.md`
+10. `docs/KNOWN_LIMITATIONS.md`
+11. `docs/SECURITY.md`
+12. `docs/DEPENDENCY_AND_LICENSE_REVIEW.md`
+13. `docs/IP_NOTICE.md`
+14. `docs/RELEASE_READINESS.md`
+15. `docs/LIVE_DEMO_VERIFICATION.md`
+16. `docs/RELEASE_NOTES_v1.0-acquisition-demo.md`
 
-### حالة البوابات غير المغلقة علناً
+### بوابة النشر النهائية
 
-تبقى العناصر التالية خارج ادعاء الجاهزية الحالية:
+المتبقي لإغلاق G09 هو إنشاء tag ثابت:
 
-- **Live Stable Demo:** Pending حتى تحقق رابط حي فعلياً من خارج بيئة المطور.
-- **Fixed Acquisition Release Tag:** Pending حتى CI النهائي + live demo verification.
-- **Chain of Title:** Pending Confidential داخل Data Room.
-- **Production Security / Backend / Field Validation / Commercial Evidence / Independent Validation:** مراحل منفصلة.
+`v1.0-acquisition-demo`
 
-### قاعدة الإصدار
+على commit النهائي بعد دمج Release Finalization.
 
-لا يجوز وصف هذه الحزمة بأنها Production Ready. الوصف الصحيح قبل إغلاق G08/G09 هو **Acquisition Demonstrator Candidate**. بعد اجتياز PR CI النهائي والتحقق المستقل من الرابط الحي يمكن إنشاء tag استحواذ ثابت، من دون أن يتحول ذلك تلقائياً إلى ادعاء Production Ready.
+### الحدود
+
+هذا الإصدار **Acquisition Demonstrator Release** وليس Production Release. لا يثبت backend إنتاجياً أو أجهزة حية أو تكاملات حكومية حية أو إيرادات أو اكتمال Chain of Title السرية.
 
 ## English
 
-This manifest defines the buyer-facing public SMART Camel AI acquisition package.
+This manifest defines the buyer-facing SMART Camel AI Acquisition Demonstrator Release package.
 
-Current normalized scope:
+Current scope:
 
-- **245 canonical capabilities, F001-F245.**
-- **29 source-documented named algorithms/engines.**
-- **2 named training models.**
-- **20 canonical system families.**
-- **EVD-001-EVD-020.**
-- **12/12 selected strategic capabilities at Evidence Grade A — Automated + Runtime.**
+- **245 canonical capabilities, F001-F245**
+- **29 source-documented named algorithms/engines**
+- **2 named training models**
+- **20 canonical system families**
+- **EVD-001-EVD-020**
+- **12/12 selected strategic capabilities at Evidence Grade A**
 
-F244 and F245 are included as source-backed Planned capabilities. The mandatory validation chain is `validate.py`, core/Phase3/Phase4 tests, evidence contract, security check and release check.
+The live GitHub Pages demonstrator is verified as built, public and HTTPS-enforced from `main/(root)` at `https://maksr2030.github.io/SMART-Camel-AI-MVP/`, closing G08.
 
-A stable live demo, fixed acquisition release tag, confidential Chain of Title, production security/backend, field validation, commercial evidence and independent validation remain separate gates. Until the live-demo and final-PR gates are closed, the correct designation is **Acquisition Demonstrator Candidate**, not Production Ready.
+The remaining public release action is G09: publish the fixed `v1.0-acquisition-demo` tag on the final Release Finalization commit. This package remains distinct from Production Readiness.
