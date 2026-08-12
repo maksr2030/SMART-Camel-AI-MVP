@@ -50,6 +50,8 @@ GitHub Pages موثق حالياً كالتالي:
 
 - [Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md)
 - [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md)
+- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md)
+- [Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md)
 - [Phase 4 — 245 Capability Reconciliation](docs/PHASE4_245_RECONCILIATION.md)
 - [Evidence Catalog](docs/EVIDENCE_CATALOG.md)
 - [Phase 3 Grade A Evidence](docs/PHASE3_GRADE_A_EVIDENCE.md)
