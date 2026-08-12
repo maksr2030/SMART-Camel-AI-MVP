@@ -10,7 +10,7 @@
 - حالة Pages في GitHub: `built`
 - المصدر: `main`
 - المسار: `/`
-- الإتاحة: `public`
+- الإتاحة: `Public`
 - HTTPS: مفعل وإجباري على نطاق GitHub Pages الافتراضي.
 - واجهة الإعداد أظهرت صراحة: **Your site is live at** الرابط أعلاه.
 
@@ -31,8 +31,8 @@
 
 ## English
 
-GitHub Pages has been verified as built and public from `main` and `/(root)` at:
+GitHub Pages has been verified as built and Public from `main` and `/(root)` at:
 
 `https://maksr2030.github.io/SMART-Camel-AI-MVP/`
 
-GitHub reports the Pages site as `built`, public, sourced from `main` at `/`, with HTTPS enforced. This closes **G08 — Live Stable Demo** for the Acquisition Demonstrator Release. It does not imply production backend, institutional integration, field-device deployment or production-readiness certification.
+GitHub reports the Pages site as `built`, Public, sourced from `main` at `/`, with HTTPS enforced. This closes **G08 — Live Stable Demo** for the Acquisition Demonstrator Release. It does not imply production backend, institutional integration, field-device deployment or production-readiness certification.
