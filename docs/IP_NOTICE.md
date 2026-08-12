@@ -10,7 +10,7 @@
 
 تتضمن محفظة المنصة، بحسب السجل العام الحالي، ما يلي:
 
-- 243 سجل قدرة معيارية F001-F243.
+- **245 سجل قدرة معيارية F001-F245.** يحتفظ `FEATURE_REGISTRY.md` بخط أساس Phase 1 التاريخي F001-F243، وتضيف `PHASE4_245_RECONCILIATION.md` F244 وF245.
 - 29 خوارزمية ومحركاً مسمىً وموثقاً في المصدر.
 - نموذجَي تدريب مسميين في ملفات المصدر.
 - 20 عائلة نظامية معيارية.
@@ -20,7 +20,7 @@
 ### ما هو منشور وما هو غير منشور
 
 **منشور للعامة:**
-- أسماء القدرات وحالات النضج.
+- أسماء القدرات F001-F245 وحالات النضج.
 - واجهة MVP والبيانات الاصطناعية.
 - التوثيق العام، منهج المطابقة، الأدلة العامة والحدود المعروفة.
 - أسماء الخوارزميات/المحركات عند الحاجة لإثبات نطاق المصدر، دون نشر التنفيذ الخاص.
@@ -54,17 +54,17 @@
 
 ### قاعدة مهمة للمستحوذ
 
-السجل العام يثبت **نطاقاً موثقاً ومنهجاً للفصل بين ما هو عام وما هو خاص**، لكنه لا يحل محل Chain of Title قانونية. الجاهزية النهائية للاستحواذ تتطلب أن تكون ملكية كل أصل قابل للنقل قابلة للإثبات داخل Data Room.
+السجل العام يثبت **نطاقاً موثقاً من 245 قدرة ومنهجاً للفصل بين ما هو عام وما هو خاص**، لكنه لا يحل محل Chain of Title قانونية. الجاهزية النهائية للاستحواذ تتطلب أن تكون ملكية كل أصل قابل للنقل قابلة للإثبات داخل Data Room.
 
 ## English
-
-### Purpose
 
 This document defines the public intellectual-property and disclosure boundary for SMART Camel AI. It supports early technical diligence; it is not legal advice, an IP assignment, a license agreement or a final acquisition agreement.
 
 ### Portfolio scope
 
-The current public record includes 243 canonical capabilities, 29 source-documented named algorithms/engines, two named training models, 20 canonical system families, and public architecture/evidence/reconciliation material. Private historical source, proprietary implementation logic, model parameters, confidential IP records and acquisition material remain outside the public repository.
+The current public record includes **245 canonical capabilities F001-F245**, 29 source-documented named algorithms/engines, two named training models, 20 canonical system families, and public architecture/evidence/reconciliation material. `FEATURE_REGISTRY.md` preserves the historical Phase 1 F001-F243 baseline, while `PHASE4_245_RECONCILIATION.md` adds F244 and F245 to the current scope.
+
+Private historical source, proprietary implementation logic, model parameters, confidential IP records and acquisition material remain outside the public repository.
 
 ### Licensing boundary
 

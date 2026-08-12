@@ -4,7 +4,7 @@
 
 ### الغرض
 
-هذه السيناريوهات مصممة لمراجع تقني أو مستحوذ يريد اختبار الـMVP بنفسه دون اعتماد على شرح شفهي. كل سيناريو يوضح: الإجراء، النتيجة المتوقعة، ونوع الدليل الذي يقدمه.
+هذه السيناريوهات مصممة لمراجع تقني أو مستحوذ يريد اختبار الـMVP بنفسه دون اعتماد على شرح شفهي. كل سيناريو يوضح الإجراء والنتيجة المتوقعة ونوع الدليل الذي يقدمه وحدود ما لا يثبته.
 
 ### شرط التشغيل
 
@@ -36,7 +36,7 @@ http://localhost:4173/
 
 **الإجراء:** راجع بطاقات KPI وسجل الإبل الظاهر في الصفحة.
 
-**المتوقع:** تظهر مؤشرات تشغيلية وسجلات CAMEL تجريبية متسقة مع بيانات العرض.
+**المتوقع:** تظهر مؤشرات تشغيلية وسجلات CAMEL تجريبية متسقة مع بيانات العرض، ويظهر KPI تغطية القدرات بقيمة 245 بعد تحميل جميع ملفات السجل.
 
 **الدليل:** Demonstrated registry and dashboard presentation.
 
@@ -62,21 +62,27 @@ http://localhost:4173/
 
 **لا يثبت:** نموذج تشخيص بيطري أو دقة سريرية.
 
-### D05 — التحقق من سجل F001-F243
+### D05 — التحقق من سجل F001-F245
 
-**الإجراء:** انتقل إلى سجل القدرات، ابحث عن `F243` ثم ابحث عن `Pregnancy and Labor Monitoring` أو النص العربي المقابل.
+**الإجراء:** انتقل إلى سجل القدرات ونفّذ عمليات البحث التالية:
 
-**المتوقع:** يظهر F243 بحالة Planned، ويمكن البحث عن القدرات الأخرى وفلترتها حسب حالة النضج.
+1. ابحث عن `F001` للتأكد من بداية السجل.
+2. ابحث عن `F243` وتأكد من ظهور Pregnancy and Labor Monitoring بحالة Planned.
+3. ابحث عن `F244` وتأكد من ظهور Genetic Breeding with Environmental Impact Analysis بحالة Planned.
+4. ابحث عن `F245` وتأكد من ظهور Positive Environmental Impact Evaluation for Camel Breeding بحالة Planned.
+5. استخدم البحث عن `environmental impact` وتأكد من أن F244 وF245 قابلتان للاكتشاف.
 
-**الدليل:** Canonical registry continuity and public maturity transparency.
+**المتوقع:** يظهر السجل الحالي متصلاً من F001 إلى F245 مع حالات النضج المعلنة، وتظهر F244 وF245 كقدرتين مصدرّيتين Planned.
 
-**لا يثبت:** أن جميع 243 قدرة منفذة إنتاجياً.
+**الدليل:** Canonical registry continuity + Phase 4 reconciliation + public maturity transparency.
+
+**لا يثبت:** أن جميع 245 قدرة منفذة إنتاجياً.
 
 ### D06 — فلترة حالات النضج
 
 **الإجراء:** استخدم مرشح الحالة لاختيار Implemented ثم Demonstrated ثم Simulated ثم Mock Integration ثم Planned.
 
-**المتوقع:** تتغير البطاقات والإحصاءات وفق الحالة المختارة.
+**المتوقع:** تتغير البطاقات والإحصاءات وفق الحالة المختارة، ويظل مجموع الحالات عبر السجل الكامل = 245.
 
 **الدليل:** Public maturity classification is queryable rather than hidden in narrative text.
 
@@ -104,25 +110,31 @@ http://localhost:4173/
 
 **الإجراء:** نفّذ D07 وD08 ثم انتقل إلى سجل الأحداث.
 
-**المتوقع:** تظهر أحداث التفاعل التي تمت أثناء جلسة العرض.
+**المتوقع:** تظهر أحداث التفاعل التي تمت أثناء جلسة العرض مع تسلسل ومراجع ورسائل ثنائية اللغة.
 
 **الدليل:** Demonstrated in-session audit trail.
 
 **لا يثبت:** immutable ledger أو WORM storage أو نظام تدقيق مؤسسي دائم.
 
-### D10 — فحص المطابقة التقنية الآلية
+### D10 — فحص المطابقة التقنية وإصدار الاستحواذ
 
 **الإجراء:** من نسخة محلية للمستودع شغّل:
 
 ```bash
 python scripts/validate.py
+node tests/test_core.mjs
+node tests/test_phase3.mjs
+node tests/test_phase4.mjs
+python tests/test_evidence_contract.py
+python scripts/security_check.py
+python scripts/release_check.py
 ```
 
-**المتوقع:** نجاح التحقق من الملفات المطلوبة وتسلسل F001-F243 وعدم وجود تكرار وربط الأصول المطلوبة.
+**المتوقع:** نجاح جميع الفحوص، بما فيها تسلسل F001-F245، F244/F245، Evidence Grade A، حدود الملكية، فحص الأسرار، وبوابات Release Readiness.
 
-**الدليل:** Repeatable structural CI validation.
+**الدليل:** Repeatable structural, functional-evidence, security and acquisition-release validation.
 
-**لا يثبت:** functional end-to-end production test coverage.
+**لا يثبت:** Production end-to-end readiness أو live hosting أو independent field/security validation.
 
 ## مصفوفة السيناريوهات
 
@@ -132,12 +144,12 @@ python scripts/validate.py
 | D02 | Executable UI | Demonstrated |
 | D03 | Executable UI | Demonstrated/Simulated |
 | D04 | Executable logic | Simulated |
-| D05 | Registry evidence | Source reconciliation |
+| D05 | Registry evidence | Source reconciliation F001-F245 |
 | D06 | Registry evidence | Maturity transparency |
 | D07 | Workflow | Demonstrated |
 | D08 | Workflow | Demonstrated |
 | D09 | Audit workflow | Demonstrated |
-| D10 | Automated validation | Structural evidence |
+| D10 | Automated validation | Structural + Evidence + Security + Release Readiness |
 
 ### قاعدة العناية الواجبة
 
@@ -145,6 +157,6 @@ python scripts/validate.py
 
 ## English
 
-These ten scenarios provide a reproducible first-pass acquisition demo: bilingual presentation, dashboard/registry review, risk alerts, health-risk simulation, F001-F243 registry lookup, maturity filtering, auction interaction, certificate verification, in-session audit events and automated structural validation.
+These ten scenarios provide a reproducible first-pass acquisition demo covering bilingual presentation, dashboard/registry review, risk alerts, health-risk simulation, **F001-F245 registry lookup including explicit F244/F245 verification**, maturity filtering, auction interaction, certificate verification, in-session audit events, and the complete automated validation/security/release-readiness chain.
 
-Each scenario intentionally states both the evidence it provides and the claim boundary it does not cross. The goal is reproducible diligence, not a marketing-only walkthrough.
+Each scenario states both the evidence it provides and the claim boundary it does not cross. The goal is reproducible diligence, not a marketing-only walkthrough.

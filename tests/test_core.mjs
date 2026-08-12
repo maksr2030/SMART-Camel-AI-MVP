@@ -16,18 +16,19 @@ load('app/source-features-191-223.js');
 load('app/source-features-224-231.js');
 load('app/source-features-232-235.js');
 load('app/source-features-236-243.js');
+load('app/source-features-244-245.js');
 load('app/core.js');
 
 const data = context.window.SMART_CAMEL_DATA;
 const core = context.window.SMART_CAMEL_CORE;
 
 assert.ok(core, 'SMART_CAMEL_CORE must load');
-assert.equal(data.features.length, 243, 'Capability registry must contain 243 records');
+assert.equal(data.features.length, 245, 'Capability registry must contain 245 records');
 
-const expectedIds = Array.from({ length: 243 }, (_, i) => `F${String(i + 1).padStart(3, '0')}`);
+const expectedIds = Array.from({ length: 245 }, (_, i) => `F${String(i + 1).padStart(3, '0')}`);
 const actualIds = Array.from(data.features, f => f.id);
-assert.equal(actualIds.join(','), expectedIds.join(','), 'F001-F243 must be continuous and ordered');
-assert.equal(new Set(actualIds).size, 243, 'Capability IDs must be unique');
+assert.equal(actualIds.join(','), expectedIds.join(','), 'F001-F245 must be continuous and ordered');
+assert.equal(new Set(actualIds).size, 245, 'Capability IDs must be unique');
 
 for (const feature of data.features) {
   assert.ok(feature.nameAr, `${feature.id} must have Arabic name`);
@@ -36,7 +37,7 @@ for (const feature of data.features) {
 }
 
 const counts = core.countStatuses(data.features);
-assert.equal(Object.values(counts).reduce((sum, value) => sum + value, 0), 243, 'Maturity counts must sum to 243');
+assert.equal(Object.values(counts).reduce((sum, value) => sum + value, 0), 245, 'Maturity counts must sum to 245');
 for (const status of core.ALLOWED_STATUSES) assert.ok(counts[status] > 0, `${status} must be represented`);
 
 const low = core.calculateHealthRisk(38.2, 72, 78);
@@ -61,8 +62,20 @@ const planned243 = core.filterFeatures(data.features, 'F243', 'Planned');
 assert.equal(planned243.length, 1);
 assert.equal(planned243[0].nameEn, 'Pregnancy and Labor Monitoring');
 
+const planned244 = core.filterFeatures(data.features, 'F244', 'Planned');
+assert.equal(planned244.length, 1);
+assert.equal(planned244[0].nameEn, 'Genetic Breeding with Environmental Impact Analysis');
+
+const planned245 = core.filterFeatures(data.features, 'F245', 'Planned');
+assert.equal(planned245.length, 1);
+assert.equal(planned245[0].nameEn, 'Positive Environmental Impact Evaluation for Camel Breeding');
+
 const pregnancySearch = core.filterFeatures(data.features, 'pregnancy', 'all');
 assert.ok(pregnancySearch.some(f => f.id === 'F243'));
+
+const environmentalSearch = core.filterFeatures(data.features, 'environmental impact', 'all');
+assert.ok(environmentalSearch.some(f => f.id === 'F244'));
+assert.ok(environmentalSearch.some(f => f.id === 'F245'));
 
 const identitySearch = core.filterFeatures(data.features, 'الهوية الرقمية', 'Implemented');
 assert.ok(identitySearch.some(f => f.id === 'F001'));
@@ -71,8 +84,9 @@ assert.ok(data.camels.some(c => c.id === 'CAMEL-001'), 'Synthetic registry must 
 assert.ok(data.alerts.some(a => /geofence/i.test(a.titleEn)), 'Synthetic alerts must include geofence evidence');
 
 console.log('SMART Camel AI core evidence tests passed.');
-console.log('Capabilities: 243 continuous F001-F243');
+console.log('Capabilities: 245 continuous F001-F245');
 console.log(`Maturity counts: ${JSON.stringify(counts)}`);
+console.log('F244-F245 source-backed planned capabilities verified');
 console.log('Health-risk bands: low / medium / high verified');
 console.log('Certificate verification: positive and negative paths verified');
 console.log('Feature search/filter and synthetic evidence records verified');

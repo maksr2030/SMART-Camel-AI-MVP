@@ -6,7 +6,7 @@
 
 يوثق هذا الملف منهج تحويل وثائق منصة SMART Camel AI التاريخية ومواد براءة الاختراع والملفات البيطرية والتشغيلية وملفات الخوارزميات إلى سجل قدرات عام موحد وقابل للتدقيق داخل MVP.
 
-السجل الحالي يستخدم معرفات معيارية جديدة من **F001 إلى F243**. هذه المعرفات لا تدّعي أن الوثائق التاريخية استخدمت التسلسل نفسه؛ هي طبقة توحيد تمنع تضارب الأرقام بين نسخ المنصة القديمة.
+السجل الحالي يستخدم معرفات معيارية من **F001 إلى F245**. هذه المعرفات لا تدّعي أن الوثائق التاريخية استخدمت التسلسل نفسه؛ هي طبقة توحيد تمنع تضارب الأرقام بين نسخ المنصة القديمة.
 
 ### أنماط المصادر التي تمت مراجعتها
 
@@ -39,20 +39,18 @@
 - مجرد وجود كود توضيحي قديم كإثبات جاهزية إنتاجية.
 - خصائص عامة مثل تحسين تجربة المستخدم أو رفع الدقة إذا لم تمثل قدرة تشغيل مستقلة.
 
-### نتيجة المطابقة النهائية
+### نتيجة المطابقة الحالية
 
-بعد دمج السجل الأساسي مع جميع الدفعات التي تمت مراجعتها، يحتوي السجل العام الحالي على:
+بعد دمج السجل الأساسي مع جميع الدفعات التي تمت مراجعتها، ثم مطابقة Phase 4 للقدرات البيئية/الوراثية التي لم تكن ممثلة كـF-ID مستقل، يحتوي السجل العام الحالي على:
 
-- **243 Canonical Capability Records** من F001 إلى F243.
+- **245 Canonical Capability Records** من F001 إلى F245.
 - **29 Source-Documented Named Algorithms & Engines** في سجل مستقل.
 - **20 Canonical System Families** كطبقة تنظيم معماري أعلى.
 - **2 Independently Named Training Models** موثقة كمصادر، وليست ادعاءً بنماذج إنتاجية معتمدة.
 
-هذا التفريق مهم: القدرة ليست هي الخوارزمية، والخوارزمية ليست هي العائلة النظامية، والعائلة ليست منتجاً تجارياً مستقلاً بالضرورة.
+كان سجل Phase 1 التاريخي ينتهي عند F243. تحتفظ `FEATURE_REGISTRY.md` بهذا baseline لأغراض التتبع، بينما تضيف `PHASE4_245_RECONCILIATION.md` F244 وF245 ويعامل runtime والـCI النطاق الحالي باعتباره F001-F245.
 
 ### طبقة البراءة F224-F231
-
-أضيفت ثماني قدرات بعد مقارنة مواد البراءة مع F001-F223 وإزالة التداخل:
 
 - F224: تشفير ما بعد الكم للبيانات البيطرية والتجارية.
 - F225: التهجين المحسن حسب حالة الاستخدام.
@@ -65,16 +63,12 @@
 
 ### الطبقة البيطرية والتشغيلية F232-F235
 
-أضيفت أربع قدرات مستقلة:
-
 - F232: توثيق الحالة الصحية للإبل المشاركة في المهرجانات.
 - F233: تتبع الموقع والسرعة أثناء السباقات في الزمن الحقيقي.
 - F234: تتبع إنتاجية الإبل عبر دورة حياتها.
 - F235: توصيات الطاقة المتجددة لمزارع الإبل.
 
-### الطبقة النهائية F236-F243
-
-بعد مقارنة الملفات الخوارزمية والتفصيلية الأخيرة مع F001-F235، قُبلت ثماني قدرات فقط باعتبارها حدوداً وظيفية جديدة:
+### الطبقة الخوارزمية F236-F243
 
 - F236: التعرف الذكي على سلالات الإبل.
 - F237: التحكم التكيفي المغلق في تغذية الإبل.
@@ -85,22 +79,24 @@
 - F242: تحليل مخاطر الأمراض الوراثية.
 - F243: مراقبة الحمل والولادة في الإبل.
 
-لم تُكرر قدرات مثل التنبؤ بالأمراض، جودة الحليب، التحليل السلوكي، الرعي، المزايين، السباقات، المهرجانات والمزادات إذا كانت ممثلة سابقاً؛ بدلاً من ذلك تم استخدام الملفات الأخيرة لتقوية **سجل الخوارزميات والمحركات** المرتبط بهذه القدرات.
+### مطابقة Phase 4 — F244-F245
+
+بعد مراجعة إضافية لملفات المصدر التاريخية، قُبلت قدرتان مستقلتان كانتا موصوفتين بعنوانين ووظيفتين منفصلتين ولم تكونا ممثلتين كـF-ID مستقلين في السجل السابق:
+
+- **F244 — التحسين الوراثي مع تحليل الأثر البيئي / Genetic Breeding with Environmental Impact Analysis.**
+- **F245 — تقييم الأثر البيئي الإيجابي لتربية الإبل / Positive Environmental Impact Evaluation for Camel Breeding.**
+
+كلاهما بقي **Planned** لأن المصدر يثبت الهوية الوظيفية والتصميم، ولا يثبت نشرهما الإنتاجي أو تحققاً ميدانياً مستقلاً.
+
+لم تُكرر قدرات موجودة سابقاً لمجرد اختلاف الاسم. F244 قُبل لأنه يجمع قرار التزاوج الوراثي بتحليل الأثر البيئي ومحاكاة الأجيال المستقبلية كمسار مستقل، وF245 قُبل لأن مخرجه الأساسي هو تقييم المساهمة البيئية الإيجابية للتربية وليس مجرد مراقبة بيئية أو إدارة رعي.
 
 ### فصل الخوارزميات عن القدرات
 
-تم إنشاء `ALGORITHM_ENGINE_REGISTRY.md` لتسجيل 29 اسماً موثقاً في المصدر دون رفع عدد القدرات بسبب كل اسم خوارزمية. هذا يمنع التضخيم ويعطي المراجع التقني رؤية أدق للملكية التقنية.
-
-الأسماء المصدرية لا تعني تلقائياً أن الخوارزمية:
-
-- مدربة على بيانات معتمدة.
-- تمتلك دقة مثبتة.
-- منشورة إنتاجياً.
-- حاصلة على اعتماد أو ترخيص.
+تم إنشاء `ALGORITHM_ENGINE_REGISTRY.md` لتسجيل 29 اسماً موثقاً في المصدر دون رفع عدد القدرات بسبب كل اسم خوارزمية. الأسماء المصدرية لا تعني تلقائياً أن الخوارزمية مدربة على بيانات معتمدة أو تمتلك دقة مثبتة أو منشورة إنتاجياً أو حاصلة على اعتماد.
 
 ### فصل العائلات النظامية
 
-تم إنشاء `SYSTEM_FAMILIES.md` لتنظيم 243 قدرة في 20 عائلة نظامية معيارية. هذه الطبقة تساعد المراجع والمستحوذ على فهم المنصة كمعمارية مترابطة بدلاً من قائمة ميزات مسطحة.
+تم إنشاء `SYSTEM_FAMILIES.md` لتنظيم **245 قدرة** في 20 عائلة نظامية معيارية. هذه الطبقة تساعد المراجع والمستحوذ على فهم المنصة كمعمارية مترابطة بدلاً من قائمة ميزات مسطحة.
 
 ### علاقة الترقيم القديم بالجديد
 
@@ -112,87 +108,22 @@
 
 ## English
 
-### Purpose
+This document records the normalization method used to convert historical SMART Camel AI source material, patent-related documents, veterinary/operating files and algorithm-focused sources into one auditable public capability registry.
 
-This document records the method used to convert the historical SMART Camel AI source portfolio, patent-related material, veterinary and operating documentation, and algorithm-focused files into one normalized, auditable public capability registry for the MVP.
+The current canonical registry is **F001-F245**. Canonical F-IDs are a modern normalization layer and do not claim that historical files used the same numbering.
 
-The current registry uses new canonical identifiers **F001 through F243**. These identifiers do not claim that the historical documents used the same sequence; they form a normalization layer that prevents conflicts between legacy numbering schemes.
+The current reconciled result is:
 
-### Reviewed source patterns
+- **245 Canonical Capability Records**, F001-F245.
+- **29 Source-Documented Named Algorithms & Engines**.
+- **20 Canonical System Families**.
+- **2 Independently Named Training Models** recorded as source evidence.
 
-Six major source patterns were identified:
+The historical Phase 1 acquisition baseline ended at F243. Phase 4 adds two independently described source capabilities while retaining that historical baseline for traceability:
 
-1. Detailed documents naming real capabilities with objectives, benefits and operating logic.
-2. Veterinary and operating files documenting independent health, race, productivity and genetic-efficiency capabilities.
-3. Historical 1-to-190 and 1-to-200 indexes, some containing generic repeated templates; numbering alone was therefore rejected as evidence.
-4. Long and concise patent-related material, normalized to technically separable functions after duplication removal.
-5. Farm-management and sustainability files covering resources, environment and energy.
-6. Final algorithm-focused files documenting more specific capabilities, named engines and named training models.
+- **F244 — Genetic Breeding with Environmental Impact Analysis — Planned.**
+- **F245 — Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
 
-### Acceptance rule
+These two records are not counted merely to increase the total. F244 has a distinct breeding-decision boundary combining genetic selection, environmental impact and future-generation simulation. F245 has a distinct evaluation output focused on the positive environmental contribution of camel breeding. Both remain Planned because the source supports design identity rather than production deployment or independent field validation.
 
-A number or heading is not counted merely because it appears in a list. A capability is accepted when it has a distinct functional identity, meaningful description, independent operating purpose, traceable source logic, or a technically separable patent/algorithmic boundary.
-
-Rejected as independent evidence are generic repetition, empty templates, unsupported numbering, simple renaming, code examples treated as production proof, and broad quality claims without a separable operating function.
-
-### Final reconciliation result
-
-The current public record contains:
-
-- **243 Canonical Capability Records**, F001-F243.
-- **29 Source-Documented Named Algorithms & Engines** in a separate registry.
-- **20 Canonical System Families** as a higher architectural organization layer.
-- **2 Independently Named Training Models** recorded as source evidence, not as validated production-model claims.
-
-This distinction matters: a capability is not the same thing as an algorithm; an algorithm is not the same thing as a system family; and a system family is not necessarily a separate commercial product.
-
-### Patent-backed layer F224-F231
-
-- F224: Post-Quantum Encryption for Veterinary and Trade Data.
-- F225: Use-Case Optimized Hybrid Breeding.
-- F226: Automated Pre-Trade Health Evaluation.
-- F227: Automated Pre-Trade Genetic Evaluation.
-- F228: Automated Competition Scoring Engine.
-- F229: Real-Time Competition Result Generation.
-- F230: Festival Suitability Matching and Participation Recommendation.
-- F231: Veterinary Authority Integration Adapter.
-
-### Veterinary/operating layer F232-F235
-
-- F232: Festival Participant Health Documentation.
-- F233: Real-Time Race GPS and Speed Tracking.
-- F234: Lifecycle Productivity Tracking.
-- F235: Renewable Energy Recommendations for Camel Farms.
-
-### Final layer F236-F243
-
-Eight new functional boundaries were accepted after comparison against F001-F235:
-
-- F236: AI Camel Breed Recognition.
-- F237: Closed-Loop Adaptive Feeding Control.
-- F238: Facial Biometric Camel Identification.
-- F239: Thermal-Camera Health Monitoring.
-- F240: Camel Sleep Monitoring and Quality Analysis.
-- F241: Camel Heat-Stress Early Warning.
-- F242: Genetic Disease Risk Analysis.
-- F243: Pregnancy and Labor Monitoring.
-
-Capabilities already represented—such as disease prediction, milk quality, behavior analysis, grazing, beauty competitions, racing, festivals and auctions—were not counted again. Instead, the final files strengthen the separate algorithm/engine registry associated with those capabilities.
-
-### Algorithms versus capabilities
-
-`ALGORITHM_ENGINE_REGISTRY.md` records 29 source-documented names without increasing the capability count for every algorithm name. This avoids inflation and gives technical reviewers a more precise view of the source portfolio.
-
-A source-documented algorithm name does not automatically mean the algorithm is trained on an approved dataset, independently validated, production-deployed, certified or licensed.
-
-### System families
-
-`SYSTEM_FAMILIES.md` organizes the 243 capabilities into 20 canonical system families so reviewers can understand the platform as a connected architecture rather than a flat feature list.
-
-### Legacy numbering versus canonical IDs
-
-An F-ID is a new MVP normalization identifier and should not be interpreted as the same historical feature number. A private Legacy Crosswalk can later map trusted historical numbers to canonical IDs during due diligence.
-
-### Disclosure boundary
-
-The public repository exposes capability names, maturity states, public algorithm names and architectural system families only. Private source files, proprietary code, model weights, training datasets, internal IP records and confidential commercial valuations are excluded.
+Capabilities, named algorithms, training models and system families remain separate counting layers. The public repository exposes normalized names, maturity and diligence boundaries while excluding proprietary source code, model weights, datasets and confidential IP records.

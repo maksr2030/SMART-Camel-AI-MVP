@@ -4,7 +4,9 @@
 
 ### الهدف
 
-هذه المصفوفة تركز على **12 قدرة استراتيجية** من السجل F001-F243 حتى يستطيع فريق الاستحواذ فحص سلسلة الأدلة بسرعة. بعد Phase 3 أصبحت القدرات الاثنتا عشرة جميعها **Grade A من ناحية Evidence**، أي أن لكل واحدة مساراً عاماً قابلاً للتشغيل واختباراً آلياً لنفس المنطق أو العقد الوظيفي.
+هذه المصفوفة تركز على **12 قدرة استراتيجية** من السجل الحالي F001-F245 حتى يستطيع فريق الاستحواذ فحص سلسلة الأدلة بسرعة. بعد Phase 3 أصبحت القدرات الاثنتا عشرة جميعها **Grade A من ناحية Evidence**، أي أن لكل واحدة مساراً عاماً قابلاً للتشغيل واختباراً آلياً لنفس المنطق أو العقد الوظيفي.
+
+F244 وF245 جزء من النطاق المعياري الحالي F001-F245 لكنهما ليستا ضمن مجموعة الـ12 الاستراتيجية الحالية، وتبقيان Planned وفق مطابقة Phase 4.
 
 > Grade A لا تعني Production Ready ولا تغيّر حالة النضج المنشورة للقدرة.
 
@@ -45,7 +47,7 @@
 
 ## English
 
-The selected strategic set now has **12/12 capabilities at Evidence Grade A — Automated + Runtime** after Phase 3.
+The current canonical registry spans **F001-F245**. The selected strategic set now has **12/12 capabilities at Evidence Grade A — Automated + Runtime** after Phase 3. F244 and F245 are part of the current canonical scope but remain source-backed Planned capabilities outside this 12-capability strategic evidence set.
 
 Grade A means the public runtime path is backed by automated verification of the same shared logic or functional contract. It does **not** mean production readiness and does not alter published maturity states.
 
