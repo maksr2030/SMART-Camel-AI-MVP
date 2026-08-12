@@ -1,78 +1,70 @@
-# SMART Camel AI MVP | منصة الإبل الذكية
+# SMART Camel AI | منصة الإبل الذكية
 
 ## العربية
 
-منصة الإبل الذكية هي بيئة رقمية متكاملة لإدارة دورة حياة الإبل والقطعان والمزارع والصحة والتكاثر والأنساب والمراعي والمسابقات والسباقات والمزادات والأسواق والمنتجات والمخاطر والبيانات التشغيلية ضمن واجهة موحدة قابلة للتدقيق.
+SMART Camel AI هي بيئة رقمية متكاملة لإدارة دورة حياة الإبل والقطعان والمزارع والصحة والتكاثر والأنساب والمراعي والمسابقات والسباقات والمزادات والأسواق والمنتجات والمخاطر والبيانات التشغيلية ضمن واجهة موحدة قابلة للتدقيق.
 
-هذا المستودع هو الإصدار العام التجريبي للمنصة، والغرض منه تقديم نموذج أولي قابل للتشغيل والمراجعة التقنية دون نشر الخوارزميات الخاصة أو الأسرار التنفيذية أو وثائق الملكية الفكرية الداخلية.
+هذا المستودع يمثل **Acquisition Demonstrator Release package** مخصصاً للفحص الأولي من مستحوذ أو فريق تقني، مع إبقاء الخوارزميات المملوكة والأوزان ومجموعات التدريب ووثائق الملكية السرية خارج المستودع العام.
 
-### النتيجة المعيارية الحالية
+### النطاق المعياري الحالي
 
-- **245 سجل قدرة معيارية** من F001 إلى F245.
-- **29 خوارزمية ومحركاً مسمىً وموثقاً في المصدر** ضمن سجل مستقل.
+- **245 قدرة معيارية F001-F245**.
+- **29 خوارزمية ومحركاً مسمىً وموثقاً في المصدر**.
 - **20 عائلة نظامية معيارية**.
-- **نموذجَي تدريب مسميين في المصدر** موثقين بشكل منفصل.
-- **20 Evidence IDs** من EVD-001 إلى EVD-020 عبر Phase 2 وPhase 3.
-- **12 من 12 قدرة استراتيجية** أصبحت Grade A من ناحية Evidence — Automated + Runtime.
+- **2 نموذجَي تدريب مسميين في المصدر**.
+- **EVD-001-EVD-020**.
+- **12/12 قدرة استراتيجية عند Evidence Grade A — Automated + Runtime**.
 
-هذه الأرقام لا تعني وجود 245 نظاماً إنتاجياً أو 29 نموذجاً معتمداً. حالة النضج التشغيلية معلنة لكل قدرة، وGrade A لا تعني Production Ready.
+هذه الأرقام لا تعني وجود 245 نظاماً Production Ready أو 29 نموذجاً معتمداً إنتاجياً.
 
-### ما الذي يعمل في هذا الإصدار
+### العرض الحي
 
-- واجهة عربية وإنجليزية مع تبديل فوري بين اللغتين.
-- لوحة قيادة تشغيلية ببيانات اصطناعية.
-- سجل إبل تجريبي يمر عبر schema/uniqueness validation عند التشغيل.
-- سجل قدرات runtime كامل **F001-F245** مصنف حسب حالة النضج.
-- محرك مخاطر صحي تفاعلي تفسيري.
-- محاكاة geofence بحالات Inside/Near/Outside.
-- scoring demonstrator للمزايين يستخدم نفس الـCore المختبر.
-- محرك مزاد تجريبي بحالة وسعر وعدد مزايدات وقاعدة قبول للمزايدة الأعلى فقط.
-- تحقق تجريبي من شهادة CAMEL-001.
-- سجل أحداث ثنائي اللغة بتسلسل ومراجع داخل الجلسة.
-- سجل عام للخوارزميات والمحركات المسمّاة دون إفشاء التنفيذ المملوك.
-- خريطة من 20 عائلة نظامية.
-- Core Logic مشترك بين الواجهة والاختبارات.
+**https://maksr2030.github.io/SMART-Camel-AI-MVP/**
 
-### Acquisition Technical Due Diligence Foundation
+GitHub Pages موثق حالياً كالتالي:
+
+- Status: `built`
+- Source: `main`
+- Folder: `/(root)`
+- Public: نعم
+- HTTPS: مفعل
+
+انظر: [Live Demo Verification](docs/LIVE_DEMO_VERIFICATION.md).
+
+### قدرات العرض العام
+
+- واجهة عربية وإنجليزية.
+- سجل إبل اصطناعي مع validation.
+- سجل قدرات runtime كامل F001-F245.
+- Health-risk simulation.
+- Geofence demonstrator.
+- Mazayen scoring demonstrator.
+- Auction state-transition demonstrator.
+- CAMEL-001 certificate verification.
+- Bilingual in-session audit trail.
+- بحث وفلترة عبر سجل القدرات.
+
+### العناية الواجبة
 
 **Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
 
-- [سجل القدرات للاستحواذ | Acquisition Feature Registry](docs/FEATURE_REGISTRY.md) — خط الأساس التاريخي F001-F243.
-- [مطابقة 245 قدرة | Phase 4 — 245 Capability Reconciliation](docs/PHASE4_245_RECONCILIATION.md) — تضيف F244-F245 وتثبت النطاق الحالي F001-F245.
-- [سيناريوهات العرض | Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md) — D01-D10.
-- [القيود المعروفة | Known Limitations](docs/KNOWN_LIMITATIONS.md) — 23 قيداً عربياً + 23 إنجليزياً.
-- [الأمن ونموذج التهديدات | Security Baseline & Threat Model](docs/SECURITY.md).
-- [إشعار الملكية الفكرية | IP Notice](docs/IP_NOTICE.md).
-- [النظرة التقنية للاستحواذ | Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md).
-- [بيان إصدار الاستحواذ | Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md).
+- [Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md)
+- [Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md)
+- [Acquisition Feature Registry](docs/FEATURE_REGISTRY.md)
+- [Reproducible Demo Scenarios](docs/DEMO_SCENARIOS.md)
+- [Phase 4 — 245 Capability Reconciliation](docs/PHASE4_245_RECONCILIATION.md)
+- [Evidence Catalog](docs/EVIDENCE_CATALOG.md)
+- [Phase 3 Grade A Evidence](docs/PHASE3_GRADE_A_EVIDENCE.md)
+- [Strategic Evidence Matrix](docs/STRATEGIC_EVIDENCE_MATRIX.md)
+- [Known Limitations](docs/KNOWN_LIMITATIONS.md)
+- [Security](docs/SECURITY.md)
+- [Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md)
+- [IP Notice](docs/IP_NOTICE.md)
+- [Release Readiness](docs/RELEASE_READINESS.md)
+- [Live Demo Verification](docs/LIVE_DEMO_VERIFICATION.md)
+- [Release Notes v1.0-acquisition-demo](docs/RELEASE_NOTES_v1.0-acquisition-demo.md)
 
-### Evidence & Grade A Closure
-
-- [سجل أدلة الاستحواذ | Acquisition Evidence Catalog](docs/EVIDENCE_CATALOG.md) — EVD-001 إلى EVD-015.
-- [إغلاق أدلة Phase 3 | Phase 3 Grade A Evidence](docs/PHASE3_GRADE_A_EVIDENCE.md).
-- [مصفوفة الأدلة الاستراتيجية | Strategic Capability Evidence Matrix](docs/STRATEGIC_EVIDENCE_MATRIX.md).
-- `app/core.js` — منطق عام قابل للاختبار تستخدمه الواجهة نفسها.
-- `tests/test_core.mjs` — اختبارات F001-F245 وحالات النضج والمخاطر والبحث والفلترة.
-- `tests/test_phase3.mjs` — اختبارات Grade A للهوية والسجل وgeofence والمزايين والمزاد والتدقيق.
-- `tests/test_phase4.mjs` — اختبار مستقل لاكتمال F001-F245 وF244/F245.
-- `tests/test_evidence_contract.py` — عقد الأدلة وحدود الملكية والقيود.
-
-### Acquisition Demonstrator Release Readiness
-
-- [جاهزية إصدار الاستحواذ | Acquisition Release Readiness](docs/RELEASE_READINESS.md) — G01-G15.
-- [نشر العرض الحي | Live Demo Deployment](docs/LIVE_DEMO_DEPLOYMENT.md).
-- [مراجعة الاعتماديات والتراخيص | Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md).
-- `.github/workflows/pages.yml` — workflow لنشر `index.html + app/` فقط على GitHub Pages بعد تفعيل Source: GitHub Actions.
-- `scripts/security_check.py` — فحص الأسرار والملفات الحساسة والاعتماديات الخارجية في runtime.
-- `scripts/release_check.py` — يحرس نطاق 245 وبوابات الإصدار والنشر الحي.
-
-الرابط المستهدف بعد تفعيل GitHub Pages ونجاح أول deployment على `main` هو:
-
-`https://maksr2030.github.io/SMART-Camel-AI-MVP/`
-
-هذا الرابط **ليس مثبتاً كعامل بعد**؛ G08 يبقى Pending حتى نجاح النشر والتحقق الخارجي.
-
-### التحقق والاختبارات
+### الاختبارات
 
 ```bash
 python scripts/validate.py
@@ -84,48 +76,37 @@ python scripts/security_check.py
 python scripts/release_check.py
 ```
 
-### حدود الإفصاح
+PR #6 اجتاز GitHub Actions Run #122 بالكامل قبل الدمج إلى `main`.
 
-جميع بيانات العرض اصطناعية أو توضيحية ما لم يُذكر خلاف ذلك. لا يمثل هذا المستودع تشغيلًا إنتاجياً، ولا يحتوي على الخوارزميات المملوكة أو الأوزان أو مجموعات التدريب أو نماذج التقييم السرية أو بيانات الشركاء أو وثائق العناية الواجبة الخاصة.
+### حالة الإصدار
+
+- G01-G08: مغلقة أو Ready ضمن نطاق الـpublic acquisition demonstrator.
+- G09: جاهزة للنشر عند إنشاء tag `v1.0-acquisition-demo` على commit النهائي بعد Release Finalization.
+- G10-G15: تبقى بوابات منفصلة تخص Chain of Title السرية، Production Security، backend/data، field validation، commercial evidence وindependent validation.
+
+هذا الإصدار **ليس Production Ready** ولا يدعي تكاملات حكومية حية أو أجهزة IoT فعلية أو اعتماداً بيطرياً أو إيرادات مثبتة.
 
 ## English
 
-SMART Camel AI is an integrated public demonstrator for a broader camel-sector operating and intelligence platform.
+SMART Camel AI is a buyer-facing **Acquisition Demonstrator Release package** for a broader camel-sector operating and intelligence platform.
 
-### Current normalized result
+Current normalized scope:
 
-- **245 canonical capability records**, F001 through F245.
-- **29 source-documented named algorithms and engines**.
-- **20 canonical system families**.
-- **Two independently named training models**.
-- **20 acquisition Evidence IDs**, EVD-001 through EVD-020.
-- **12/12 selected strategic capabilities at Evidence Grade A — Automated + Runtime**.
+- **245 canonical capabilities, F001-F245**
+- **29 source-documented named algorithms and engines**
+- **20 canonical system families**
+- **2 named training models**
+- **EVD-001-EVD-020**
+- **12/12 selected strategic capabilities at Evidence Grade A**
 
-The historical Phase 1 registry remains F001-F243 for traceability; Phase 4 establishes F001-F245 as the current runtime/CI boundary.
+### Live demonstrator
 
-### Acquisition Demonstrator Release readiness
+**https://maksr2030.github.io/SMART-Camel-AI-MVP/**
 
-- [Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md)
-- [Acquisition Release Readiness](docs/RELEASE_READINESS.md)
-- [Live Demo Deployment](docs/LIVE_DEMO_DEPLOYMENT.md)
-- [Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md)
+GitHub Pages is verified as built, public and HTTPS-enforced from `main/(root)`.
 
-Target GitHub Pages URL after Pages is enabled with GitHub Actions and the first `main` deployment succeeds:
+### Release status
 
-`https://maksr2030.github.io/SMART-Camel-AI-MVP/`
+G01-G08 are closed/Ready for the public acquisition demonstrator. G09 closes when the fixed `v1.0-acquisition-demo` tag is published on the final Release Finalization commit. G10-G15 remain separate production, confidential legal, field, commercial and independent-validation diligence gates.
 
-The URL remains unverified until deployment and external validation close G08.
-
-### Validate and test
-
-```bash
-python scripts/validate.py
-node tests/test_core.mjs
-node tests/test_phase3.mjs
-node tests/test_phase4.mjs
-python tests/test_evidence_contract.py
-python scripts/security_check.py
-python scripts/release_check.py
-```
-
-This package is an **Acquisition Demonstrator Candidate** until final PR CI, merge, live Pages verification and the fixed acquisition release tag are complete. It is not Production Ready.
+This package is not a Production Release.

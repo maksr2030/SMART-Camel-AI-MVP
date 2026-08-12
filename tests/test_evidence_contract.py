@@ -15,6 +15,7 @@ IP_NOTICE = (ROOT / 'docs' / 'IP_NOTICE.md').read_text(encoding='utf-8')
 RELEASE = (ROOT / 'docs' / 'RELEASE_READINESS.md').read_text(encoding='utf-8')
 DEPENDENCY = (ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md').read_text(encoding='utf-8')
 SECURITY = (ROOT / 'docs' / 'SECURITY.md').read_text(encoding='utf-8')
+LIVE_VERIFY = (ROOT / 'docs' / 'LIVE_DEMO_VERIFICATION.md').read_text(encoding='utf-8')
 
 errors = []
 
@@ -53,9 +54,7 @@ for marker in [
         errors.append(f'Phase 3 evidence document missing marker: {marker}')
 
 for marker in [
-    'F244',
-    'F245',
-    '245 distinct source-backed capability records',
+    'F244', 'F245', '245 distinct source-backed capability records',
     'Genetic Breeding with Environmental Impact Analysis',
     'Positive Environmental Impact Evaluation for Camel Breeding',
 ]:
@@ -72,21 +71,19 @@ if 'app/source-features-244-245.js' not in INDEX:
 if 'app/core.js' not in INDEX or INDEX.index('app/core.js') > INDEX.index('app/app.js'):
     errors.append('index.html must load app/core.js before app/app.js')
 
-runtime_markers = (
+for marker in (
     'core.calculateHealthRisk', 'core.filterFeatures', 'core.countStatuses', 'core.verifyDemoCertificate',
     'core.validateCamelRegistry', 'core.evaluateGeofence', 'core.calculateMazayenScore',
     'core.createAuctionState', 'core.placeDemoBid', 'core.appendAuditEvent'
-)
-for marker in runtime_markers:
+):
     if marker not in APP:
         errors.append(f'Runtime app is not wired to shared core function: {marker}')
 
-core_markers = (
+for marker in (
     'calculateHealthRisk', 'verifyDemoCertificate', 'filterFeatures', 'countStatuses',
     'validateCamelRegistry', 'findCamelById', 'evaluateGeofence', 'calculateMazayenScore',
     'createAuctionState', 'placeDemoBid', 'appendAuditEvent'
-)
-for marker in core_markers:
+):
     if marker not in CORE:
         errors.append(f'Core logic missing function: {marker}')
 
@@ -106,12 +103,21 @@ if 'Chain of Title' not in IP_NOTICE:
 if '245 سجل قدرة معيارية F001-F245' not in IP_NOTICE and '245 canonical capabilities F001-F245' not in IP_NOTICE:
     errors.append('IP notice must state the current 245-capability scope')
 
-if 'G15' not in RELEASE or 'Live Stable Demo | Pending' not in RELEASE:
-    errors.append('Release readiness must preserve G01-G15 and live-demo Pending state')
+if 'G15' not in RELEASE:
+    errors.append('Release readiness must preserve G01-G15')
+if 'G08 — Live Stable Demo | Ready' not in RELEASE:
+    errors.append('Release readiness must mark G08 Ready after live verification')
+if 'G09 — Fixed Acquisition Release Tag | Ready to publish' not in RELEASE:
+    errors.append('Release readiness must mark G09 Ready to publish')
+
+for marker in ('`built`', '`main`', '`/(root)`', 'Public', 'HTTPS', 'G08'):
+    if marker not in LIVE_VERIFY:
+        errors.append(f'Live demo verification missing marker: {marker}')
+
 if 'No public `LICENSE` file' not in DEPENDENCY:
     errors.append('Dependency/license review must preserve the public licensing boundary')
 if 'scripts/security_check.py' not in SECURITY:
-    errors.append('Security baseline must document the Phase 4 automated security scan')
+    errors.append('Security baseline must document the automated security scan')
 
 for link in (
     'docs/EVIDENCE_CATALOG.md',
@@ -120,6 +126,8 @@ for link in (
     'docs/PHASE4_245_RECONCILIATION.md',
     'docs/RELEASE_READINESS.md',
     'docs/DEPENDENCY_AND_LICENSE_REVIEW.md',
+    'docs/LIVE_DEMO_VERIFICATION.md',
+    'docs/RELEASE_NOTES_v1.0-acquisition-demo.md',
 ):
     if link not in README:
         errors.append(f'README must link {link}')
@@ -139,9 +147,11 @@ if errors:
     raise SystemExit(1)
 
 print('SMART Camel AI evidence contract tests passed.')
-print('Evidence IDs: EVD-001-EVD-020 continuous across Phase 2 and Phase 3')
+print('Evidence IDs: EVD-001-EVD-020 continuous')
 print('Canonical evidence boundary: F001-F245 preserved')
 print('Strategic evidence: 12/12 capabilities Grade A')
 print('Phase 4 capability reconciliation: F244-F245 preserved')
 print('Known limitations: 23 Arabic + 23 English preserved')
+print('Live demo evidence: G08 Ready')
+print('G09: Ready to publish v1.0-acquisition-demo')
 print('IP, security, dependency and release-readiness boundaries verified')

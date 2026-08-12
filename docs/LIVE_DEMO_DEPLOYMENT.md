@@ -2,67 +2,49 @@
 
 ## العربية
 
-### الهدف
+### الحالة الحالية
 
-هذه الوثيقة تغلق المسار التقني المطلوب لتحويل SMART Camel AI من Acquisition Demonstrator Candidate إلى **Acquisition Demonstrator Release** من ناحية العرض الحي.
+تم تفعيل GitHub Pages بنجاح للمنصة، والنشر المعتمد حالياً هو من الفرع الرئيسي مباشرة:
 
-### رابط GitHub Pages المستهدف
+- **Branch:** `main`
+- **Folder:** `/(root)`
+- **URL:** `https://maksr2030.github.io/SMART-Camel-AI-MVP/`
+- **GitHub Pages status:** `built`
+- **Visibility:** Public
+- **HTTPS:** Enforced
 
-بعد تفعيل GitHub Pages للمستودع واختيار GitHub Actions كمصدر للنشر، يكون رابط المشروع المتوقع:
+تم توثيق نتيجة التحقق في `LIVE_DEMO_VERIFICATION.md`، وبذلك أصبحت **G08 — Live Stable Demo = Ready**.
 
-`https://maksr2030.github.io/SMART-Camel-AI-MVP/`
+### آلية النشر المعتمدة
 
-هذا الرابط **مستهدف وليس مثبتاً كعامل حالياً** حتى ينجح أول deployment على `main` ويتم التحقق منه خارج GitHub.
+الموقع ثابت HTML/JavaScript ولا يحتاج build system منفصلاً. لذلك يستخدم GitHub Pages النشر من `main/(root)` مباشرة.
 
-### Workflow النشر
+تم وضع `.nojekyll` في جذر المستودع لمنع معالجة Jekyll والحفاظ على الأصول الثابتة كما هي.
 
-الملف:
-
-`.github/workflows/pages.yml`
-
-ينشر فقط:
+### ما يتم عرضه
 
 - `index.html`
-- مجلد `app/`
-- ملف `.nojekyll` داخل artifact
+- ملفات `app/`
+- سجل القدرات F001-F245 داخل runtime العام.
 
-ولا ينشر `docs/` أو `scripts/` أو ملفات العناية الواجبة كجزء من الموقع الحي.
+وجود ملفات `docs/` و`scripts/` في المستودع العام لا يعني أنها جزء من واجهة العرض، وهي موجودة كمواد عناية واجبة ومراجعة تقنية.
 
-### الإعداد المطلوب مرة واحدة في GitHub
+### شروط استمرار G08 كـReady
 
-1. افتح المستودع.
-2. Settings.
-3. Pages.
-4. تحت Build and deployment اختر **Source: GitHub Actions**.
-
-بعد ذلك، عند دمج الفرع إلى `main`، يعمل workflow النشر تلقائياً.
-
-### شروط إغلاق G08
-
-لا تتحول بوابة Live Stable Demo إلى Ready إلا بعد:
-
-1. نجاح Pages deployment على `main`.
-2. ظهور `page_url` من خطوة `actions/deploy-pages`.
-3. فتح الرابط من خارج GitHub بنجاح.
-4. تحميل `index.html` وملفات `app/` دون أخطاء 404.
-5. ظهور سجل القدرات حتى F245 داخل الواجهة.
-6. نجاح التبديل العربي/الإنجليزي والمحاكاة والبحث والفلترة.
-7. بقاء البيانات موسومة كبيانات عرض/محاكاة.
+1. بقاء Pages منشوراً من `main/(root)`.
+2. استمرار الرابط العام دون 404.
+3. بقاء HTTPS مفروضاً.
+4. عدم حذف `index.html` أو أصول `app/`.
+5. استمرار CI في حماية نطاق F001-F245.
 
 ### حدود الادعاء
 
-نجاح GitHub Pages يثبت وجود **عرض حي ثابت قابل للمراجعة** فقط. لا يثبت backend إنتاجياً أو قاعدة بيانات أو تكاملات حية أو أجهزة IoT أو جاهزية أمنية إنتاجية.
+العرض الحي يثبت وجود Demonstrator عام قابل للمراجعة فقط. لا يثبت backend إنتاجياً أو قاعدة بيانات أو IAM أو تكاملات حكومية حية أو أجهزة IoT فعلية.
 
 ## English
 
-This document defines the live-deployment gate for the SMART Camel AI Acquisition Demonstrator Release.
-
-Target project URL after GitHub Pages is enabled with **GitHub Actions** as the publishing source:
+The live demonstrator is published through GitHub Pages directly from `main` and `/(root)` at:
 
 `https://maksr2030.github.io/SMART-Camel-AI-MVP/`
 
-The URL remains a target, not a verified live claim, until the first `main` deployment succeeds and the site is externally checked.
-
-The deployment workflow publishes only `index.html` and `app/`, keeping due-diligence documents and scripts outside the website artifact.
-
-G08 closes only after a successful Pages deployment, an externally reachable site, working static assets, visible F001-F245 scope, and successful bilingual/demo interactions.
+GitHub reports the site as built, public and HTTPS-enforced. `.nojekyll` is kept at repository root so the static HTML/JavaScript surface is served without Jekyll processing. This closes **G08 — Live Stable Demo** while remaining distinct from Production Readiness.
