@@ -33,7 +33,7 @@
 - خريطة من 20 عائلة نظامية.
 - Core Logic مشترك بين الواجهة والاختبارات.
 
-### Acquisition Technical Due Diligence Foundation — Phase 1
+### Acquisition Technical Due Diligence Foundation
 
 **Claim → F-ID → Source/Evidence → Maturity → Demo/Test → Limitation → Production Closure Plan**
 
@@ -44,61 +44,33 @@
 - [الأمن ونموذج التهديدات | Security Baseline & Threat Model](docs/SECURITY.md).
 - [إشعار الملكية الفكرية | IP Notice](docs/IP_NOTICE.md).
 - [النظرة التقنية للاستحواذ | Acquisition Technical Overview](docs/ACQUISITION_TECHNICAL_OVERVIEW.md).
+- [بيان إصدار الاستحواذ | Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md).
 
-### Evidence & Test Closure — Phase 2
+### Evidence & Grade A Closure
 
 - [سجل أدلة الاستحواذ | Acquisition Evidence Catalog](docs/EVIDENCE_CATALOG.md) — EVD-001 إلى EVD-015.
-- `app/core.js` — منطق عام قابل للاختبار تستخدمه الواجهة نفسها.
-- `tests/test_core.mjs` — اختبارات **F001-F245**، حالات النضج، المخاطر الصحية، التحقق من الشهادة، البحث والفلترة، والسجلات الاصطناعية، مع تحقق صريح من F244 وF245.
-- `tests/test_evidence_contract.py` — اختبار عقد الأدلة، حدود الملكية الفكرية، القيود المعروفة، وربط الـCore بالواجهة.
-
-### Strategic Grade A Closure — Phase 3
-
-- F001/F002 — Registry schema, uniqueness, identity lookup → EVD-016.
-- F012 — Geofence state evaluation → EVD-017.
-- F026/F027 — Testable Mazayen scoring demonstrator → EVD-018.
-- F034 — Auction state-transition contract → EVD-019.
-- F060 — Ordered bilingual audit-event contract → EVD-020.
-
-النتيجة: **جميع القدرات الاستراتيجية الاثنتي عشرة المختارة أصبحت Grade A Evidence**.
-
 - [إغلاق أدلة Phase 3 | Phase 3 Grade A Evidence](docs/PHASE3_GRADE_A_EVIDENCE.md).
 - [مصفوفة الأدلة الاستراتيجية | Strategic Capability Evidence Matrix](docs/STRATEGIC_EVIDENCE_MATRIX.md).
-- `tests/test_phase3.mjs` — اختبار السجل والهوية وgeofence والمزايين والمزاد والتدقيق.
+- `app/core.js` — منطق عام قابل للاختبار تستخدمه الواجهة نفسها.
+- `tests/test_core.mjs` — اختبارات F001-F245 وحالات النضج والمخاطر والبحث والفلترة.
+- `tests/test_phase3.mjs` — اختبارات Grade A للهوية والسجل وgeofence والمزايين والمزاد والتدقيق.
+- `tests/test_phase4.mjs` — اختبار مستقل لاكتمال F001-F245 وF244/F245.
+- `tests/test_evidence_contract.py` — عقد الأدلة وحدود الملكية والقيود.
 
-### Phase 4 — 245 Capability Reconciliation & Acquisition Readiness
-
-تمت إضافة قدرتين مصدرّيتين مستقلتين كانتا موجودتين في ملفات SMART Camel التاريخية ولم تكونا ممثلتين كـF-ID مستقلين:
-
-- **F244 — التحسين الوراثي مع تحليل الأثر البيئي / Genetic Breeding with Environmental Impact Analysis — Planned.**
-- **F245 — تقييم الأثر البيئي الإيجابي لتربية الإبل / Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
-
-يحمّل runtime ملف `app/source-features-244-245.js` بعد F243، ويُلزم `scripts/validate.py` و`tests/test_core.mjs` و`tests/test_phase4.mjs` بوجود تسلسل فريد ومتصل **F001-F245**.
-
-### Release Readiness & Security Gates
+### Acquisition Demonstrator Release Readiness
 
 - [جاهزية إصدار الاستحواذ | Acquisition Release Readiness](docs/RELEASE_READINESS.md) — G01-G15.
+- [نشر العرض الحي | Live Demo Deployment](docs/LIVE_DEMO_DEPLOYMENT.md).
 - [مراجعة الاعتماديات والتراخيص | Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md).
-- `scripts/security_check.py` — فحص أنماط الأسرار عالية الثقة والملفات الحساسة والاعتماديات الخارجية في runtime.
-- `scripts/release_check.py` — يمنع رجوع الوثائق العامة إلى 243 كأنه النطاق الحالي، ويتحقق من بوابات الإصدار الأساسية.
+- `.github/workflows/pages.yml` — workflow لنشر `index.html + app/` فقط على GitHub Pages بعد تفعيل Source: GitHub Actions.
+- `scripts/security_check.py` — فحص الأسرار والملفات الحساسة والاعتماديات الخارجية في runtime.
+- `scripts/release_check.py` — يحرس نطاق 245 وبوابات الإصدار والنشر الحي.
 
-الرابط الحي وtag الإصدار النهائي ما زالا **Pending** ولا يتم تحويلهما إلى Ready إلا بعد تحقق مستقل.
+الرابط المستهدف بعد تفعيل GitHub Pages ونجاح أول deployment على `main` هو:
 
-### حالات النضج
+`https://maksr2030.github.io/SMART-Camel-AI-MVP/`
 
-- Implemented: منفذة مباشرة داخل النموذج العام.
-- Demonstrated: مسار وظيفي قابل للاستعراض وليس نظام إنتاج كامل.
-- Simulated: نتيجة أو محرك يعتمد على بيانات أو منطق محاكاة.
-- Mock Integration: نقطة تكامل توضيحية دون اتصال خارجي حي.
-- Planned: ضمن النطاق المعماري ولم تدخل بعد في الإصدار التشغيلي العام.
-
-### تشغيل محلي
-
-```bash
-python3 -m http.server 4173
-```
-
-ثم افتح `http://localhost:4173/`.
+هذا الرابط **ليس مثبتاً كعامل بعد**؛ G08 يبقى Pending حتى نجاح النشر والتحقق الخارجي.
 
 ### التحقق والاختبارات
 
@@ -112,23 +84,9 @@ python scripts/security_check.py
 python scripts/release_check.py
 ```
 
-GitHub Actions يشغّل هذه الاختبارات كعقد مستمر لجاهزية العناية الواجبة.
-
-### التوثيق الأساسي
-
-- [المعمارية | Architecture](docs/ARCHITECTURE.md)
-- [مصفوفة الأدلة | Evidence Matrix](docs/EVIDENCE.md)
-- [النظرة العامة | Public Overview](docs/PUBLIC_OVERVIEW.md)
-- [مطابقة ميزات المصادر | Source Reconciliation](docs/SOURCE_RECONCILIATION.md)
-- [سجل الخوارزميات والمحركات | Algorithm & Engine Registry](docs/ALGORITHM_ENGINE_REGISTRY.md)
-- [عائلات الأنظمة | System Families](docs/SYSTEM_FAMILIES.md)
-- [مطابقة 245 قدرة | Phase 4 Reconciliation](docs/PHASE4_245_RECONCILIATION.md)
-- [جاهزية إصدار الاستحواذ | Release Readiness](docs/RELEASE_READINESS.md)
-- [مراجعة الاعتماديات والتراخيص | Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md)
-
 ### حدود الإفصاح
 
-جميع بيانات العرض اصطناعية أو توضيحية ما لم يُذكر خلاف ذلك. بيانات المستشعرات، مخرجات الذكاء الاصطناعي، التقييمات والتكاملات الخارجية لا تمثل تشغيلًا إنتاجيًا أو ربطًا حكوميًا حيًا. لا يحتوي المستودع العام على الخوارزميات المملوكة أو الأوزان أو مجموعات التدريب أو نماذج التقييم السرية أو بيانات الشركاء أو وثائق العناية الواجبة الخاصة.
+جميع بيانات العرض اصطناعية أو توضيحية ما لم يُذكر خلاف ذلك. لا يمثل هذا المستودع تشغيلًا إنتاجياً، ولا يحتوي على الخوارزميات المملوكة أو الأوزان أو مجموعات التدريب أو نماذج التقييم السرية أو بيانات الشركاء أو وثائق العناية الواجبة الخاصة.
 
 ## English
 
@@ -143,14 +101,20 @@ SMART Camel AI is an integrated public demonstrator for a broader camel-sector o
 - **20 acquisition Evidence IDs**, EVD-001 through EVD-020.
 - **12/12 selected strategic capabilities at Evidence Grade A — Automated + Runtime**.
 
-These counts do not claim 245 production systems or 29 validated production models. Evidence Grade A does not mean production readiness.
+The historical Phase 1 registry remains F001-F243 for traceability; Phase 4 establishes F001-F245 as the current runtime/CI boundary.
 
-The historical Phase 1 acquisition registry remains F001-F243 for traceability. Phase 4 adds F244 and F245 and establishes F001-F245 as the current runtime/CI boundary.
+### Acquisition Demonstrator Release readiness
 
-### Phase 4 additions
+- [Acquisition Release Manifest](docs/ACQUISITION_RELEASE_MANIFEST.md)
+- [Acquisition Release Readiness](docs/RELEASE_READINESS.md)
+- [Live Demo Deployment](docs/LIVE_DEMO_DEPLOYMENT.md)
+- [Dependency & License Review](docs/DEPENDENCY_AND_LICENSE_REVIEW.md)
 
-- **F244 — Genetic Breeding with Environmental Impact Analysis — Planned.**
-- **F245 — Positive Environmental Impact Evaluation for Camel Breeding — Planned.**
+Target GitHub Pages URL after Pages is enabled with GitHub Actions and the first `main` deployment succeeds:
+
+`https://maksr2030.github.io/SMART-Camel-AI-MVP/`
+
+The URL remains unverified until deployment and external validation close G08.
 
 ### Validate and test
 
@@ -164,6 +128,4 @@ python scripts/security_check.py
 python scripts/release_check.py
 ```
 
-The acquisition release-readiness matrix is in `docs/RELEASE_READINESS.md`, and dependency/license diligence is documented in `docs/DEPENDENCY_AND_LICENSE_REVIEW.md`.
-
-A stable live demo and final acquisition release tag remain Pending until independently verified. Proprietary algorithms, model weights, training datasets, confidential scoring models, partner data and private due-diligence records remain outside the public repository.
+This package is an **Acquisition Demonstrator Candidate** until final PR CI, merge, live Pages verification and the fixed acquisition release tag are complete. It is not Production Ready.
