@@ -10,6 +10,7 @@ FILES = {
     'source': ROOT / 'docs' / 'SOURCE_RECONCILIATION.md',
     'acquisition': ROOT / 'docs' / 'ACQUISITION_TECHNICAL_OVERVIEW.md',
     'manifest': ROOT / 'docs' / 'ACQUISITION_RELEASE_MANIFEST.md',
+    'deployment': ROOT / 'docs' / 'LIVE_DEMO_DEPLOYMENT.md',
     'evidence': ROOT / 'docs' / 'EVIDENCE.md',
     'families': ROOT / 'docs' / 'SYSTEM_FAMILIES.md',
     'phase4': ROOT / 'docs' / 'PHASE4_245_RECONCILIATION.md',
@@ -24,20 +25,13 @@ FILES = {
     'release': ROOT / 'docs' / 'RELEASE_READINESS.md',
     'dependency': ROOT / 'docs' / 'DEPENDENCY_AND_LICENSE_REVIEW.md',
     'workflow': ROOT / '.github' / 'workflows' / 'validate.yml',
+    'pages_workflow': ROOT / '.github' / 'workflows' / 'pages.yml',
 }
 
 CURRENT_RELEASE_ABSENCE = (
-    ROOT / 'package.json',
-    ROOT / 'package-lock.json',
-    ROOT / 'yarn.lock',
-    ROOT / 'pnpm-lock.yaml',
-    ROOT / 'requirements.txt',
-    ROOT / 'pyproject.toml',
-    ROOT / 'Pipfile',
-    ROOT / 'poetry.lock',
-    ROOT / 'LICENSE',
-    ROOT / 'LICENSE.md',
-    ROOT / 'LICENSE.txt',
+    ROOT / 'package.json', ROOT / 'package-lock.json', ROOT / 'yarn.lock', ROOT / 'pnpm-lock.yaml',
+    ROOT / 'requirements.txt', ROOT / 'pyproject.toml', ROOT / 'Pipfile', ROOT / 'poetry.lock',
+    ROOT / 'LICENSE', ROOT / 'LICENSE.md', ROOT / 'LICENSE.txt',
 )
 
 errors = []
@@ -56,7 +50,7 @@ for path in CURRENT_RELEASE_ABSENCE:
         )
 
 CURRENT_SCOPE_DOCS = (
-    'readme', 'overview', 'source', 'acquisition', 'manifest', 'evidence', 'families', 'phase4',
+    'readme', 'overview', 'source', 'acquisition', 'manifest', 'deployment', 'evidence', 'families', 'phase4',
     'demos', 'limitations', 'ip', 'catalog', 'algorithms', 'architecture', 'strategic'
 )
 for key in CURRENT_SCOPE_DOCS:
@@ -65,9 +59,7 @@ for key in CURRENT_SCOPE_DOCS:
         errors.append(f'{FILES[key].relative_to(ROOT)} must state the current 245/F245 scope')
 
 for marker in (
-    'F244',
-    'F245',
-    'Genetic Breeding with Environmental Impact Analysis',
+    'F244', 'F245', 'Genetic Breeding with Environmental Impact Analysis',
     'Positive Environmental Impact Evaluation for Camel Breeding',
 ):
     if marker not in texts.get('phase4', ''):
@@ -75,10 +67,8 @@ for marker in (
 
 manifest = texts.get('manifest', '')
 for marker in (
-    '245 canonical capabilities',
-    '29 source-documented named algorithms/engines',
-    '20 canonical system families',
-    '12/12 selected strategic capabilities at Evidence Grade A',
+    '245 canonical capabilities', '29 source-documented named algorithms/engines',
+    '20 canonical system families', '12/12 selected strategic capabilities at Evidence Grade A',
     'Acquisition Demonstrator Candidate',
 ):
     if marker not in manifest:
@@ -103,35 +93,41 @@ for gate in range(1, 16):
     token = f'G{gate:02d}'
     if token not in release_text:
         errors.append(f'Release readiness matrix missing gate {token}')
-
 if 'Live Stable Demo | Pending' not in release_text:
     errors.append('Release readiness must keep live stable demo as Pending until independently verified')
 if 'Fixed Acquisition Release Tag | Pending' not in release_text:
     errors.append('Release readiness must keep acquisition tag as Pending until live demo + CI verification')
 
+pages = texts.get('pages_workflow', '')
+for marker in (
+    'actions/configure-pages@v5', 'actions/upload-pages-artifact@v4', 'actions/deploy-pages@v4',
+    'pages: write', 'id-token: write', 'branches: [main]', 'cp index.html _site/', 'cp -R app _site/app',
+):
+    if marker not in pages:
+        errors.append(f'GitHub Pages workflow missing required marker: {marker}')
+
+for marker in (
+    'https://maksr2030.github.io/SMART-Camel-AI-MVP/',
+    'Source: GitHub Actions',
+    'G08',
+):
+    if marker not in texts.get('deployment', ''):
+        errors.append(f'Live demo deployment document missing marker: {marker}')
+
 workflow = texts.get('workflow', '')
 for command in (
-    'python scripts/validate.py',
-    'node tests/test_core.mjs',
-    'node tests/test_phase3.mjs',
-    'node tests/test_phase4.mjs',
-    'python tests/test_evidence_contract.py',
-    'python scripts/security_check.py',
-    'python scripts/release_check.py',
+    'python scripts/validate.py', 'node tests/test_core.mjs', 'node tests/test_phase3.mjs',
+    'node tests/test_phase4.mjs', 'python tests/test_evidence_contract.py',
+    'python scripts/security_check.py', 'python scripts/release_check.py',
 ):
     if command not in workflow:
         errors.append(f'GitHub Actions missing release command: {command}')
 
 readme = texts.get('readme', '')
-for command in (
-    'python scripts/security_check.py',
-    'python scripts/release_check.py',
-):
+for command in ('python scripts/security_check.py', 'python scripts/release_check.py'):
     if command not in readme:
         errors.append(f'README missing release command: {command}')
 
-# Protect current-scope documents from accidentally reverting to a 243-only current scope.
-# Historical/baseline mentions are allowed when explicitly labelled historical.
 stale_current_patterns = [
     re.compile(r'current[^\n]{0,80}\b243\b', re.IGNORECASE),
     re.compile(r'الحالي[^\n]{0,80}\b243\b'),
@@ -158,6 +154,7 @@ print('Algorithms/system families: 29 / 20 preserved')
 print('Strategic evidence: 12/12 Grade A preserved')
 print('Verified no-manifest/no-lockfile/no-public-license boundary: preserved')
 print('Security and licensing boundaries: present')
+print('GitHub Pages deployment workflow: structurally ready')
 print('Release readiness gates: G01-G15 present')
 print('Live demo and final release tag remain correctly Pending')
 print('CI release commands: complete')
